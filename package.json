@@ -1,0 +1,25 @@
+{
+  "name": "ddf-validation-ng",
+  "version": "0.0.1",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/semio/ddf-validation-ng.git"
+  },
+  "author": "Semio Zheng",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/semio/ddf-validation-ng/issues"
+  },
+  "homepage": "https://github.com/semio/ddf-validation-ng#readme",
+  "dependencies": {
+    "arcsecond": "^4.1.0",
+    "daggy": "^1.5.0",
+    "sanctuary": "^3.1.0"
+  }
+}
