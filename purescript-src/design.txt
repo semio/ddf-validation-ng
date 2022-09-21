@@ -1,0 +1,20 @@
+string -> Input type -> Parser Valid Input type -> V Errors (Tuple a Warnings)
+
+string -> IdInput -> V Errors (Tuple ValidId Warnings)
+
+CSV -> Array String -> Array (V Errors (Tuple a Warnings)) -> 
+
+
+step 1: read all file name -> valid files + Warnings
+step 2: get concept files -> check file content -> valid concepts + Warnings/Errors
+step 3: valid concepts -> DDF with concepts only
+step 4: get entities files ->  check file content -> valid entities + Warnings/Errors
+step 5: get datapoints files -> check file content -> valid datapoints + Warning/Errors
+step 6: check each indicator's data for duplications
+
+
+check file content = 
+1. check for duplicated entries
+2. check those "must exists" columns
+3. check constrains (datapoints only)
+
