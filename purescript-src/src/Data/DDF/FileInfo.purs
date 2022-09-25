@@ -1,12 +1,9 @@
-module DDF.Types.FileInfo where
+module Data.DDF.FileInfo where
 
 import Prelude
-
 import Control.Alt ((<|>))
-import DDF.Types.Identifier (identifier)
-import DDF.Validation.Types.Result (Results)
-import DDF.Validation.Types.Result as Res
-import DDF.Validation.Types.ValidationT (Validation, vError)
+import Data.DDF.Identifier (identifier)
+import Data.DDF.Validation.Result (Errors, Error(..))
 import Data.Either (Either(..))
 import Data.Maybe (Maybe(..))
 import Data.String (Pattern(..), stripSuffix)
@@ -32,6 +29,7 @@ data CollectionInfo
 --     , collection :: CollectionInfo
 --     , name :: String
 --     }
+
 -- | file info are information contains in file name.
 data FileInfo
   = FileInfo FilePath CollectionInfo String
@@ -96,22 +94,20 @@ entityFile ∷ Parser CollectionInfo
 entityFile = choice [ try e2, try e1 ]
 
 -- TODO: add datapoint file parsers
-
 --
 getName :: String -> Maybe String
 getName = stripSuffix (Pattern ".csv")
 
-validateFileInfo :: FilePath -> V Results FileInfo
+validateFileInfo :: FilePath -> V Errors FileInfo
 validateFileInfo fp = case getName $ basename fp of
-  Nothing -> invalid [ Res.create fp "not a csv file" "error" ]
+  Nothing -> invalid [ Error $ fp <> "is not a csv file" ]
   Just fn ->
     let
       fileParser = conceptFile <|> entityFile
     in
       case runParser fileParser fn of
         Right ci -> pure $ FileInfo fp ci fn
-        Left err -> invalid [ Res.create fp ("not correct ddf file: " <> err.error) "error" ]
+        Left err -> invalid [ Error $ fp <> "is not correct ddf file: " <> err.error ]
 
-
-fromFilePath :: FilePath -> Either Results FileInfo
+fromFilePath :: FilePath -> Either Errors FileInfo
 fromFilePath = toEither <<< validateFileInfo

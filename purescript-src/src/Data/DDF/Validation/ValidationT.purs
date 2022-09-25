@@ -1,10 +1,10 @@
-module DDF.Validation.Types.ValidationT where
+module Data.DDF.Validation.ValidationT where
 
 import Prelude
 
 import Control.Monad.Except (class MonadTrans, ExceptT, lift, runExceptT, throwError)
 import Control.Monad.State (StateT, modify_, runStateT)
-import DDF.Validation.Types.Result (Results)
+import Data.DDF.Validation.Result (Errors)
 import Data.Either (Either(..))
 import Data.Identity (Identity)
 import Data.Maybe (Maybe(..))
@@ -84,5 +84,5 @@ vWarning :: forall e m. Monad m => Monoid e => e -> ValidationT e m Unit
 vWarning e = ValidationT $ modify_ (\x -> x <> e)
 
 -- Alias
-type Validation a
-  = forall m. Monad m => ValidationT Results m a
+type Validation e a
+  = forall m. Monad m => ValidationT e m a

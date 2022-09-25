@@ -30,10 +30,12 @@ to generate this file without the comments in this block.
   , "ordered-collections"
   , "prelude"
   , "quickcheck"
+  , "safe-coerce"
   , "string-parsers"
   , "strings"
   , "stringutils"
   , "tuples"
+  , "typelevel"
   , "validation"
   ]
 , packages = ./packages.dhall

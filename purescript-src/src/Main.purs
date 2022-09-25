@@ -2,22 +2,27 @@ module Main where
 
 import Prelude
 
-import Csv (RawCsvContent, readCsv)
-import Csv as C
-import DDF.Types.Concept (Concept(..), fromCsvContent, validateConcept)
-import DDF.Types.CsvFile (CsvContent, CsvFile(..), getCsvContent, validCsvFile)
-import DDF.Types.CsvFile as CSV
-import DDF.Types.FileInfo (isConceptFile, FileInfo(..))
-import DDF.Types.FileInfo as FI
-import DDF.Types.FileInfo as FileInfo
-import DDF.Validation.Types.Result (Errors, getValue)
-import DDF.Validation.Types.ValidationT (Validation, ValidationT, runValidationT, vError, vWarning)
 import Data.Array (concat, filter, partition)
+import Data.Array as Arr
+import Data.Csv (CsvRow(..), RawCsvContent, getLineNo, readCsv)
+import Data.Csv as C
+import Data.DDF.Concept (Concept(..), fromCsvRow, parseConcept)
+import Data.DDF.Concept as Conc
+import Data.DDF.CsvFile (CsvContent, CsvFile(..), getCsvContent, validCsvFile)
+import Data.DDF.CsvFile as CSV
+import Data.DDF.DataSet (DataSet(..))
+import Data.DDF.FileInfo (isConceptFile, FileInfo(..))
+import Data.DDF.FileInfo as FI
+import Data.DDF.FileInfo as FileInfo
+import Data.DDF.Validation.Result (Error(..), Errors)
+import Data.DDF.Validation.ValidationT (Validation, ValidationT, runValidationT, vError, vWarning)
 import Data.Either (Either(..))
 import Data.Foldable (traverse_)
+import Data.List (List(..))
+import Data.List as L
 import Data.Maybe (Maybe(..))
 import Data.Traversable (for, sequence)
-import Data.Tuple (Tuple(..))
+import Data.Tuple (Tuple(..), snd)
 import Data.Validation.Semigroup (V, andThen, invalid, isValid, toEither)
 import Effect (Effect)
 import Effect.Aff (launchAff_)
@@ -25,54 +30,33 @@ import Effect.Console (log, logShow)
 import Node.Path (FilePath)
 import Utils (arrayOfLeft, arrayOfRight, getFiles)
 
-
 -- step1: read all files from dataset folder
 -- validateFiles :: FilePath -> ValidationT Results Effect (Array FileInfo)
 -- validateFiles
-
 -- step2: validate if it's good csv file
-validateCsvFile :: FilePath -> RawCsvContent -> Validation CsvFile
-validateCsvFile fp csvcontent =
-  case fileinfo of
-    Right fi ->
-      validCsvFile fi csvcontent
-    Left err -> vError err
-  where 
-    fileinfo = toEither $ FI.validateFileInfo fp
+validateCsvFile :: FilePath -> RawCsvContent -> Validation Errors CsvFile
+validateCsvFile fp csvcontent = case csv of
+  Right csv' -> pure csv'
+  Left err -> vError err
+  where
+  csv = toEither $ FI.validateFileInfo fp `andThen` (\fi -> validCsvFile fi csvcontent)
 
-
-validateConceptsFile :: CsvFile -> Validation (Array Concept)
-validateConceptsFile csvfile = 
-  let 
-    conceptinput = fromCsvContent $ getCsvContent csvfile
-    res = map (toEither <<< validateConcept) conceptinput
+validateConceptsFile :: CsvFile -> Validation Errors (List Concept)
+validateConceptsFile csvfile =
+  let
+    { headers, rows } = getCsvContent csvfile
   in
-    do 
-    concArr <- for res $ \x ->
-      case x of
-        Right conc -> pure [ conc ]
-        Left err -> do
-          vWarning err
-          pure []
-    pure $ concat concArr
-
-
-main2 :: Effect Unit
-main2 = do
-  let
-    path = "/home/semio/src/work/gapminder/libs/ddf-validation-ng/purescript-src/test/datasets/test1/ddf--concepts.csv"
-  lst <- readCsv path
-  let
-    csvContent = C.create lst
-
-  res <- runValidationT $ do 
-    csvfile <- validateCsvFile path csvContent
-    validateConceptsFile csvfile
-    -- let
-    --   vcsvcontent = getCsvContent vcsv
-    -- pure $ fromCsvContent vcsvcontent
-  logShow res
-
+    do
+      concLst <- for rows $ \r -> 
+        case toEither $ fromCsvRow headers r `andThen` parseConcept of
+          Right c -> pure $ L.singleton c
+          Left errs -> do
+            let 
+              idx = getLineNo r
+            vWarning [ Error $ "line " <> show idx <> " has problem" ]
+            vWarning errs
+            pure Nil
+      pure $ L.concat concLst
 
 main :: Effect Unit
 main = do

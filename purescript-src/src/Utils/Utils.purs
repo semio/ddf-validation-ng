@@ -4,6 +4,7 @@ import Prelude
 
 import Data.Array (concatMap, partition, filterA, concat)
 import Data.Either (Either(..))
+import Data.List (List(..), singleton)
 import Data.Maybe (Maybe(..))
 import Data.String (joinWith)
 import Data.Traversable (sequence, traverse)
@@ -27,10 +28,31 @@ getFiles x = do
   pure $ files <> fsInDirs
 
 
-arrayOfRight :: forall a b. Either a b -> Array b
-arrayOfRight (Right b) = [b]
-arrayOfRight _ = []
+arrayOfRight :: forall a b. Either a b -> List b
+arrayOfRight (Right b) = singleton b
+arrayOfRight _ = Nil
 
-arrayOfLeft :: forall a b. Either a b -> Array a
-arrayOfLeft (Left a) = [a]
-arrayOfLeft _ = []
+arrayOfLeft :: forall a b. Either a b -> List a
+arrayOfLeft (Left a) = singleton a
+arrayOfLeft _ = Nil
+
+-- | create a counter
+-- counter :: forall a. Ord a => Eq a => NonEmptyArray a -> NonEmptyArray (Tuple a Int)
+-- counter xs = map (\x -> (Tuple (NArr.head x) (NArr.length x))) <<< NArr.group <<< NArr.sort $ xs
+
+-- -- | check if there are duplicated entries in a list
+-- checkDups :: forall a. Show a => Eq a => Ord a => NonEmptyArray a -> V Errors (NonEmptyArray a)
+-- checkDups xs =
+--   let
+--     ns = counter xs
+
+--     hasDups = NArr.filter (\x -> (snd x) > 1) ns
+--   in
+--     case Arr.head hasDups of
+--       Nothing -> pure xs
+--       Just _ -> do
+--         let
+--           allDups = map fst hasDups
+
+--           msg = "duplicated entry: " <> show allDups
+--         invalid [ Error msg ]

@@ -1,13 +1,13 @@
-module DDF.Types.DataSet where
+module Data.DDF.DataSet where
 
 import Prelude
 
-import DDF.Types.Concept (Concept(..), getId)
-import DDF.Types.Concept as Conc
-import DDF.Types.FileInfo (FileInfo(..))
-import DDF.Validation.Types.Result (Results)
-import DDF.Validation.Types.Result as Res
-import DDF.Validation.Types.ValidationT (Validation, vWarning)
+import Data.DDF.Concept (Concept(..), getId)
+import Data.DDF.Concept as Conc
+import Data.DDF.FileInfo (FileInfo(..))
+import Data.DDF.Validation.Result (Errors, Error(..))
+import Data.DDF.Validation.Result as Res
+import Data.DDF.Validation.ValidationT (Validation, vWarning)
 import Data.Array as Arr
 import Data.Array.NonEmpty (NonEmptyArray)
 import Data.Array.NonEmpty as NArr
@@ -34,28 +34,21 @@ empty = DataSet { concepts: Map.empty }
 conceptsStr :: DataSet -> Set String
 conceptsStr (DataSet ds) = Map.keys ds.concepts
 
+-- functions to add stuffs to a dataset
+addConcept :: Concept -> DataSet -> V Errors DataSet
+addConcept conc (DataSet ds) = case concExisted of
+  true -> invalid [ Error $ "concept " <> cid <> " existed in dataset" ]
+  false -> pure newds
+    where
+    newds = DataSet $ ds { concepts = newconcepts }
+
+    newconcepts = Map.insert cid conc ds.concepts
+  where
+  cid = Conc.getId conc
+
+  concExisted = Map.member cid ds.concepts
+
 -- below are per-file checkings
-
--- | create a counter
-counter :: forall a. Ord a => Eq a => NonEmptyArray a -> NonEmptyArray (Tuple a Int)
-counter xs = map (\x -> (Tuple (NArr.head x) (NArr.length x))) <<< NArr.group <<< NArr.sort $ xs
-
--- | check if there are duplicated entries in a list
-checkDups :: forall a. Show a => Eq a => Ord a => NonEmptyArray a -> V Results (NonEmptyArray a)
-checkDups xs =
-  let
-    ns = counter xs
-
-    hasDups = NArr.filter (\x -> (snd x) > 1) ns
-  in
-    case Arr.head hasDups of
-      Nothing -> pure xs
-      Just _ -> do
-        let
-          allDups = map fst hasDups
-
-          msg = "duplicated entry: " <> show allDups
-        invalid [ Res.create "" msg "warning" ]
 
 -- | add concepts
 -- validateNewConcepts :: (Array Concept) -> DataSet -> Validation (Array Concept)

@@ -1,12 +1,11 @@
-module DDF.Types.Identifier where
+module Data.DDF.Identifier where
 
 import Data.Validation.Semigroup
 import Prelude
 import StringParser
 
 import Control.Alt ((<|>))
-import DDF.Validation.Types.Result (Errors, Ok(..), Result, Results, Warnings)
-import DDF.Validation.Types.Result as Res
+import Data.DDF.Validation.Result (Errors, Error(..))
 import Data.Array (foldr, fromFoldable)
 import Data.Either (Either(..))
 import Data.Generic.Rep (class Generic)
@@ -24,6 +23,8 @@ newtype Identifier = Id String
 
 derive instance newtypeId :: Newtype Identifier _
 derive instance genericId :: Generic Identifier _
+derive instance eqId :: Eq Identifier
+derive instance ordId :: Ord Identifier
 
 instance showId :: Show Identifier where
   show = genericShow
@@ -55,24 +56,23 @@ identifier' :: Parser String
 identifier' = identifier <* eof
 
 
-validateId :: String -> V Errors Identifier
-validateId x =
+-- | parse an id, return the applicative V
+parseId :: String -> V Errors Identifier
+parseId x =
   case runParser identifier' x of
       Right str -> pure $ Id str
       Left e -> invalid [err]
         where
           pos = show $ e.pos
-          msg = e.error <> ", pos: " <> pos
-          err = Res.create x msg "error"
+          msg = "invalid id: " <> x <> ", " <> e.error <> "at pos " <> pos
+          err = Error msg
 
+-- | parse an id, return Either err id
+create :: String -> Either Errors Identifier
+create x = toEither $ parseId x
 
--- validIds :: Array String -> V Issues (Array Identifier)
--- validIds xs = foldr (<>) vs (pure [])
---   where
---     vs = map validId xs
-
-create :: String -> Either Results Identifier
-create x = toEither $ validateId x
-
-
+-- | unsafe create an id, because we won't check the string.
+-- | only use this when you know what you are doning
+unsafeCreate :: String -> Identifier
+unsafeCreate = Id
 
