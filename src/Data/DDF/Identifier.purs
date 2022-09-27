@@ -5,11 +5,12 @@ import Prelude
 import StringParser
 
 import Control.Alt ((<|>))
-import Data.DDF.Validation.Result (Errors, Error(..))
 import Data.Array (foldr, fromFoldable)
+import Data.DDF.Validation.Result (Errors, Error(..))
 import Data.Either (Either(..))
 import Data.Generic.Rep (class Generic)
 import Data.List (List, (:))
+import Data.List.NonEmpty as NL
 import Data.Newtype (class Newtype)
 import Data.Show.Generic (genericShow)
 import Data.String.CodeUnits (fromCharArray)
@@ -43,12 +44,11 @@ alphaNumAnd_ :: Parser Char
 alphaNumAnd_ = alphaNumLower <|> char '_'
   <?> "expect lowercase alphanumeric and underscore _"
 
--- | parse identifier strings. First char must be alphanum.
+-- | parse identifier strings.
 identifier :: Parser String
 identifier = do
-  firstchar <- alphaNumLower
-  otherchars <- many alphaNumAnd_
-  pure $ stringFromChars (firstchar : otherchars)
+  chars <- many1 alphaNumAnd_
+  pure $ stringFromChars $ NL.toList chars
 
 
 -- | check if the whole string is an identifer

@@ -2,8 +2,9 @@ module Data.DDF.Concept where
 
 import Data.Validation.Semigroup
 import Prelude
+
 import Data.Csv (CsvRow(..))
-import Data.DDF.CsvFile (headersExists)
+import Data.DDF.CsvFile (Header(..), headersExists)
 import Data.DDF.FileInfo (FileInfo(..))
 import Data.DDF.Identifier (Identifier)
 import Data.DDF.Identifier as Id
@@ -22,6 +23,7 @@ import Data.String as Str
 import Data.Traversable (for, traverse)
 import Data.Tuple (Tuple(..), fst)
 import Data.Validation.Semigroup (V, invalid)
+import Safe.Coerce (coerce)
 
 
 -- | Types of concepts
@@ -109,14 +111,16 @@ parseConcept { conceptId: cid, conceptType: ct, props: props } =
       in
         concept <$> conceptId <*> conceptType <*> pure props
 
-fromCsvRow :: (NonEmptyList Identifier) -> CsvRow -> V Errors ConceptInput
+fromCsvRow :: (NonEmptyList Header) -> CsvRow -> V Errors ConceptInput
 fromCsvRow headers (CsvRow (Tuple idx row)) =
   if NL.length headers /= L.length row then
     invalid [ Error $ "Line " <> show idx <> ": Bad csv row" ]
   else
     pure $ (mkConcept <<< rowAsMap) row
   where
-  headersL = NL.toList headers
+  -- FIXME: coerce header to Id might not be wrong
+  -- because not all headers are valid Ids. (i.e. is-- headers)
+  headersL = NL.toList $ map coerce headers  
 
   rowAsMap r = fromFoldable (zip headersL r)
 

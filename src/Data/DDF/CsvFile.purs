@@ -2,9 +2,9 @@
 module Data.DDF.CsvFile where
 
 import Prelude
+import StringParser
 
-import Control.Monad.Gen (resize)
-import Data.Array as Arr
+import Control.Alt ((<|>))
 import Data.Csv (CsvRow, RawCsvContent)
 import Data.DDF.FileInfo (FileInfo(..), CollectionInfo(..))
 import Data.DDF.FileInfo as FileInfo
@@ -13,20 +13,71 @@ import Data.DDF.Identifier as Id
 import Data.DDF.Validation.Result (Errors, Error(..))
 import Data.DDF.Validation.ValidationT (Validation, vError, vWarning)
 import Data.Either (Either(..), fromLeft, fromRight, isLeft)
-import Data.Identity (Identity)
+import Data.Generic.Rep (class Generic)
 import Data.List (List(..))
 import Data.List as L
 import Data.List.NonEmpty (NonEmptyList, elem, fold1, nub)
 import Data.List.NonEmpty as NL
 import Data.Maybe (Maybe(..))
+import Data.Newtype (class Newtype)
 import Data.Set as S
+import Data.Show.Generic (genericShow)
+import Data.String.Utils (startsWith)
 import Data.Traversable (class Foldable, sequence, traverse)
 import Data.Tuple (Tuple(..), fst, snd)
 import Data.Validation.Semigroup (V, andThen, invalid, isValid, toEither)
+import StringParser (Parser, choice, eof, runParser, string)
+
+newtype Header
+  = Header String
+
+derive instance newtypeHeader :: Newtype Header _
+
+derive instance genericHeader :: Generic Header _
+
+derive instance eqHeader :: Eq Header
+
+derive instance ordHeader :: Ord Header
+
+instance showHeader :: Show Header where
+  show = genericShow
+
+-- FIXME: replace this with unwrap
+headerVal :: Header -> String
+headerVal (Header x) = x
+
+is_header :: Parser String
+is_header = do
+  begin <- string "is--"
+  val <- Id.identifier
+  pure $ begin <> val
+
+header :: Parser String
+header = do
+  h <- is_header <|> Id.identifier
+  void $ eof
+  pure h
+
+parseHeader :: String -> V Errors Header
+parseHeader x = case runParser header x of
+  Right str -> pure $ Header str
+  Left e -> invalid [ err ]
+    where
+    pos = show $ e.pos
+
+    msg = "invalid header: " <> x <> ", " <> e.error <> "at pos " <> pos
+
+    err = Error msg
+
+createHeader :: String -> Either Errors Header
+createHeader x = toEither $ parseHeader x
+
+unsafeCreateHeader :: String -> Header
+unsafeCreateHeader = Header
 
 -- | CsvContent is the data read from a csv file.
 type CsvContent
-  = { headers :: NonEmptyList Identifier
+  = { headers :: NonEmptyList Header
     , rows :: List CsvRow
     }
 
@@ -40,7 +91,7 @@ data CsvFile
 instance showCsvFile :: Show CsvFile where
   show (CsvFile x) = show x
 
-mkCsvContent :: NonEmptyList Identifier -> List CsvRow -> CsvContent
+mkCsvContent :: NonEmptyList Header -> List CsvRow -> CsvContent
 mkCsvContent headers rows = { headers: headers, rows: rows }
 
 mkCsvFile :: FileInfo -> CsvContent -> CsvFile
@@ -82,7 +133,25 @@ notEmptyCsv input = case join $ NL.fromList <$> input.headers of
 colsAreValidIds :: NonEmptyRawCsvContent -> V Errors CsvContent
 colsAreValidIds input =
   let
-    res = sequence $ map Id.parseId input.headers
+    res = sequence $ map parseHeader input.headers
+  in
+    case toEither res of
+      Right hs ->
+        let
+          headerValues = map headerVal hs
+
+          is_headers = NL.filter (startsWith "is--") headerValues
+        in
+          case is_headers of
+            Nil -> pure $ input { headers = hs }
+            xs -> invalid [ Error $ "these headers are not valid Ids: " <> show xs ]
+      Left errs -> invalid errs
+
+-- | check all columns are valid headers (including is-- headers)
+colsAreValidHeaders :: NonEmptyRawCsvContent -> V Errors CsvContent
+colsAreValidHeaders input =
+  let
+    res = sequence $ map parseHeader input.headers
   in
     case toEither res of
       Right hs -> pure $ input { headers = hs }
@@ -101,7 +170,6 @@ headersExists expected csvcontent =
     else
       invalid [ Error $ "concept file MUST have following field: " <> show expected ]
 
-
 -- | check if csv file has duplicated headers.
 noDupCols :: CsvContent -> Validation Errors CsvContent
 noDupCols input =
@@ -116,7 +184,6 @@ noDupCols input =
       do
         vWarning [ Error $ "duplicated headers: " <> show dups <> ", only first one will be use" ]
         pure input -- Maybe remove dups
-
 
 -- | check if file info matched with csv file headers
 validCsvFile :: FileInfo -> RawCsvContent -> V Errors CsvFile
