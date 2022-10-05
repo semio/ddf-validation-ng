@@ -1,7 +1,6655 @@
-var gi=function(n){return function(r){for(var t=n.length,e=r.length,a=new Array(t*e),u=0,i=0;i<t;i++)for(var f=n[i],l=0;l<e;l++)a[u++]=f(r[l]);return a}};var va={compose:function(n){return function(r){return function(t){return n(r(t))}}}};var tn=function(n){return n.identity},an={identity:function(n){return n},Semigroupoid0:function(){return va}};var gn=!0;var cn=function(n){return function(r){return function(t){return n(t)(r)}}},sn=function(n){return function(r){return n}};var bi=function(n){return function(r){for(var t=r.length,e=new Array(t),a=0;a<t;a++)e[a]=n(r[a]);return e}};var En=function(){function n(){}return n.value=new n,n}();var v=function(n){return n.map},zt=function(n){var r=v(n);return function(t){return function(e){return r(e)(t)}}},Dn=function(n){return v(n)(sn(void 0))};var Cn={map:bi};var B_=tn(an);var Da={apply:gi,Functor0:function(){return Cn}},Q=function(n){return n.apply},Ce=function(n){var r=Q(n),t=v(n.Functor0());return function(e){return function(a){return r(t(sn)(e))(a)}}},Et=function(n){var r=Q(n),t=v(n.Functor0());return function(e){return function(a){return r(t(sn(B_))(e))(a)}}};var h=function(n){return n.pure};var Ct=function(n){var r=h(n);return function(t){return function(e){if(t)return e;if(!t)return r(void 0);throw new Error("Failed pattern match at Control.Applicative (line 63, column 1 - line 63, column 63): "+[t.constructor.name,e.constructor.name])}}},Te=function(n){var r=Q(n.Apply0()),t=h(n);return function(e){return function(a){return r(t(e))(a)}}};var Ei=function(n){return function(r){for(var t=[],e=0,a=n.length;e<a;e++)Array.prototype.push.apply(t,r(n[e]));return t}};var J_=tn(an),at=function(n){return n.discard};var ya={bind:Ei,Apply0:function(){return Da}},S=function(n){return n.bind};var ot={discard:function(n){return S(n)}};var ha=function(n){var r=S(n);return function(t){return r(t)(J_)}};var Dr=function(n){return n.lift};var ut=function(n){return function(r){for(var t=n>r?-1:1,e=new Array(t*(r-n)+1),a=n,u=0;a!==r;)e[u++]=a,a+=t;return e[u]=a,e}},G_=function(n){return function(r){if(n<1)return[];var t=new Array(n);return t.fill(r)}},k_=function(n){return function(r){for(var t=[],e=0,a=0;a<n;a++)t[e++]=r;return t}},Ci=typeof Array.prototype.fill=="function"?G_:k_,Ti=function(){function n(a,u){this.head=a,this.tail=u}var r={};function t(a){return function(u){return new n(a,u)}}function e(a){for(var u=[],i=0,f=a;f!==r;)u[i++]=f.head,f=f.tail;return u}return function(a){return function(u){return e(a(t)(r)(u))}}}(),Ln=function(n){return n.length},ho=function(n){return function(r){return function(t){return t.length===0?n({}):r(t[0])(t.slice(1))}}},Fi=function(n){return function(r){return function(t){return function(e){return e<0||e>=t.length?r:n(t[e])}}}};var Si=function(n){return function(r){return function(t){return function(e){for(var a=0,u=e.length;a<u;a++)if(t(e[a]))return n(a);return r}}}};var Tt=function(n){if(n.length<=1e4)return Array.prototype.concat.apply([],n);for(var r=[],t=0,e=n.length;t<e;t++)for(var a=n[t],u=0,i=a.length;u<i;u++)r.push(a[u]);return r},fr=function(n){return function(r){return r.filter(n)}};var j_=function(){function n(r,t,e,a,u,i){var f,l,c,_,p,y,d;for(f=u+(i-u>>1),f-u>1&&n(r,t,a,e,u,f),i-f>1&&n(r,t,a,e,f,i),l=u,c=f,_=u;l<f&&c<i;)p=a[l],y=a[c],d=t(r(p)(y)),d>0?(e[_++]=y,++c):(e[_++]=p,++l);for(;l<f;)e[_++]=a[l++];for(;c<i;)e[_++]=a[c++]}return function(r){return function(t){return function(e){var a;return e.length<2?e:(a=e.slice(0),n(r,t,a,e.slice(0),0,e.length),a)}}}}();var ba=function(n){return function(r){return function(t){for(var e=r.length<t.length?r.length:t.length,a=new Array(e),u=0;u<e;u++)a[u]=n(r[u])(t[u]);return a}}};var Mi=function(n){return function(r){return n+r}},Ii=function(n){return function(r){return n.length===0?r:r.length===0?n:n.concat(r)}};var kn=function(n){return n.reflectSymbol};var yr=function(n){return function(r){return r[n]}};var go={append:Mi};var _n={append:Ii};var I=function(n){return n.append};var hn=function(n){return n.alt};var it=function(n){var r=S(n.Bind1()),t=h(n.Applicative0());return function(e){return function(a){return r(e)(function(u){return r(a)(function(i){return t(u(i))})})}}};var xi=String.fromCharCode(65535),Ni=String.fromCharCode(0),Y_=Number.POSITIVE_INFINITY,X_=Number.NEGATIVE_INFINITY;var bo=function(n){return function(r){return function(t){return function(e){return function(a){return e<a?n:e===a?r:t}}}}};var $i=bo;var qi=bo,Oi=bo;var wo=function(n){return function(r){return n===r}};var Pi=wo;var Ri=wo,Wi=wo;var hr={eq:Wi};var ct={eq:Pi},Se={eq:Ri};var O=function(n){return n.eq};var U=function(){function n(){}return n.value=new n,n}(),k=function(){function n(){}return n.value=new n,n}(),j=function(){function n(){}return n.value=new n,n}();var Bi=function(n){return function(r){return n-r|0}};var Ui=function(n){return function(r){return n+r|0}},zi=function(n){return function(r){return n*r|0}};var wa={add:Ui,zero:0,mul:zi,one:1};var Ji={sub:Bi,Semiring0:function(){return wa}};var Gt=function(){return{compare:qi(U.value)(j.value)(k.value),Eq0:function(){return hr}}}();var br=function(){return{compare:$i(U.value)(j.value)(k.value),Eq0:function(){return ct}}}(),Ca=function(){return{compare:Oi(U.value)(j.value)(k.value),Eq0:function(){return Se}}}();var P=function(n){return n.compare};var Kn=function(n){return n.top};var Ft={top:xi,bottom:Ni,Ord0:function(){return Ca}};var jn=function(n){return n.bottom};var ji=function(n){return n.toString()};var Vi=function(n){var r=n.charCodeAt(0);if(r<32||r===127){switch(n){case"\x07":return"'\\a'";case"\b":return"'\\b'";case"\f":return"'\\f'";case`
-`:return"'\\n'";case"\r":return"'\\r'";case"	":return"'\\t'";case"\v":return"'\\v'"}return"'\\"+r.toString(10)+"'"}return n==="'"||n==="\\"?"'\\"+n+"'":"'"+n+"'"},Qi=function(n){var r=n.length;return'"'+n.replace(/[\0-\x1F\x7F"\\]/g,function(t,e){switch(t){case'"':case"\\":return"\\"+t;case"\x07":return"\\a";case"\b":return"\\b";case"\f":return"\\f";case`
-`:return"\\n";case"\r":return"\\r";case"	":return"\\t";case"\v":return"\\v"}var a=e+1,u=a<r&&n[a]>="0"&&n[a]<="9"?"\\&":"";return"\\"+t.charCodeAt(0).toString(10)+u})+'"'},Hi=function(n){return function(r){for(var t=[],e=0,a=r.length;e<a;e++)t[e]=n(r[e]);return"["+t.join(",")+"]"}};var Vn={show:Qi};var Ki=function(n){return n.showRecordFields},Ie=function(){return function(){return function(n){var r=Ki(n);return{show:function(t){return"{"+(r(En.value)(t)+"}")}}}}};var Un={show:ji},To={show:Vi};var g=function(n){return n.show},st=function(n){return{show:Hi(g(n))}},St=function(n){var r=kn(n);return function(t){var e=Ki(t);return function(a){var u=g(a);return{showRecordFields:function(i){return function(f){var l=e(En.value)(f),c=r(En.value),_=yr(c)(f);return" "+(c+(": "+(u(_)+(","+l))))}}}}}},Le=function(n){var r=kn(n);return function(t){var e=g(t);return{showRecordFields:function(a){return function(u){var i=r(En.value),f=yr(i)(u);return" "+(i+(": "+(e(f)+" ")))}}}}};var D=function(){function n(){}return n.value=new n,n}(),m=function(){function n(r){this.value0=r}return n.create=function(r){return new n(r)},n}();var Fn=function(n){return function(r){return function(t){if(t instanceof D)return n;if(t instanceof m)return r(t.value0);throw new Error("Failed pattern match at Data.Maybe (line 237, column 1 - line 237, column 51): "+[n.constructor.name,r.constructor.name,t.constructor.name])}}},Rr=Fn(!0)(sn(!1)),xe=Fn(!1)(sn(!0));var on={map:function(n){return function(r){return r instanceof m?new m(n(r.value0)):D.value}}},vp=v(on);var zn=function(){return function(n){if(n instanceof m)return n.value0;throw new Error("Failed pattern match at Data.Maybe (line 288, column 1 - line 288, column 46): "+[n.constructor.name])}};var _t={apply:function(n){return function(r){if(n instanceof m)return vp(n.value0)(r);if(n instanceof D)return D.value;throw new Error("Failed pattern match at Data.Maybe (line 67, column 1 - line 69, column 30): "+[n.constructor.name,r.constructor.name])}},Functor0:function(){return on}};var wr={bind:function(n){return function(r){if(n instanceof m)return r(n.value0);if(n instanceof D)return D.value;throw new Error("Failed pattern match at Data.Maybe (line 125, column 1 - line 127, column 28): "+[n.constructor.name,r.constructor.name])}},Apply0:function(){return _t}};var b=function(){function n(r){this.value0=r}return n.create=function(r){return new n(r)},n}(),F=function(){function n(r){this.value0=r}return n.create=function(r){return new n(r)},n}();var Er={map:function(n){return function(r){if(r instanceof b)return new b(r.value0);if(r instanceof F)return new F(n(r.value0));throw new Error("Failed pattern match at Data.Either (line 0, column 0 - line 0, column 0): "+[r.constructor.name])}}},dp=v(Er);var jt=function(n){return function(r){return function(t){if(t instanceof b)return n(t.value0);if(t instanceof F)return r(t.value0);throw new Error("Failed pattern match at Data.Either (line 208, column 1 - line 208, column 64): "+[n.constructor.name,r.constructor.name,t.constructor.name])}}};var Zi={apply:function(n){return function(r){if(n instanceof b)return new b(n.value0);if(n instanceof F)return dp(n.value0)(r);throw new Error("Failed pattern match at Data.Either (line 70, column 1 - line 72, column 30): "+[n.constructor.name,r.constructor.name])}},Functor0:function(){return Er}};var Fo={bind:jt(function(n){return function(r){return new b(n)}})(function(n){return function(r){return r(n)}}),Apply0:function(){return Zi}};var Fa=function(){return{pure:F.create,Apply0:function(){return Zi}}}(),So={Applicative0:function(){return Fa},Bind1:function(){return Fo}};var nf=function(n){return Math.min(Math.abs(n),2147483647)},rf=function(n){return function(r){return r===0?0:r>0?Math.floor(n/r):-Math.floor(n/-r)}},tf=function(n){return function(r){if(r===0)return 0;var t=Math.abs(r);return(n%t+t)%t}};var ef={Ring0:function(){return Ji}};var Ne=function(n){return n.mod};var Qt={degree:nf,div:rf,mod:tf,CommutativeRing0:function(){return ef}},$e=function(n){return n.div};var Ht={mempty:[],Semigroup0:function(){return _n}};var pn=function(n){return n.mempty};var of=function(n){return function(){return n}},uf=function(n){return function(r){return function(){return r(n())()}}};var ff=function(n,r,t){var e=0,a;return function(u){if(e===2)return a;if(e===1)throw new ReferenceError(n+" was needed before it finished initializing (module "+r+", line "+u+")",r,u);return e=1,a=t(),e=2,a}},Pn={Applicative0:function(){return Wr},Bind1:function(){return cf}},cf={bind:uf,Apply0:function(){return sf(0)}},Wr={pure:of,Apply0:function(){return sf(0)}},lf=ff("functorEffect","Effect",function(){return{map:Te(Wr)}}),sf=ff("applyEffect","Effect",function(){return{apply:it(Pn),Functor0:function(){return lf(0)}}}),lr=lf(20);var xn=function(){function n(r){this.value0=r}return n.create=function(r){return new n(r)},n}(),In=function(){function n(r){this.value0=r}return n.create=function(r){return new n(r)},n}(),Mt=function(n){return n.tailRecM};var Mp=function(n){var r=function(t){var e=!1,a;function u(i){if(i instanceof xn){t=n(i.value0);return}if(i instanceof In)return e=!0,i.value0;throw new Error("Failed pattern match at Control.Monad.Rec.Class (line 103, column 3 - line 103, column 25): "+[i.constructor.name])}for(;!e;)a=u(t);return a};return function(t){return r(n(t))}};var _f={tailRecM:function(n){return function(r){var t=function(e){if(e instanceof b)return new In(new b(e.value0));if(e instanceof F&&e.value0 instanceof xn)return new xn(n(e.value0.value0));if(e instanceof F&&e.value0 instanceof In)return new In(new F(e.value0.value0));throw new Error("Failed pattern match at Control.Monad.Rec.Class (line 145, column 7 - line 145, column 33): "+[e.constructor.name])};return Mp(t)(n(r))}},Monad0:function(){return So}};var pf={bimap:function(n){return function(r){return function(t){if(t instanceof xn)return new xn(n(t.value0));if(t instanceof In)return new In(r(t.value0));throw new Error("Failed pattern match at Control.Monad.Rec.Class (line 33, column 1 - line 35, column 34): "+[n.constructor.name,r.constructor.name,t.constructor.name])}}}};var xp=function(){function n(r,t,e,a,u,i){var f,l,c,_,p,y,d;for(f=u+(i-u>>1),f-u>1&&n(r,t,a,e,u,f),i-f>1&&n(r,t,a,e,f,i),l=u,c=f,_=u;l<f&&c<i;)p=a[l],y=a[c],d=t(r(p)(y)),d>0?(e[_++]=y,++c):(e[_++]=p,++l);for(;l<f;)e[_++]=a[l++];for(;c<i;)e[_++]=a[c++]}return function(r){return function(t){return function(e){return function(){return e.length<2||n(r,t,e,e.slice(0),0,e.length),e}}}}}();var bf=function(n){return function(r){return n&&r}},wf=function(n){return function(r){return n||r}},Ef=function(n){return!n};var Sa=function(n){return n.not};var Pe=function(n){return n.ff};var Kt=function(n){return n.disj},mt={ff:!1,tt:!0,implies:function(n){return function(r){return Kt(mt)(Sa(mt)(n))(r)}},conj:bf,disj:wf,not:Ef};var Ff=function(n){return function(r){return function(t){for(var e=r,a=t.length,u=a-1;u>=0;u--)e=n(t[u])(e);return e}}},Sf=function(n){return function(r){return function(t){for(var e=r,a=t.length,u=0;u<a;u++)e=n(e)(t[u]);return e}}};var W=function(){function n(r,t){this.value0=r,this.value1=t}return n.create=function(r){return function(t){return new n(r,t)}},n}();var Rn=function(n){return n.value1};var er=function(n){return n.value0};var Yt=function(n){return n.bimap};var xa=function(n){return n};var nm=function(n){var r=Kt(n);return{append:function(t){return function(e){return r(t)(e)}}}};var Po=function(n){var r=nm(n);return{mempty:Pe(n),Semigroup0:function(){return r}}};var Tr=function(n){return n};var Be=function(){return Tr};var Lf=Be();var Fr=function(){return Lf};var Wo=function(){return function(){return function(){return function(){return function(n){return Lf}}}}};var om=Wo()()()(),vn=function(n){return n.foldr};var en=function(n){return n.foldl};var xf=function(n){var r=vn(n);return function(t){var e=I(t.Semigroup0()),a=pn(t);return function(u){return r(function(i){return function(f){return e(u(i))(f)}})(a)}}},Sn={foldr:Ff,foldl:Sf,foldMap:function(n){return xf(Sn)(n)}};var Tn=function(n){return n.foldMap};var Lt=function(n){var r=Tn(n);return function(t){return om(xa)(r(Po(t)))}},At=function(n){var r=Lt(n)(mt);return function(t){var e=O(t);return function(a){return r(e(a))}}};var Nf=function(){function n(a){return[a]}function r(a){return function(u){return[a,u]}}function t(a){return function(u){return function(i){return[a,u,i]}}}function e(a){return function(u){return a.concat(u)}}return function(a){return function(u){return function(i){return function(f){return function(l){function c(_,p){switch(p-_){case 0:return i([]);case 1:return u(n)(f(l[_]));case 2:return a(u(r)(f(l[_])))(f(l[_+1]));case 3:return a(a(u(t)(f(l[_])))(f(l[_+1])))(f(l[_+2]));default:var y=_+Math.floor((p-_)/4)*2;return a(u(e)(c(_,y)))(c(y,p))}}return c(0,l.length)}}}}}}();var Jm=tn(an),Jn=function(n){return n.traverse};var Gm=function(n){var r=Jn(n);return function(t){return r(t)(Jm)}},Xn={traverse:function(n){var r=n.Apply0();return Nf(Q(r))(v(r.Functor0()))(h(n))},sequence:function(n){return Gm(Xn)(n)},Functor0:function(){return Cn},Foldable1:function(){return Sn}},zr=function(n){return n.sequence};var ko=function(n){return function(r){var t=Jn(r)(n);return function(e){return function(a){return t(a)(e)}}}};var Gf=function(n){return function(r){return function(t){return function(e){return function(a){return function(u){for(var i=[],f=u;;){var l=a(f);if(n(l))return i;var c=r(l);i.push(t(c)),f=e(c)}}}}}}};var kf=function(n){return function(r){return function(t){return function(e){return function(a){return function(u){for(var i=[],f=u;;){var l=a(f);i.push(t(l));var c=e(l);if(n(c))return i;f=r(c)}}}}}}};var nv=zn();var jo={unfoldr1:kf(Rr)(nv)(er)(Rn)};var tv=zn(),Jr=function(n){return n.unfoldr};var ke={unfoldr:Gf(Rr)(tv)(er)(Rn),Unfoldable10:function(){return jo}};var fv=Jn(Xn);var Gr=function(){return ba(W.create)}();var Ho=function(){return ho(sn(D.value))(function(n){return function(r){return new m(r)}})}();var Kf=function(n){return[n]};var je=function(){return Fi(m.create)(D.value)}();var Ko=function(n){return je(n)(0)};var ee=function(n){return Ti(vn(n))},Yf=vn(Sn);var Ve=function(n){var r=h(n.Applicative0()),t=S(n.Bind1());return function(e){return function(a){return ho(function(u){return r(a)})(function(u){return function(i){return t(e(a)(u))(function(f){return Ve(n)(e)(f)(i)})}})}}};var Xf=function(){return Si(m.create)(D.value)}();var Zf=function(n){var r=O(n);return function(t){return Xf(function(e){return r(e)(t)})}};var Qe=function(n){var r=Zf(n);return function(t){return function(e){return xe(r(t)(e))}}};var cv=cn(S(ya)),nc=function(n){return cv(function(){var r=Fn([])(Kf);return function(t){return r(n(t))}}())},Yo=function(n){var r=fv(n),t=v(n.Apply0().Functor0());return function(e){var a=t(nc(function(i){return i.value1?new m(i.value0):D.value})),u=r(function(i){return t(W.create(i))(e(i))});return function(i){return a(u(i))}}};var K=class extends Error{constructor(r,t,e,...a){Array.isArray(t)&&(t=t.join(" ")),super(t),Error.captureStackTrace!==void 0&&Error.captureStackTrace(this,K),this.code=r;for(let u of a)for(let i in u){let f=u[i];this[i]=Buffer.isBuffer(f)?f.toString(e.encoding):f==null?f:JSON.parse(JSON.stringify(f))}}};var rc=function(n){return typeof n=="object"&&n!==null&&!Array.isArray(n)};var Wa=function(n){let r=[];for(let t=0,e=n.length;t<e;t++){let a=n[t];if(a==null||a===!1)r[t]={disabled:!0};else if(typeof a=="string")r[t]={name:a};else if(rc(a)){if(typeof a.name!="string")throw new K("CSV_OPTION_COLUMNS_MISSING_NAME",["Option columns missing name:",`property "name" is required at position ${t}`,"when column is an object literal"]);r[t]=a}else throw new K("CSV_INVALID_COLUMN_DEFINITION",["Invalid column definition:","expect a string or a literal object,",`got ${JSON.stringify(a)} at position ${t}`])}return r};var Xo=class{constructor(r=100){this.size=r,this.length=0,this.buf=Buffer.allocUnsafe(r)}prepend(r){if(Buffer.isBuffer(r)){let t=this.length+r.length;if(t>=this.size&&(this.resize(),t>=this.size))throw Error("INVALID_BUFFER_STATE");let e=this.buf;this.buf=Buffer.allocUnsafe(this.size),r.copy(this.buf,0),e.copy(this.buf,r.length),this.length+=r.length}else{let t=this.length++;t===this.size&&this.resize();let e=this.clone();this.buf[0]=r,e.copy(this.buf,1,0,t)}}append(r){let t=this.length++;t===this.size&&this.resize(),this.buf[t]=r}clone(){return Buffer.from(this.buf.slice(0,this.length))}resize(){let r=this.length;this.size=this.size*2;let t=Buffer.allocUnsafe(this.size);this.buf.copy(t,0,0,r),this.buf=t}toString(r){return r?this.buf.slice(0,this.length).toString(r):Uint8Array.prototype.slice.call(this.buf.slice(0,this.length))}toJSON(){return this.toString("utf8")}reset(){this.length=0}},Zo=Xo;var lv=12,sv=13,_v=10,pv=32,mv=9,tc=function(n){return{bomSkipped:!1,bufBytesStart:0,castField:n.cast_function,commenting:!1,error:void 0,enabled:n.from_line===1,escaping:!1,escapeIsQuote:Buffer.isBuffer(n.escape)&&Buffer.isBuffer(n.quote)&&Buffer.compare(n.escape,n.quote)===0,expectedRecordLength:Array.isArray(n.columns)?n.columns.length:void 0,field:new Zo(20),firstLineToHeaders:n.cast_first_line_to_header,needMoreDataSize:Math.max(n.comment!==null?n.comment.length:0,...n.delimiter.map(r=>r.length),n.quote!==null?n.quote.length:0),previousBuf:void 0,quoting:!1,stop:!1,rawBuffer:new Zo(100),record:[],recordHasError:!1,record_length:0,recordDelimiterMaxLength:n.record_delimiter.length===0?2:Math.max(...n.record_delimiter.map(r=>r.length)),trimChars:[Buffer.from(" ",n.encoding)[0],Buffer.from("	",n.encoding)[0]],wasQuoting:!1,wasRowDelimiter:!1,timchars:[Buffer.from(Buffer.from([sv],"utf8").toString(),n.encoding),Buffer.from(Buffer.from([_v],"utf8").toString(),n.encoding),Buffer.from(Buffer.from([lv],"utf8").toString(),n.encoding),Buffer.from(Buffer.from([pv],"utf8").toString(),n.encoding),Buffer.from(Buffer.from([mv],"utf8").toString(),n.encoding)]}};var ec=function(n){return n.replace(/([A-Z])/g,function(r,t){return"_"+t.toLowerCase()})};var nu=function(n){let r={};for(let e in n)r[ec(e)]=n[e];if(r.encoding===void 0||r.encoding===!0)r.encoding="utf8";else if(r.encoding===null||r.encoding===!1)r.encoding=null;else if(typeof r.encoding!="string"&&r.encoding!==null)throw new K("CSV_INVALID_OPTION_ENCODING",["Invalid option encoding:","encoding must be a string or null to return a buffer,",`got ${JSON.stringify(r.encoding)}`],r);if(r.bom===void 0||r.bom===null||r.bom===!1)r.bom=!1;else if(r.bom!==!0)throw new K("CSV_INVALID_OPTION_BOM",["Invalid option bom:","bom must be true,",`got ${JSON.stringify(r.bom)}`],r);if(r.cast_function=null,r.cast===void 0||r.cast===null||r.cast===!1||r.cast==="")r.cast=void 0;else if(typeof r.cast=="function")r.cast_function=r.cast,r.cast=!0;else if(r.cast!==!0)throw new K("CSV_INVALID_OPTION_CAST",["Invalid option cast:","cast must be true or a function,",`got ${JSON.stringify(r.cast)}`],r);if(r.cast_date===void 0||r.cast_date===null||r.cast_date===!1||r.cast_date==="")r.cast_date=!1;else if(r.cast_date===!0)r.cast_date=function(e){let a=Date.parse(e);return isNaN(a)?e:new Date(a)};else if(typeof r.cast_date!="function")throw new K("CSV_INVALID_OPTION_CAST_DATE",["Invalid option cast_date:","cast_date must be true or a function,",`got ${JSON.stringify(r.cast_date)}`],r);if(r.cast_first_line_to_header=null,r.columns===!0)r.cast_first_line_to_header=void 0;else if(typeof r.columns=="function")r.cast_first_line_to_header=r.columns,r.columns=!0;else if(Array.isArray(r.columns))r.columns=Wa(r.columns);else if(r.columns===void 0||r.columns===null||r.columns===!1)r.columns=!1;else throw new K("CSV_INVALID_OPTION_COLUMNS",["Invalid option columns:","expect an array, a function or true,",`got ${JSON.stringify(r.columns)}`],r);if(r.group_columns_by_name===void 0||r.group_columns_by_name===null||r.group_columns_by_name===!1)r.group_columns_by_name=!1;else{if(r.group_columns_by_name!==!0)throw new K("CSV_INVALID_OPTION_GROUP_COLUMNS_BY_NAME",["Invalid option group_columns_by_name:","expect an boolean,",`got ${JSON.stringify(r.group_columns_by_name)}`],r);if(r.columns===!1)throw new K("CSV_INVALID_OPTION_GROUP_COLUMNS_BY_NAME",["Invalid option group_columns_by_name:","the `columns` mode must be activated."],r)}if(r.comment===void 0||r.comment===null||r.comment===!1||r.comment==="")r.comment=null;else if(typeof r.comment=="string"&&(r.comment=Buffer.from(r.comment,r.encoding)),!Buffer.isBuffer(r.comment))throw new K("CSV_INVALID_OPTION_COMMENT",["Invalid option comment:","comment must be a buffer or a string,",`got ${JSON.stringify(r.comment)}`],r);let t=JSON.stringify(r.delimiter);if(Array.isArray(r.delimiter)||(r.delimiter=[r.delimiter]),r.delimiter.length===0)throw new K("CSV_INVALID_OPTION_DELIMITER",["Invalid option delimiter:","delimiter must be a non empty string or buffer or array of string|buffer,",`got ${t}`],r);if(r.delimiter=r.delimiter.map(function(e){if(e==null||e===!1)return Buffer.from(",",r.encoding);if(typeof e=="string"&&(e=Buffer.from(e,r.encoding)),!Buffer.isBuffer(e)||e.length===0)throw new K("CSV_INVALID_OPTION_DELIMITER",["Invalid option delimiter:","delimiter must be a non empty string or buffer or array of string|buffer,",`got ${t}`],r);return e}),r.escape===void 0||r.escape===!0?r.escape=Buffer.from('"',r.encoding):typeof r.escape=="string"?r.escape=Buffer.from(r.escape,r.encoding):(r.escape===null||r.escape===!1)&&(r.escape=null),r.escape!==null&&!Buffer.isBuffer(r.escape))throw new Error(`Invalid Option: escape must be a buffer, a string or a boolean, got ${JSON.stringify(r.escape)}`);if(r.from===void 0||r.from===null)r.from=1;else if(typeof r.from=="string"&&/\d+/.test(r.from)&&(r.from=parseInt(r.from)),Number.isInteger(r.from)){if(r.from<0)throw new Error(`Invalid Option: from must be a positive integer, got ${JSON.stringify(n.from)}`)}else throw new Error(`Invalid Option: from must be an integer, got ${JSON.stringify(r.from)}`);if(r.from_line===void 0||r.from_line===null)r.from_line=1;else if(typeof r.from_line=="string"&&/\d+/.test(r.from_line)&&(r.from_line=parseInt(r.from_line)),Number.isInteger(r.from_line)){if(r.from_line<=0)throw new Error(`Invalid Option: from_line must be a positive integer greater than 0, got ${JSON.stringify(n.from_line)}`)}else throw new Error(`Invalid Option: from_line must be an integer, got ${JSON.stringify(n.from_line)}`);if(r.ignore_last_delimiters===void 0||r.ignore_last_delimiters===null)r.ignore_last_delimiters=!1;else if(typeof r.ignore_last_delimiters=="number")r.ignore_last_delimiters=Math.floor(r.ignore_last_delimiters),r.ignore_last_delimiters===0&&(r.ignore_last_delimiters=!1);else if(typeof r.ignore_last_delimiters!="boolean")throw new K("CSV_INVALID_OPTION_IGNORE_LAST_DELIMITERS",["Invalid option `ignore_last_delimiters`:","the value must be a boolean value or an integer,",`got ${JSON.stringify(r.ignore_last_delimiters)}`],r);if(r.ignore_last_delimiters===!0&&r.columns===!1)throw new K("CSV_IGNORE_LAST_DELIMITERS_REQUIRES_COLUMNS",["The option `ignore_last_delimiters`","requires the activation of the `columns` option"],r);if(r.info===void 0||r.info===null||r.info===!1)r.info=!1;else if(r.info!==!0)throw new Error(`Invalid Option: info must be true, got ${JSON.stringify(r.info)}`);if(r.max_record_size===void 0||r.max_record_size===null||r.max_record_size===!1)r.max_record_size=0;else if(!(Number.isInteger(r.max_record_size)&&r.max_record_size>=0))if(typeof r.max_record_size=="string"&&/\d+/.test(r.max_record_size))r.max_record_size=parseInt(r.max_record_size);else throw new Error(`Invalid Option: max_record_size must be a positive integer, got ${JSON.stringify(r.max_record_size)}`);if(r.objname===void 0||r.objname===null||r.objname===!1)r.objname=void 0;else if(Buffer.isBuffer(r.objname)){if(r.objname.length===0)throw new Error("Invalid Option: objname must be a non empty buffer");r.encoding===null||(r.objname=r.objname.toString(r.encoding))}else if(typeof r.objname=="string"){if(r.objname.length===0)throw new Error("Invalid Option: objname must be a non empty string")}else if(typeof r.objname!="number")throw new Error(`Invalid Option: objname must be a string or a buffer, got ${r.objname}`);if(r.objname!==void 0){if(typeof r.objname=="number"){if(r.columns!==!1)throw Error("Invalid Option: objname index cannot be combined with columns or be defined as a field")}else if(r.columns===!1)throw Error("Invalid Option: objname field must be combined with columns or be defined as an index")}if(r.on_record===void 0||r.on_record===null)r.on_record=void 0;else if(typeof r.on_record!="function")throw new K("CSV_INVALID_OPTION_ON_RECORD",["Invalid option `on_record`:","expect a function,",`got ${JSON.stringify(r.on_record)}`],r);if(r.quote===null||r.quote===!1||r.quote==="")r.quote=null;else if(r.quote===void 0||r.quote===!0?r.quote=Buffer.from('"',r.encoding):typeof r.quote=="string"&&(r.quote=Buffer.from(r.quote,r.encoding)),!Buffer.isBuffer(r.quote))throw new Error(`Invalid Option: quote must be a buffer or a string, got ${JSON.stringify(r.quote)}`);if(r.raw===void 0||r.raw===null||r.raw===!1)r.raw=!1;else if(r.raw!==!0)throw new Error(`Invalid Option: raw must be true, got ${JSON.stringify(r.raw)}`);if(r.record_delimiter===void 0)r.record_delimiter=[];else if(typeof r.record_delimiter=="string"||Buffer.isBuffer(r.record_delimiter)){if(r.record_delimiter.length===0)throw new K("CSV_INVALID_OPTION_RECORD_DELIMITER",["Invalid option `record_delimiter`:","value must be a non empty string or buffer,",`got ${JSON.stringify(r.record_delimiter)}`],r);r.record_delimiter=[r.record_delimiter]}else if(!Array.isArray(r.record_delimiter))throw new K("CSV_INVALID_OPTION_RECORD_DELIMITER",["Invalid option `record_delimiter`:","value must be a string, a buffer or array of string|buffer,",`got ${JSON.stringify(r.record_delimiter)}`],r);if(r.record_delimiter=r.record_delimiter.map(function(e,a){if(typeof e!="string"&&!Buffer.isBuffer(e))throw new K("CSV_INVALID_OPTION_RECORD_DELIMITER",["Invalid option `record_delimiter`:","value must be a string, a buffer or array of string|buffer",`at index ${a},`,`got ${JSON.stringify(e)}`],r);if(e.length===0)throw new K("CSV_INVALID_OPTION_RECORD_DELIMITER",["Invalid option `record_delimiter`:","value must be a non empty string or buffer",`at index ${a},`,`got ${JSON.stringify(e)}`],r);return typeof e=="string"&&(e=Buffer.from(e,r.encoding)),e}),typeof r.relax_column_count!="boolean")if(r.relax_column_count===void 0||r.relax_column_count===null)r.relax_column_count=!1;else throw new Error(`Invalid Option: relax_column_count must be a boolean, got ${JSON.stringify(r.relax_column_count)}`);if(typeof r.relax_column_count_less!="boolean")if(r.relax_column_count_less===void 0||r.relax_column_count_less===null)r.relax_column_count_less=!1;else throw new Error(`Invalid Option: relax_column_count_less must be a boolean, got ${JSON.stringify(r.relax_column_count_less)}`);if(typeof r.relax_column_count_more!="boolean")if(r.relax_column_count_more===void 0||r.relax_column_count_more===null)r.relax_column_count_more=!1;else throw new Error(`Invalid Option: relax_column_count_more must be a boolean, got ${JSON.stringify(r.relax_column_count_more)}`);if(typeof r.relax_quotes!="boolean")if(r.relax_quotes===void 0||r.relax_quotes===null)r.relax_quotes=!1;else throw new Error(`Invalid Option: relax_quotes must be a boolean, got ${JSON.stringify(r.relax_quotes)}`);if(typeof r.skip_empty_lines!="boolean")if(r.skip_empty_lines===void 0||r.skip_empty_lines===null)r.skip_empty_lines=!1;else throw new Error(`Invalid Option: skip_empty_lines must be a boolean, got ${JSON.stringify(r.skip_empty_lines)}`);if(typeof r.skip_records_with_empty_values!="boolean")if(r.skip_records_with_empty_values===void 0||r.skip_records_with_empty_values===null)r.skip_records_with_empty_values=!1;else throw new Error(`Invalid Option: skip_records_with_empty_values must be a boolean, got ${JSON.stringify(r.skip_records_with_empty_values)}`);if(typeof r.skip_records_with_error!="boolean")if(r.skip_records_with_error===void 0||r.skip_records_with_error===null)r.skip_records_with_error=!1;else throw new Error(`Invalid Option: skip_records_with_error must be a boolean, got ${JSON.stringify(r.skip_records_with_error)}`);if(r.rtrim===void 0||r.rtrim===null||r.rtrim===!1)r.rtrim=!1;else if(r.rtrim!==!0)throw new Error(`Invalid Option: rtrim must be a boolean, got ${JSON.stringify(r.rtrim)}`);if(r.ltrim===void 0||r.ltrim===null||r.ltrim===!1)r.ltrim=!1;else if(r.ltrim!==!0)throw new Error(`Invalid Option: ltrim must be a boolean, got ${JSON.stringify(r.ltrim)}`);if(r.trim===void 0||r.trim===null||r.trim===!1)r.trim=!1;else if(r.trim!==!0)throw new Error(`Invalid Option: trim must be a boolean, got ${JSON.stringify(r.trim)}`);if(r.trim===!0&&n.ltrim!==!1?r.ltrim=!0:r.ltrim!==!0&&(r.ltrim=!1),r.trim===!0&&n.rtrim!==!1?r.rtrim=!0:r.rtrim!==!0&&(r.rtrim=!1),r.to===void 0||r.to===null)r.to=-1;else if(typeof r.to=="string"&&/\d+/.test(r.to)&&(r.to=parseInt(r.to)),Number.isInteger(r.to)){if(r.to<=0)throw new Error(`Invalid Option: to must be a positive integer greater than 0, got ${JSON.stringify(n.to)}`)}else throw new Error(`Invalid Option: to must be an integer, got ${JSON.stringify(n.to)}`);if(r.to_line===void 0||r.to_line===null)r.to_line=-1;else if(typeof r.to_line=="string"&&/\d+/.test(r.to_line)&&(r.to_line=parseInt(r.to_line)),Number.isInteger(r.to_line)){if(r.to_line<=0)throw new Error(`Invalid Option: to_line must be a positive integer greater than 0, got ${JSON.stringify(n.to_line)}`)}else throw new Error(`Invalid Option: to_line must be an integer, got ${JSON.stringify(n.to_line)}`);return r};var ac=function(n){return n.every(r=>r==null||r.toString&&r.toString().trim()==="")},oc=13,ru=10,Ba={utf8:Buffer.from([239,187,191]),utf16le:Buffer.from([255,254])},uc=function(n={}){let r={bytes:0,comment_lines:0,empty_lines:0,invalid_field_length:0,lines:1,records:0},t=nu(n);return{info:r,original_options:n,options:t,state:tc(t),__needMoreData:function(e,a,u){if(u)return!1;let{quote:i}=this.options,{quoting:f,needMoreDataSize:l,recordDelimiterMaxLength:c}=this.state,_=a-e-1,p=Math.max(l,c,f?i.length+c:0);return _<p},parse:function(e,a,u,i){let{bom:f,from_line:l,ltrim:c,max_record_size:_,raw:p,relax_quotes:y,rtrim:d,skip_empty_lines:o,to:s,to_line:un}=this.options,{comment:V,escape:N,quote:q,record_delimiter:tt}=this.options,{bomSkipped:$_,previousBuf:_a,rawBuffer:q_,escapeIsQuote:O_}=this.state,rn;if(_a===void 0)if(e===void 0){i();return}else rn=e;else _a!==void 0&&e===void 0?rn=_a:rn=Buffer.concat([_a,e]);if($_===!1)if(f===!1)this.state.bomSkipped=!0;else if(rn.length<3){if(a===!1){this.state.previousBuf=rn;return}}else{for(let wn in Ba)if(Ba[wn].compare(rn,0,Ba[wn].length)===0){let et=Ba[wn].length;this.state.bufBytesStart+=et,rn=rn.slice(et),this.options=nu({...this.original_options,encoding:wn}),{comment:V,escape:N,quote:q}=this.options;break}this.state.bomSkipped=!0}let mo=rn.length,B;for(B=0;B<mo&&!this.__needMoreData(B,mo,a);B++){if(this.state.wasRowDelimiter===!0&&(this.info.lines++,this.state.wasRowDelimiter=!1),un!==-1&&this.info.lines>un){this.state.stop=!0,i();return}this.state.quoting===!1&&tt.length===0&&this.__autoDiscoverRecordDelimiter(rn,B)&&(tt=this.options.record_delimiter);let wn=rn[B];if(p===!0&&q_.append(wn),(wn===oc||wn===ru)&&this.state.wasRowDelimiter===!1&&(this.state.wasRowDelimiter=!0),this.state.escaping===!0)this.state.escaping=!1;else{if(N!==null&&this.state.quoting===!0&&this.__isEscape(rn,B,wn)&&B+N.length<mo)if(O_){if(this.__isQuote(rn,B+N.length)){this.state.escaping=!0,B+=N.length-1;continue}}else{this.state.escaping=!0,B+=N.length-1;continue}if(this.state.commenting===!1&&this.__isQuote(rn,B))if(this.state.quoting===!0){let Bn=rn[B+q.length],hi=d&&this.__isCharTrimable(rn,B+q.length),pa=V!==null&&this.__compareBytes(V,rn,B+q.length,Bn),we=this.__isDelimiter(rn,B+q.length,Bn),ma=tt.length===0?this.__autoDiscoverRecordDelimiter(rn,B+q.length):this.__isRecordDelimiter(Bn,rn,B+q.length);if(N!==null&&this.__isEscape(rn,B,wn)&&this.__isQuote(rn,B+N.length))B+=N.length-1;else if(!Bn||we||ma||pa||hi){this.state.quoting=!1,this.state.wasQuoting=!0,B+=q.length-1;continue}else if(y===!1){let Ee=this.__error(new K("CSV_INVALID_CLOSING_QUOTE",["Invalid Closing Quote:",`got "${String.fromCharCode(Bn)}"`,`at line ${this.info.lines}`,"instead of delimiter, record delimiter, trimable character","(if activated) or comment"],this.options,this.__infoField()));if(Ee!==void 0)return Ee}else this.state.quoting=!1,this.state.wasQuoting=!0,this.state.field.prepend(q),B+=q.length-1}else if(this.state.field.length!==0){if(y===!1){let Bn=this.__error(new K("INVALID_OPENING_QUOTE",["Invalid Opening Quote:",`a quote is found inside a field at line ${this.info.lines}`],this.options,this.__infoField(),{field:this.state.field}));if(Bn!==void 0)return Bn}}else{this.state.quoting=!0,B+=q.length-1;continue}if(this.state.quoting===!1){let Bn=this.__isRecordDelimiter(wn,rn,B);if(Bn!==0){if(this.state.commenting&&this.state.wasQuoting===!1&&this.state.record.length===0&&this.state.field.length===0)this.info.comment_lines++;else{if(this.state.enabled===!1&&this.info.lines+(this.state.wasRowDelimiter===!0?1:0)>=l){this.state.enabled=!0,this.__resetField(),this.__resetRecord(),B+=Bn-1;continue}if(o===!0&&this.state.wasQuoting===!1&&this.state.record.length===0&&this.state.field.length===0){this.info.empty_lines++,B+=Bn-1;continue}this.info.bytes=this.state.bufBytesStart+B;let ma=this.__onField();if(ma!==void 0)return ma;this.info.bytes=this.state.bufBytesStart+B+Bn;let Ee=this.__onRecord(u);if(Ee!==void 0)return Ee;if(s!==-1&&this.info.records>=s){this.state.stop=!0,i();return}}this.state.commenting=!1,B+=Bn-1;continue}if(this.state.commenting)continue;if((V===null?0:this.__compareBytes(V,rn,B,wn))!==0){this.state.commenting=!0;continue}let pa=this.__isDelimiter(rn,B,wn);if(pa!==0){this.info.bytes=this.state.bufBytesStart+B;let we=this.__onField();if(we!==void 0)return we;B+=pa-1;continue}}}if(this.state.commenting===!1&&_!==0&&this.state.record_length+this.state.field.length>_)return this.__error(new K("CSV_MAX_RECORD_SIZE",["Max Record Size:","record exceed the maximum number of tolerated bytes",`of ${_}`,`at line ${this.info.lines}`],this.options,this.__infoField()));let et=c===!1||this.state.quoting===!0||this.state.field.length!==0||!this.__isCharTrimable(rn,B),P_=d===!1||this.state.wasQuoting===!1;if(et===!0&&P_===!0)this.state.field.append(wn);else{if(d===!0&&!this.__isCharTrimable(rn,B))return this.__error(new K("CSV_NON_TRIMABLE_CHAR_AFTER_CLOSING_QUOTE",["Invalid Closing Quote:","found non trimable byte after quote",`at line ${this.info.lines}`],this.options,this.__infoField()));et===!1&&(B+=this.__isCharTrimable(rn,B)-1);continue}}if(a===!0)if(this.state.quoting===!0){let wn=this.__error(new K("CSV_QUOTE_NOT_CLOSED",["Quote Not Closed:",`the parsing is finished with an opening quote at line ${this.info.lines}`],this.options,this.__infoField()));if(wn!==void 0)return wn}else if(this.state.wasQuoting===!0||this.state.record.length!==0||this.state.field.length!==0){this.info.bytes=this.state.bufBytesStart+B;let wn=this.__onField();if(wn!==void 0)return wn;let et=this.__onRecord(u);if(et!==void 0)return et}else this.state.wasRowDelimiter===!0?this.info.empty_lines++:this.state.commenting===!0&&this.info.comment_lines++;else this.state.bufBytesStart+=B,this.state.previousBuf=rn.slice(B);this.state.wasRowDelimiter===!0&&(this.info.lines++,this.state.wasRowDelimiter=!1)},__onRecord:function(e){let{columns:a,group_columns_by_name:u,encoding:i,info:f,from:l,relax_column_count:c,relax_column_count_less:_,relax_column_count_more:p,raw:y,skip_records_with_empty_values:d}=this.options,{enabled:o,record:s}=this.state;if(o===!1)return this.__resetRecord();let un=s.length;if(a===!0){if(d===!0&&ac(s)){this.__resetRecord();return}return this.__firstLineToColumns(s)}if(a===!1&&this.info.records===0&&(this.state.expectedRecordLength=un),un!==this.state.expectedRecordLength){let V=a===!1?new K("CSV_RECORD_INCONSISTENT_FIELDS_LENGTH",["Invalid Record Length:",`expect ${this.state.expectedRecordLength},`,`got ${un} on line ${this.info.lines}`],this.options,this.__infoField(),{record:s}):new K("CSV_RECORD_INCONSISTENT_COLUMNS",["Invalid Record Length:",`columns length is ${a.length},`,`got ${un} on line ${this.info.lines}`],this.options,this.__infoField(),{record:s});if(c===!0||_===!0&&un<this.state.expectedRecordLength||p===!0&&un>this.state.expectedRecordLength)this.info.invalid_field_length++,this.state.error=V;else{let N=this.__error(V);if(N)return N}}if(d===!0&&ac(s)){this.__resetRecord();return}if(this.state.recordHasError===!0){this.__resetRecord(),this.state.recordHasError=!1;return}if(this.info.records++,l===1||this.info.records>=l){let{objname:V}=this.options;if(a!==!1){let N={};for(let q=0,tt=s.length;q<tt;q++)a[q]===void 0||a[q].disabled||(u===!0&&N[a[q].name]!==void 0?Array.isArray(N[a[q].name])?N[a[q].name]=N[a[q].name].concat(s[q]):N[a[q].name]=[N[a[q].name],s[q]]:N[a[q].name]=s[q]);if(y===!0||f===!0){let q=Object.assign({record:N},y===!0?{raw:this.state.rawBuffer.toString(i)}:{},f===!0?{info:this.__infoRecord()}:{}),tt=this.__push(V===void 0?q:[N[V],q],e);if(tt)return tt}else{let q=this.__push(V===void 0?N:[N[V],N],e);if(q)return q}}else if(y===!0||f===!0){let N=Object.assign({record:s},y===!0?{raw:this.state.rawBuffer.toString(i)}:{},f===!0?{info:this.__infoRecord()}:{}),q=this.__push(V===void 0?N:[s[V],N],e);if(q)return q}else{let N=this.__push(V===void 0?s:[s[V],s],e);if(N)return N}}this.__resetRecord()},__firstLineToColumns:function(e){let{firstLineToHeaders:a}=this.state;try{let u=a===void 0?e:a.call(null,e);if(!Array.isArray(u))return this.__error(new K("CSV_INVALID_COLUMN_MAPPING",["Invalid Column Mapping:","expect an array from column function,",`got ${JSON.stringify(u)}`],this.options,this.__infoField(),{headers:u}));let i=Wa(u);this.state.expectedRecordLength=i.length,this.options.columns=i,this.__resetRecord();return}catch(u){return u}},__resetRecord:function(){this.options.raw===!0&&this.state.rawBuffer.reset(),this.state.error=void 0,this.state.record=[],this.state.record_length=0},__onField:function(){let{cast:e,encoding:a,rtrim:u,max_record_size:i}=this.options,{enabled:f,wasQuoting:l}=this.state;if(f===!1)return this.__resetField();let c=this.state.field.toString(a);if(u===!0&&l===!1&&(c=c.trimRight()),e===!0){let[_,p]=this.__cast(c);if(_!==void 0)return _;c=p}this.state.record.push(c),i!==0&&typeof c=="string"&&(this.state.record_length+=c.length),this.__resetField()},__resetField:function(){this.state.field.reset(),this.state.wasQuoting=!1},__push:function(e,a){let{on_record:u}=this.options;if(u!==void 0){let i=this.__infoRecord();try{e=u.call(null,e,i)}catch(f){return f}if(e==null)return}a(e)},__cast:function(e){let{columns:a,relax_column_count:u}=this.options;if(Array.isArray(a)===!0&&u&&this.options.columns.length<=this.state.record.length)return[void 0,void 0];if(this.state.castField!==null)try{let f=this.__infoField();return[void 0,this.state.castField.call(null,e,f)]}catch(f){return[f]}if(this.__isFloat(e))return[void 0,parseFloat(e)];if(this.options.cast_date!==!1){let f=this.__infoField();return[void 0,this.options.cast_date.call(null,e,f)]}return[void 0,e]},__isCharTrimable:function(e,a){return((i,f)=>{let{timchars:l}=this.state;n:for(let c=0;c<l.length;c++){let _=l[c];for(let p=0;p<_.length;p++)if(_[p]!==i[f+p])continue n;return _.length}return 0})(e,a)},__isFloat:function(e){return e-parseFloat(e)+1>=0},__compareBytes:function(e,a,u,i){if(e[0]!==i)return 0;let f=e.length;for(let l=1;l<f;l++)if(e[l]!==a[u+l])return 0;return f},__isDelimiter:function(e,a,u){let{delimiter:i,ignore_last_delimiters:f}=this.options;if(f===!0&&this.state.record.length===this.options.columns.length-1)return 0;if(f!==!1&&typeof f=="number"&&this.state.record.length===f-1)return 0;n:for(let l=0;l<i.length;l++){let c=i[l];if(c[0]===u){for(let _=1;_<c.length;_++)if(c[_]!==e[a+_])continue n;return c.length}}return 0},__isRecordDelimiter:function(e,a,u){let{record_delimiter:i}=this.options,f=i.length;n:for(let l=0;l<f;l++){let c=i[l],_=c.length;if(c[0]===e){for(let p=1;p<_;p++)if(c[p]!==a[u+p])continue n;return c.length}}return 0},__isEscape:function(e,a,u){let{escape:i}=this.options;if(i===null)return!1;let f=i.length;if(i[0]===u){for(let l=0;l<f;l++)if(i[l]!==e[a+l])return!1;return!0}return!1},__isQuote:function(e,a){let{quote:u}=this.options;if(u===null)return!1;let i=u.length;for(let f=0;f<i;f++)if(u[f]!==e[a+f])return!1;return!0},__autoDiscoverRecordDelimiter:function(e,a){let{encoding:u}=this.options,i=e[a];return i===oc?e[a+1]===ru?(this.options.record_delimiter.push(Buffer.from(`\r
-`,u)),this.state.recordDelimiterMaxLength=2,2):(this.options.record_delimiter.push(Buffer.from("\r",u)),this.state.recordDelimiterMaxLength=1,1):i===ru?(this.options.record_delimiter.push(Buffer.from(`
-`,u)),this.state.recordDelimiterMaxLength=1,1):0},__error:function(e){let{encoding:a,raw:u,skip_records_with_error:i}=this.options,f=typeof e=="string"?new Error(e):e;if(i){this.state.recordHasError=!0,this.options.on_skip!==void 0&&this.options.on_skip(f,u?this.state.rawBuffer.toString(a):void 0);return}else return f},__infoDataSet:function(){return{...this.info,columns:this.options.columns}},__infoRecord:function(){let{columns:e,raw:a,encoding:u}=this.options;return{...this.__infoDataSet(),error:this.state.error,header:e===!0,index:this.state.record.length,raw:a?this.state.rawBuffer.toString(u):void 0}},__infoField:function(){let{columns:e}=this.options,a=Array.isArray(e);return{...this.__infoRecord(),column:a===!0?e.length>this.state.record.length?e[this.state.record.length].name:null:this.state.record.length,quoting:this.state.wasQuoting}}}};var ic=function(n,r={}){typeof n=="string"&&(n=Buffer.from(n));let t=r&&r.objname?{}:[],e=uc(r),a=l=>{e.options.objname===void 0?t.push(l):t[l[0]]=l[1]},u=()=>{},i=e.parse(n,!1,a,u);if(i!==void 0)throw i;let f=e.parse(void 0,!0,a,u);if(f!==void 0)throw f;return t};import{readFileSync as vv}from"node:fs";function tu(n){let r=vv(n,{encoding:"utf-8"});return ic(r,{columns:!1,relax_column_count:!0})}var Dv=v(Cn);var yv=h(Wr),hv=v(on),gv=v(lr);var bv=function(n){if(n.length===0)return[];var r=function(a){return a},t=ut(1)(Ln(n)),e=Gr(t)(n);return Dv(r)(e)};var wv=function(n){return yv(tu(n))};var Ev=function(n){var r=hv(bv)(Ho(n)),t=Ko(n);return{headers:t,rows:r}},eu=Jn(Xn)(Wr)(function(n){return gv(Ev)(wv(n))});var Cv=function(){function n(i){this.fn=i}var r={},t=function(i,f){this.head=i,this.tail=f};function e(i){return new t(i,r)}function a(i){return function(f){return new t(i,f)}}function u(i){for(var f=[],l=i;l!==r;)f.push(l.head),l=l.tail;return f}return function(i){return function(f){return function(l){var c=function(p,y){return i(f(a)(l(p)))(y)},_=function(p,y,d){if(y===0)return p;var o=d[y-1];return new n(function(){var s=_(c(o,p),y-1,d);return s})};return function(p){for(var y=f(e)(l(p[p.length-1])),d=_(y,p.length-1,p);d instanceof n;)d=d.fn();return f(u)(d)}}}}}();var Ir=function(n){return n.foldrWithIndex};var kr=function(n){return n.foldlWithIndex};var jr=function(n){return n.foldMapWithIndex};var sc=function(n){return n};var _c=Xn;var Ke=Cn;var pc=Sn;var Vr=function(){function n(r,t){this.value0=r,this.value1=t}return n.create=function(r){return function(t){return new n(r,t)}},n}();var uu=function(n){var r=v(n);return{map:function(t){return function(e){return new Vr(t(e.value0),r(t)(e.value1))}}}};var iu=function(n){var r=Tn(n),t=en(n),e=vn(n);return{foldMap:function(a){var u=I(a.Semigroup0()),i=r(a);return function(f){return function(l){return u(f(l.value0))(i(f)(l.value1))}}},foldl:function(a){return function(u){return function(i){return t(a)(a(u)(i.value0))(i.value1)}}},foldr:function(a){return function(u){return function(i){return a(i.value0)(e(a)(u)(i.value1))}}}}};var vc=function(n){var r=en(n),t=vn(n),e=iu(n);return{foldMap1:function(a){var u=I(a);return function(i){return function(f){return r(function(l){return function(c){return u(l)(i(c))}})(i(f.value0))(f.value1)}}},foldr1:function(a){return function(u){return Fn(u.value0)(a(u.value0))(t(function(i){var f=Fn(i)(a(i));return function(l){return m.create(f(l))}})(D.value)(u.value1))}},foldl1:function(a){return function(u){return r(a)(u.value0)(u.value1)}},Foldable0:function(){return e}}};var Dc=sc;var ue=function(n){return n};var yc=function(n){var r=ee(n.Foldable0());return function(t){return Dc(r(t))}},fu=function(n){if(Ln(n)>0)return new m(Dc(n));if(gn)return D.value;throw new Error("Failed pattern match at Data.Array.NonEmpty (line 160, column 1 - line 160, column 58): "+[n.constructor.name])};var hc=function(n){return function(r){return n(ue(r))}};var gc=function(n){return hc(fr(n))};var cu=hc(Ln);var dn=function(){function n(){}return n.value=new n,n}(),x=function(){function n(r,t){this.value0=r,this.value1=t}return n.create=function(r){return function(t){return new n(r,t)}},n}();var zv=function(n){var r=function(t){return function(e){var a=t,u=!1,i;function f(l,c){if(c instanceof x&&c.value1 instanceof x&&c.value1.value1 instanceof x){a=new x(c,l),e=c.value1.value1.value1;return}var _=function(y){return y instanceof x&&y.value1 instanceof x&&y.value1.value1 instanceof dn?new x(n(y.value0),new x(n(y.value1.value0),dn.value)):y instanceof x&&y.value1 instanceof dn?new x(n(y.value0),dn.value):dn.value},p=function(y){return function(d){var o=y,s=!1,un;function V(N,q){if(N instanceof x&&N.value0 instanceof x&&N.value0.value1 instanceof x&&N.value0.value1.value1 instanceof x){o=N.value1,d=new x(n(N.value0.value0),new x(n(N.value0.value1.value0),new x(n(N.value0.value1.value1.value0),q)));return}return s=!0,q}for(;!s;)un=V(o,d);return un}};return u=!0,p(l)(_(c))}for(;!u;)i=f(a,e);return i}};return r(dn.value)},wc={map:zv};var su=uu(wc),Qr={foldr:function(n){return function(r){var t=function(){var a=function(u){return function(i){var f=u,l=!1,c;function _(p,y){if(y instanceof dn)return l=!0,p;if(y instanceof x){f=new x(y.value0,p),i=y.value1;return}throw new Error("Failed pattern match at Data.List.Types (line 107, column 7 - line 107, column 23): "+[p.constructor.name,y.constructor.name])}for(;!l;)c=_(f,i);return c}};return a(dn.value)}(),e=en(Qr)(cn(n))(r);return function(a){return e(t(a))}}},foldl:function(n){var r=function(t){return function(e){var a=t,u=!1,i;function f(l,c){if(c instanceof dn)return u=!0,l;if(c instanceof x){a=n(l)(c.value0),e=c.value1;return}throw new Error("Failed pattern match at Data.List.Types (line 111, column 12 - line 113, column 30): "+[c.constructor.name])}for(;!u;)i=f(a,e);return i}};return r},foldMap:function(n){var r=I(n.Semigroup0()),t=pn(n);return function(e){return en(Qr)(function(a){var u=r(a);return function(i){return u(e(i))}})(t)}}};var Ec=vc(Qr);var pu=function(n){return n.join("")};var fe=function(n){return n},Cc=function(n){return function(r){return function(t){return function(e){return t>=0&&t<e.length?n(e.charAt(t)):r}}}};var _r=function(n){return n.length};var Hr=function(n){return function(r){return r.substring(n)}};var Ye=function(n){return function(r){return{before:r.substring(0,n),after:r.substring(n)}}};var Kr=function(n){return function(r){if(n>=0&&n<r.length)return r.charAt(n);throw new Error("Data.String.Unsafe.charAt: Invalid index.")}};var za=function(n){return function(r){var t=Ye(_r(r)-_r(n)|0)(r),e=t.after===n;return e?new m(t.before):D.value}};var Ja=function(){return Cc(m.create)(D.value)}();var $t=function(n){return function(r){return r.join(n)}};var du=function(n){return n===""};var Yv=g(Vn);var Lc=function(n){return n};var Ar=function(n){return n};var Ga={show:function(n){return"(NonEmptyString.unsafeFromString "+(Yv(n)+")")}};var Du=go;var ce=Gt;var yu=function(n){return n===""?D.value:new m(n)};var hu=hr;var td=zn(),ed=Lc;var ad=function(n){return n.length===0?D.value:new m(ed(pu(n)))},Ac=function(n){return td(ad(ue(n)))};var xc=function(n){return n},id=function(n){return function(r){return function(t){if(t instanceof b)return n(t.value0);if(t instanceof F)return r(t.value0);throw new Error("Failed pattern match at Data.Validation.Semigroup (line 48, column 1 - line 48, column 84): "+[n.constructor.name,r.constructor.name,t.constructor.name])}}},pr=function(n){return n};var yn=function(n){return xc(b.create(n))},Xe=Er;var Ze=function(n){var r=I(n);return{apply:function(t){return function(e){if(t instanceof b&&e instanceof b)return new b(r(t.value0)(e.value0));if(t instanceof b)return new b(t.value0);if(e instanceof b)return new b(e.value0);if(t instanceof F&&e instanceof F)return new F(t.value0(e.value0));throw new Error("Failed pattern match at Data.Validation.Semigroup (line 89, column 1 - line 93, column 54): "+[t.constructor.name,e.constructor.name])}},Functor0:function(){return Xe}}};var ar=function(n){var r=Ze(n);return{pure:function(t){return xc(F.create(t))},Apply0:function(){return r}}};var Yr=function(n){return function(r){return id(yn)(r)(n)}};function vt(n){return n.charCodeAt(0)}function Nc(n){return String.fromCharCode(n)}var Rc=jn(Ft),Wc=Kn(Ft);var nr=function(n){return n.toEnum};var Wn=function(n){return n.fromEnum},Bc=function(n){var r=nr(n),t=Wn(n),e=jn(n.Bounded0());return function(a){return function(u){return function(i){var f=r(i);if(f instanceof m)return f.value0;if(f instanceof D){var l=i<t(e);return l?a:u}throw new Error("Failed pattern match at Data.Enum (line 158, column 33 - line 160, column 62): "+[f.constructor.name])}}}};var bu=function(n){return function(r){return function(t){return n(r(t)+1|0)}}},wu=function(n){return function(r){return function(t){return n(r(t)-1|0)}}};var gu=function(n){return n>=vt(Rc)&&n<=vt(Wc)?new m(Nc(n)):D.value},_d={succ:bu(gu)(vt),pred:wu(gu)(vt),Ord0:function(){return Ca}};var Pt=function(){return{cardinality:vt(Wc)-vt(Rc)|0,toEnum:gu,fromEnum:vt,Bounded0:function(){return Ft},Enum1:function(){return _d}}}();var Eu=Wn(Pt),Uc=nr(Pt);var pd=typeof Array.from=="function",md=typeof Symbol<"u"&&Symbol!=null&&typeof Symbol.iterator<"u"&&typeof String.prototype[Symbol.iterator]=="function",vd=typeof String.prototype.fromCodePoint=="function",dd=typeof String.prototype.codePointAt=="function",Jc=function(n){return dd?function(r){return r.codePointAt(0)}:n};var Gc=function(n){return vd?String.fromCodePoint:n},kc=function(n){return function(r){return md?function(t){for(var e="",a=t[Symbol.iterator](),u=0;u<r;++u){var i=a.next();if(i.done)return e;e+=i.value}return e}:n(r)}},jc=function(n){return function(r){return pd?function(t){return Array.from(t,r)}:n}};var Cd=function(n,r,t){var e=0,a;return function(u){if(e===2)return a;if(e===1)throw new ReferenceError(n+" was needed before it finished initializing (module "+r+", line "+u+")",r,u);return e=1,a=t(),e=2,a}},na=Wn(Pt),Td=v(on),Fd=Jr(ke),Sd=$e(Qt),Md=Ne(Qt),Id=P(br);var Kc=function(n){return function(r){return(((n-55296|0)*1024|0)+(r-56320|0)|0)+65536|0}};var Yc=function(n){return 56320<=n&&n<=57343},Xc=function(n){return 55296<=n&&n<=56319},ja=function(n){var r=_r(n);if(r===0)return D.value;if(r===1)return new m({head:na(Kr(0)(n)),tail:""});var t=na(Kr(1)(n)),e=na(Kr(0)(n)),a=Xc(e)&&Yc(t);return a?new m({head:Kc(e)(t),tail:Hr(2)(n)}):new m({head:e,tail:Hr(1)(n)})},Ld=function(n){return Td(function(r){return new W(r.head,r.tail)})(ja(n))},Ad=function(n){return Fd(Ld)(n)},xd=function(n){var r=na(Kr(0)(n)),t=Xc(r)&&_r(n)>1;if(t){var e=na(Kr(1)(n)),a=Yc(e);return a?Kc(r)(e):r}return r},Nd=Jc(xd),$d=jc(Ad)(Nd),Va=function(n){return Ln($d(n))};var Tu=function(){var n=Bc(Pt)(jn(Ft))(Kn(Ft));return function(r){return fe(n(r))}}(),qd=function(n){if(n<=65535)return Tu(n);var r=Sd(n-65536|0)(1024)+55296|0,t=Md(n-65536|0)(1024)+56320|0;return Tu(r)+Tu(t)};var Od=Gc(qd),Zc=function(n){return function(r){if(n<1)return"";var t=ja(r);return t instanceof m?Od(t.value0.head)+Zc(n-1|0)(t.value0.tail):r}},Pd=kc(Zc);var nl=function(n){return function(r){var t=Pd(n)(r);return{before:t,after:Hr(_r(t))(r)}}},rl={eq:function(n){return function(r){return n===r}}},tl={compare:function(n){return function(r){return Id(n)(r)}},Eq0:function(){return rl}};var Rd={bottom:0,top:1114111,Ord0:function(){return tl}},se=function(){return{cardinality:1114111+1|0,fromEnum:function(n){return n},toEnum:function(n){if(n>=0&&n<=1114111)return new m(n);if(gn)return D.value;throw new Error("Failed pattern match at Data.String.CodePoints (line 63, column 1 - line 68, column 26): "+[n.constructor.name])},Bounded0:function(){return Rd},Enum1:function(){return Wd(0)}}}(),Wd=Cd("enumCodePoint","Data.String.CodePoints",function(){return{succ:bu(nr(se))(Wn(se)),pred:wu(nr(se))(Wn(se)),Ord0:function(){return tl}}});var jd=Yt(pf);var fl=function(){var n=function(r){return function(t){var e=r,a=!1,u;function i(f,l){if(l instanceof dn)return a=!0,f;if(l instanceof x){e=new x(l.value0,f),t=l.value1;return}throw new Error("Failed pattern match at Data.List (line 368, column 3 - line 368, column 19): "+[f.constructor.name,l.constructor.name])}for(;!a;)u=i(e,t);return u}};return n(dn.value)}();var cl=function(n){var r=S(n.Monad0().Bind1()),t=Mt(n);return function(e){var a=e.Plus1().Alt0(),u=hn(a),i=v(a.Functor0()),f=h(e.Applicative0());return function(l){var c=function(_){return r(u(i(xn.create)(l))(f(new In(void 0))))(function(p){return f(jd(function(y){return new x(y,_)})(function(y){return fl(_)})(p))})};return t(c)(dn.value)}}};var ll=function(n){return n()};var sl=function(n){throw new Error(n)};var _l=function(){return sl};var Kd=_l(),Yd=ll,_e=function(n){return Yd(function(){return Kd(n)})};var Iu=v(Er);var Mu=S(Fo),rD=h(Fa),tD=Mt(_f);var ml=function(n){return n},pe=function(n){return function(r){return Iu(function(t){return t.result})(n({substring:r,position:0}))}};var vr={map:function(n){return function(r){var t=Iu(function(e){return{result:n(e.result),suffix:e.suffix}});return function(e){return t(r(e))}}}},xr=function(n){return function(r){return new b({pos:r.position,error:n})}},Nr={apply:function(n){return function(r){return function(t){return Mu(n(t))(function(e){return Mu(r(e.suffix))(function(a){return rD({result:e.result(a.result),suffix:a.suffix})})})}}},Functor0:function(){return vr}};var Qn={bind:function(n){return function(r){return function(t){return Mu(n(t))(function(e){return ml(r(e.result))(e.suffix)})}}},Apply0:function(){return Nr}};var rr={pure:function(n){return function(r){return new F({result:n,suffix:r})}},Apply0:function(){return Nr}};var eD={Applicative0:function(){return rr},Bind1:function(){return Qn}},vl={tailRecM:function(n){return function(r){var t=function(e){if(e.result instanceof xn)return new xn({state:e.result.value0,str:e.suffix});if(e.result instanceof In)return new In({result:e.result.value0,suffix:e.suffix});throw new Error("Failed pattern match at StringParser.Parser (line 87, column 5 - line 87, column 68): "+[e.constructor.name])};return function(e){return tD(function(a){return Iu(t)(ml(n(a.state))(a.str))})({state:r,str:e})}}},Monad0:function(){return eD}};var dr={alt:function(n){return function(r){return function(t){var e=n(t);if(e instanceof b){if(t.position===e.value0.pos)return r(t);if(gn)return new b({error:e.value0.error,pos:e.value0.pos})}return e}}},Functor0:function(){return vr}},aD={empty:xr("No alternative"),Alt0:function(){return dr}},dl={Applicative0:function(){return rr},Plus1:function(){return aD}};var yl=hn(dr),Dl=S(Qn),iD=h(rr),fD=v(vr);var cD=Et(Nr),lD=Q(Nr);var ve=function(n){return function(r){return yl(n)(xr(r))}},or=function(n){return function(r){var t=n(r);return t instanceof b?new b({pos:r.position,error:t.value0.error}):t}};var hl=function(n){return function(r){return new Vr(n,r)}};var gl=function(n){return en(n)(yl)(xr("Nothing to parse"))};var sD=function(n){return function(r){var t=n(r);if(t instanceof F){var e=r.position<t.value0.suffix.position;return e?new F(t.value0):new b({pos:r.position,error:"Consumed no input."})}return t}},Ka=function(){var n=cl(vl)(dl);return function(r){return n(sD(r))}}(),bl=function(n){return lD(fD(hl)(n))(Ka(n))};var wl=function(n){return function(r){return Dl(n)(function(t){return Dl(Ka(cD(r)(n)))(function(e){return iD(hl(t)(e))})})}};var Lu=function(n){var r=Ja(0)(n.substring);if(r instanceof m)return new F({result:r.value0,suffix:{substring:Hr(1)(n.substring),position:n.position+1|0}});if(r instanceof D)return new b({pos:n.position,error:"Unexpected EOF"});throw new Error("Failed pattern match at StringParser.CodeUnits (line 50, column 3 - line 52, column 63): "+[r.constructor.name])};var Xa=S(Qn),vD=At(Sn)(ct),Za=h(rr),no=g(To);var dD=g(Un);var Gn=function(n){return function(r){var t=Va(n),e=nl(t)(r.substring),a=e.before===n;return a?new F({result:n,suffix:{substring:e.after,position:r.position+t|0}}):new b({pos:r.position,error:"Expected '"+(n+"'.")})}};var Fl=or(Xa(Lu)(function(n){var r=vD(Eu(n))(ut(97)(122));return r?Za(n):xr("Expected a lower case character but found "+no(n))})),Xr=function(n){return 0<Va(n.substring)?new b({pos:n.position,error:"Expected EOF"}):new F({result:void 0,suffix:n})};var Sl=or(Xa(Lu)(function(n){var r=n>="0"&&n<="9";return r?Za(n):xr("Character "+(no(n)+" is not a digit"))})),DD=function(n){var r=ja(n.substring);if(r instanceof D)return new b({pos:n.position,error:"Unexpected EOF"});if(r instanceof m)return new F({result:r.value0.head,suffix:{substring:r.value0.tail,position:n.position+1|0}});throw new Error("Failed pattern match at StringParser.CodePoints (line 72, column 3 - line 74, column 103): "+[r.constructor.name])};var yD=function(){var n=function(r){return xr("Code point "+(dD(r)+" is not a character"))};return Xa(zt(vr)(DD)(Wn(se)))(function(r){var t=Uc(r);if(t instanceof m){var e=r>65535;return e?n(r):Za(t.value0)}if(t instanceof D)return n(r);throw new Error("Failed pattern match at StringParser.CodePoints (line 57, column 3 - line 65, column 27): "+[t.constructor.name])})}(),hD=function(n){return or(Xa(yD)(function(r){var t=n(r);return t?Za(r):xr("Character "+(no(r)+" did not satisfy predicate"))}))},Ml=function(n){return ve(hD(function(r){return r===n}))("Could not match character "+no(n))};var gD=O(hu),bD=P(ce),xl=hn(dr),wD=h(rr),ED=h(ar(_n)),CD=g(Un);var ro=function(n){var r=yu(n);if(r instanceof m)return r.value0;if(r instanceof D)return"undefined_id";throw new Error("Failed pattern match at Data.DDF.Identifier (line 80, column 18 - line 82, column 48): "+[r.constructor.name])};var Nl={eq:function(n){return function(r){return gD(n)(r)}}},ta={compare:function(n){return function(r){return bD(n)(r)}},Eq0:function(){return Nl}},TD=xl(Fl)(ve(Sl)("expect lowercase alphanumeric value")),FD=xl(TD)(ve(Ml("_"))("expect lowercase alphanumeric and underscore _")),ur=function(){var n=function(){var r=yc(Ec);return function(t){return Ac(r(t))}}();return S(Qn)(bl(FD))(function(r){return wD(n(r))})}(),SD=Ce(Nr)(ur)(Xr),xu=function(n){var r=pe(SD)(n);if(r instanceof F)return ED(r.value0);if(r instanceof b){var t=CD(r.value0.pos),e="invalid id: "+(n+(", "+(r.value0.error+("at pos "+t))));return yn([e])}throw new Error("Failed pattern match at Data.DDF.Identifier (line 63, column 13 - line 71, column 20): "+[r.constructor.name])};var T=function(){function n(){}return n.value=new n,n}(),L=function(){function n(r,t,e,a){this.value0=r,this.value1=t,this.value2=e,this.value3=a}return n.create=function(r){return function(t){return function(e){return function(a){return new n(r,t,e,a)}}}},n}(),J=function(){function n(r,t,e,a,u,i,f){this.value0=r,this.value1=t,this.value2=e,this.value3=a,this.value4=u,this.value5=i,this.value6=f}return n.create=function(r){return function(t){return function(e){return function(a){return function(u){return function(i){return function(f){return new n(r,t,e,a,u,i,f)}}}}}}},n}(),dt=function(){function n(r,t,e){this.value0=r,this.value1=t,this.value2=e}return n.create=function(r){return function(t){return function(e){return new n(r,t,e)}}},n}(),Zr=function(){function n(r,t,e){this.value0=r,this.value1=t,this.value2=e}return n.create=function(r){return function(t){return function(e){return new n(r,t,e)}}},n}(),Dt=function(){function n(r,t,e,a,u,i){this.value0=r,this.value1=t,this.value2=e,this.value3=a,this.value4=u,this.value5=i}return n.create=function(r){return function(t){return function(e){return function(a){return function(u){return function(i){return new n(r,t,e,a,u,i)}}}}}},n}(),$r=function(){function n(r,t,e,a,u,i){this.value0=r,this.value1=t,this.value2=e,this.value3=a,this.value4=u,this.value5=i}return n.create=function(r){return function(t){return function(e){return function(a){return function(u){return function(i){return new n(r,t,e,a,u,i)}}}}}},n}(),yt=function(){function n(r,t,e,a,u,i){this.value0=r,this.value1=t,this.value2=e,this.value3=a,this.value4=u,this.value5=i}return n.create=function(r){return function(t){return function(e){return function(a){return function(u){return function(i){return new n(r,t,e,a,u,i)}}}}}},n}(),to=function(){function n(r,t,e,a){this.value0=r,this.value1=t,this.value2=e,this.value3=a}return n.create=function(r){return function(t){return function(e){return function(a){return new n(r,t,e,a)}}}},n}();var eo=function(n){var r=P(n);return function(t){var e=function(a){var u=!1,i;function f(l){if(l instanceof T)return u=!0,D.value;if(l instanceof L){var c=r(t)(l.value1);if(c instanceof j)return u=!0,new m(l.value2);if(c instanceof U){a=l.value0;return}a=l.value3;return}if(l instanceof J){var _=r(t)(l.value1);if(_ instanceof j)return u=!0,new m(l.value2);var p=r(t)(l.value4);if(p instanceof j)return u=!0,new m(l.value5);if(_ instanceof U){a=l.value0;return}if(p instanceof k){a=l.value6;return}a=l.value3;return}throw new Error("Failed pattern match at Data.Map.Internal (line 241, column 5 - line 241, column 22): "+[l.constructor.name])}for(;!u;)i=f(a);return i};return e}},de=function(n){var r=eo(n);return function(t){return function(e){return xe(r(t)(e))}}};var qu=function(n){return n instanceof T};var Wl=function(n){return function(r){return function(t){var e=n,a=r,u=!1,i;function f(l,c,_){if(c instanceof dn)return u=!0,_;if(c instanceof x){if(c.value0 instanceof dt){e=l,a=c.value1,t=new L(_,c.value0.value0,c.value0.value1,c.value0.value2);return}if(c.value0 instanceof Zr){e=l,a=c.value1,t=new L(c.value0.value0,c.value0.value1,c.value0.value2,_);return}if(c.value0 instanceof Dt){e=l,a=c.value1,t=new J(_,c.value0.value0,c.value0.value1,c.value0.value2,c.value0.value3,c.value0.value4,c.value0.value5);return}if(c.value0 instanceof $r){e=l,a=c.value1,t=new J(c.value0.value0,c.value0.value1,c.value0.value2,_,c.value0.value3,c.value0.value4,c.value0.value5);return}if(c.value0 instanceof yt){e=l,a=c.value1,t=new J(c.value0.value0,c.value0.value1,c.value0.value2,c.value0.value3,c.value0.value4,c.value0.value5,_);return}throw new Error("Failed pattern match at Data.Map.Internal (line 462, column 3 - line 467, column 88): "+[c.value0.constructor.name])}throw new Error("Failed pattern match at Data.Map.Internal (line 459, column 1 - line 459, column 80): "+[c.constructor.name,_.constructor.name])}for(;!u;)i=f(e,a,t);return i}}},De=function(n){var r=Wl(n),t=P(n);return function(e){return function(a){var u=function(f){return function(l){var c=f,_=!1,p;function y(d,o){if(d instanceof dn)return _=!0,new L(o.value0,o.value1,o.value2,o.value3);if(d instanceof x){if(d.value0 instanceof dt)return _=!0,r(d.value1)(new J(o.value0,o.value1,o.value2,o.value3,d.value0.value0,d.value0.value1,d.value0.value2));if(d.value0 instanceof Zr)return _=!0,r(d.value1)(new J(d.value0.value0,d.value0.value1,d.value0.value2,o.value0,o.value1,o.value2,o.value3));if(d.value0 instanceof Dt){c=d.value1,l=new to(new L(o.value0,o.value1,o.value2,o.value3),d.value0.value0,d.value0.value1,new L(d.value0.value2,d.value0.value3,d.value0.value4,d.value0.value5));return}if(d.value0 instanceof $r){c=d.value1,l=new to(new L(d.value0.value0,d.value0.value1,d.value0.value2,o.value0),o.value1,o.value2,new L(o.value3,d.value0.value3,d.value0.value4,d.value0.value5));return}if(d.value0 instanceof yt){c=d.value1,l=new to(new L(d.value0.value0,d.value0.value1,d.value0.value2,d.value0.value3),d.value0.value4,d.value0.value5,new L(o.value0,o.value1,o.value2,o.value3));return}throw new Error("Failed pattern match at Data.Map.Internal (line 498, column 5 - line 503, column 108): "+[d.value0.constructor.name,o.constructor.name])}throw new Error("Failed pattern match at Data.Map.Internal (line 495, column 3 - line 495, column 56): "+[d.constructor.name,o.constructor.name])}for(;!_;)p=y(c,l);return p}},i=function(f){return function(l){var c=f,_=!1,p;function y(d,o){if(o instanceof T)return _=!0,u(d)(new to(T.value,e,a,T.value));if(o instanceof L){var s=t(e)(o.value1);if(s instanceof j)return _=!0,r(d)(new L(o.value0,e,a,o.value3));if(s instanceof U){c=new x(new dt(o.value1,o.value2,o.value3),d),l=o.value0;return}c=new x(new Zr(o.value0,o.value1,o.value2),d),l=o.value3;return}if(o instanceof J){var un=t(e)(o.value1);if(un instanceof j)return _=!0,r(d)(new J(o.value0,e,a,o.value3,o.value4,o.value5,o.value6));var V=t(e)(o.value4);if(V instanceof j)return _=!0,r(d)(new J(o.value0,o.value1,o.value2,o.value3,e,a,o.value6));if(un instanceof U){c=new x(new Dt(o.value1,o.value2,o.value3,o.value4,o.value5,o.value6),d),l=o.value0;return}if(un instanceof k&&V instanceof U){c=new x(new $r(o.value0,o.value1,o.value2,o.value4,o.value5,o.value6),d),l=o.value3;return}c=new x(new yt(o.value0,o.value1,o.value2,o.value3,o.value4,o.value5),d),l=o.value6;return}throw new Error("Failed pattern match at Data.Map.Internal (line 478, column 3 - line 478, column 55): "+[d.constructor.name,o.constructor.name])}for(;!_;)p=y(c,l);return p}};return i(dn.value)}}},Bl=function(n){var r=Wl(n),t=P(n);return function(e){var a=function(l){return function(c){var _=l,p=!1,y;function d(o,s){if(o instanceof dn)return p=!0,s;if(o instanceof x){if(o.value0 instanceof dt&&o.value0.value2 instanceof T&&s instanceof T)return p=!0,r(o.value1)(new L(T.value,o.value0.value0,o.value0.value1,T.value));if(o.value0 instanceof Zr&&o.value0.value0 instanceof T&&s instanceof T)return p=!0,r(o.value1)(new L(T.value,o.value0.value1,o.value0.value2,T.value));if(o.value0 instanceof dt&&o.value0.value2 instanceof L){_=o.value1,c=new J(s,o.value0.value0,o.value0.value1,o.value0.value2.value0,o.value0.value2.value1,o.value0.value2.value2,o.value0.value2.value3);return}if(o.value0 instanceof Zr&&o.value0.value0 instanceof L){_=o.value1,c=new J(o.value0.value0.value0,o.value0.value0.value1,o.value0.value0.value2,o.value0.value0.value3,o.value0.value1,o.value0.value2,s);return}return o.value0 instanceof dt&&o.value0.value2 instanceof J?(p=!0,r(o.value1)(new L(new L(s,o.value0.value0,o.value0.value1,o.value0.value2.value0),o.value0.value2.value1,o.value0.value2.value2,new L(o.value0.value2.value3,o.value0.value2.value4,o.value0.value2.value5,o.value0.value2.value6)))):o.value0 instanceof Zr&&o.value0.value0 instanceof J?(p=!0,r(o.value1)(new L(new L(o.value0.value0.value0,o.value0.value0.value1,o.value0.value0.value2,o.value0.value0.value3),o.value0.value0.value4,o.value0.value0.value5,new L(o.value0.value0.value6,o.value0.value1,o.value0.value2,s)))):o.value0 instanceof Dt&&o.value0.value2 instanceof T&&o.value0.value5 instanceof T&&s instanceof T?(p=!0,r(o.value1)(new J(T.value,o.value0.value0,o.value0.value1,T.value,o.value0.value3,o.value0.value4,T.value))):o.value0 instanceof $r&&o.value0.value0 instanceof T&&o.value0.value5 instanceof T&&s instanceof T?(p=!0,r(o.value1)(new J(T.value,o.value0.value1,o.value0.value2,T.value,o.value0.value3,o.value0.value4,T.value))):o.value0 instanceof yt&&o.value0.value0 instanceof T&&o.value0.value3 instanceof T&&s instanceof T?(p=!0,r(o.value1)(new J(T.value,o.value0.value1,o.value0.value2,T.value,o.value0.value4,o.value0.value5,T.value))):o.value0 instanceof Dt&&o.value0.value2 instanceof L?(p=!0,r(o.value1)(new L(new J(s,o.value0.value0,o.value0.value1,o.value0.value2.value0,o.value0.value2.value1,o.value0.value2.value2,o.value0.value2.value3),o.value0.value3,o.value0.value4,o.value0.value5))):o.value0 instanceof $r&&o.value0.value0 instanceof L?(p=!0,r(o.value1)(new L(new J(o.value0.value0.value0,o.value0.value0.value1,o.value0.value0.value2,o.value0.value0.value3,o.value0.value1,o.value0.value2,s),o.value0.value3,o.value0.value4,o.value0.value5))):o.value0 instanceof $r&&o.value0.value5 instanceof L?(p=!0,r(o.value1)(new L(o.value0.value0,o.value0.value1,o.value0.value2,new J(s,o.value0.value3,o.value0.value4,o.value0.value5.value0,o.value0.value5.value1,o.value0.value5.value2,o.value0.value5.value3)))):o.value0 instanceof yt&&o.value0.value3 instanceof L?(p=!0,r(o.value1)(new L(o.value0.value0,o.value0.value1,o.value0.value2,new J(o.value0.value3.value0,o.value0.value3.value1,o.value0.value3.value2,o.value0.value3.value3,o.value0.value4,o.value0.value5,s)))):o.value0 instanceof Dt&&o.value0.value2 instanceof J?(p=!0,r(o.value1)(new J(new L(s,o.value0.value0,o.value0.value1,o.value0.value2.value0),o.value0.value2.value1,o.value0.value2.value2,new L(o.value0.value2.value3,o.value0.value2.value4,o.value0.value2.value5,o.value0.value2.value6),o.value0.value3,o.value0.value4,o.value0.value5))):o.value0 instanceof $r&&o.value0.value0 instanceof J?(p=!0,r(o.value1)(new J(new L(o.value0.value0.value0,o.value0.value0.value1,o.value0.value0.value2,o.value0.value0.value3),o.value0.value0.value4,o.value0.value0.value5,new L(o.value0.value0.value6,o.value0.value1,o.value0.value2,s),o.value0.value3,o.value0.value4,o.value0.value5))):o.value0 instanceof $r&&o.value0.value5 instanceof J?(p=!0,r(o.value1)(new J(o.value0.value0,o.value0.value1,o.value0.value2,new L(s,o.value0.value3,o.value0.value4,o.value0.value5.value0),o.value0.value5.value1,o.value0.value5.value2,new L(o.value0.value5.value3,o.value0.value5.value4,o.value0.value5.value5,o.value0.value5.value6)))):o.value0 instanceof yt&&o.value0.value3 instanceof J?(p=!0,r(o.value1)(new J(o.value0.value0,o.value0.value1,o.value0.value2,new L(o.value0.value3.value0,o.value0.value3.value1,o.value0.value3.value2,o.value0.value3.value3),o.value0.value3.value4,o.value0.value3.value5,new L(o.value0.value3.value6,o.value0.value4,o.value0.value5,s)))):(p=!0,_e("The impossible happened in partial function `up`."))}throw new Error("Failed pattern match at Data.Map.Internal (line 552, column 5 - line 573, column 86): "+[o.constructor.name])}for(;!p;)y=d(_,c);return y}},u=function(l){return function(c){var _=l,p=!1,y;function d(o,s){if(s instanceof L&&s.value0 instanceof T&&s.value3 instanceof T)return p=!0,a(o)(T.value);if(s instanceof L){_=new x(new Zr(s.value0,s.value1,s.value2),o),c=s.value3;return}if(s instanceof J&&s.value0 instanceof T&&s.value3 instanceof T&&s.value6 instanceof T)return p=!0,a(new x(new Zr(T.value,s.value1,s.value2),o))(T.value);if(s instanceof J){_=new x(new yt(s.value0,s.value1,s.value2,s.value3,s.value4,s.value5),o),c=s.value6;return}return p=!0,_e("The impossible happened in partial function `removeMaxNode`.")}for(;!p;)y=d(_,c);return y}},i=function(l){var c=!1,_;function p(y){if(y instanceof L&&y.value3 instanceof T)return c=!0,{key:y.value1,value:y.value2};if(y instanceof L){l=y.value3;return}if(y instanceof J&&y.value6 instanceof T)return c=!0,{key:y.value4,value:y.value5};if(y instanceof J){l=y.value6;return}return c=!0,_e("The impossible happened in partial function `maxNode`.")}for(;!c;)_=p(l);return _},f=function(l){return function(c){var _=l,p=!1,y;function d(o,s){if(s instanceof T)return p=!0,D.value;if(s instanceof L){var un=t(e)(s.value1);if(s.value3 instanceof T&&un instanceof j)return p=!0,new m(new W(s.value2,a(o)(T.value)));if(un instanceof j){var V=i(s.value0);return p=!0,new m(new W(s.value2,u(new x(new dt(V.key,V.value,s.value3),o))(s.value0)))}if(un instanceof U){_=new x(new dt(s.value1,s.value2,s.value3),o),c=s.value0;return}_=new x(new Zr(s.value0,s.value1,s.value2),o),c=s.value3;return}if(s instanceof J){var N=function(){return s.value0 instanceof T&&s.value3 instanceof T&&s.value6 instanceof T}(),un=t(e)(s.value4),q=t(e)(s.value1);if(N&&q instanceof j)return p=!0,new m(new W(s.value2,r(o)(new L(T.value,s.value4,s.value5,T.value))));if(N&&un instanceof j)return p=!0,new m(new W(s.value5,r(o)(new L(T.value,s.value1,s.value2,T.value))));if(q instanceof j){var V=i(s.value0);return p=!0,new m(new W(s.value2,u(new x(new Dt(V.key,V.value,s.value3,s.value4,s.value5,s.value6),o))(s.value0)))}if(un instanceof j){var V=i(s.value3);return p=!0,new m(new W(s.value5,u(new x(new $r(s.value0,s.value1,s.value2,V.key,V.value,s.value6),o))(s.value3)))}if(q instanceof U){_=new x(new Dt(s.value1,s.value2,s.value3,s.value4,s.value5,s.value6),o),c=s.value0;return}if(q instanceof k&&un instanceof U){_=new x(new $r(s.value0,s.value1,s.value2,s.value4,s.value5,s.value6),o),c=s.value3;return}_=new x(new yt(s.value0,s.value1,s.value2,s.value3,s.value4,s.value5),o),c=s.value6;return}throw new Error("Failed pattern match at Data.Map.Internal (line 525, column 16 - line 548, column 80): "+[s.constructor.name])}for(;!p;)y=d(_,c);return y}};return f(dn.value)}},$n={foldr:function(n){return function(r){return function(t){if(t instanceof T)return r;if(t instanceof L)return vn($n)(n)(n(t.value2)(vn($n)(n)(r)(t.value3)))(t.value0);if(t instanceof J)return vn($n)(n)(n(t.value2)(vn($n)(n)(n(t.value5)(vn($n)(n)(r)(t.value6)))(t.value3)))(t.value0);throw new Error("Failed pattern match at Data.Map.Internal (line 133, column 17 - line 136, column 85): "+[t.constructor.name])}}},foldl:function(n){return function(r){return function(t){if(t instanceof T)return r;if(t instanceof L)return en($n)(n)(n(en($n)(n)(r)(t.value0))(t.value2))(t.value3);if(t instanceof J)return en($n)(n)(n(en($n)(n)(n(en($n)(n)(r)(t.value0))(t.value2))(t.value3))(t.value5))(t.value6);throw new Error("Failed pattern match at Data.Map.Internal (line 137, column 17 - line 140, column 85): "+[t.constructor.name])}}},foldMap:function(n){var r=pn(n),t=I(n.Semigroup0());return function(e){return function(a){if(a instanceof T)return r;if(a instanceof L)return t(Tn($n)(n)(e)(a.value0))(t(e(a.value2))(Tn($n)(n)(e)(a.value3)));if(a instanceof J)return t(Tn($n)(n)(e)(a.value0))(t(e(a.value2))(t(Tn($n)(n)(e)(a.value3))(t(e(a.value5))(Tn($n)(n)(e)(a.value6)))));throw new Error("Failed pattern match at Data.Map.Internal (line 141, column 17 - line 144, column 93): "+[a.constructor.name])}}}},qn={foldrWithIndex:function(n){return function(r){return function(t){if(t instanceof T)return r;if(t instanceof L)return Ir(qn)(n)(n(t.value1)(t.value2)(Ir(qn)(n)(r)(t.value3)))(t.value0);if(t instanceof J)return Ir(qn)(n)(n(t.value1)(t.value2)(Ir(qn)(n)(n(t.value4)(t.value5)(Ir(qn)(n)(r)(t.value6)))(t.value3)))(t.value0);throw new Error("Failed pattern match at Data.Map.Internal (line 147, column 26 - line 150, column 120): "+[t.constructor.name])}}},foldlWithIndex:function(n){return function(r){return function(t){if(t instanceof T)return r;if(t instanceof L)return kr(qn)(n)(n(t.value1)(kr(qn)(n)(r)(t.value0))(t.value2))(t.value3);if(t instanceof J)return kr(qn)(n)(n(t.value4)(kr(qn)(n)(n(t.value1)(kr(qn)(n)(r)(t.value0))(t.value2))(t.value3))(t.value5))(t.value6);throw new Error("Failed pattern match at Data.Map.Internal (line 151, column 26 - line 154, column 120): "+[t.constructor.name])}}},foldMapWithIndex:function(n){var r=pn(n),t=I(n.Semigroup0());return function(e){return function(a){if(a instanceof T)return r;if(a instanceof L)return t(jr(qn)(n)(e)(a.value0))(t(e(a.value1)(a.value2))(jr(qn)(n)(e)(a.value3)));if(a instanceof J)return t(jr(qn)(n)(e)(a.value0))(t(e(a.value1)(a.value2))(t(jr(qn)(n)(e)(a.value3))(t(e(a.value4)(a.value5))(jr(qn)(n)(e)(a.value6)))));throw new Error("Failed pattern match at Data.Map.Internal (line 155, column 26 - line 158, column 128): "+[a.constructor.name])}}},Foldable0:function(){return $n}},WD=Ir(qn);var Ul=function(){return WD(function(n){return function(r){return function(t){return new x(n,t)}}})(dn.value)}();var Wt=function(){return T.value}(),ao=function(n){var r=De(n);return function(t){return en(t)(function(e){return function(a){return r(a.value0)(a.value1)(e)}})(Wt)}};var ea=function(n){var r=Bl(n);return function(t){return function(e){return Fn(e)(Rn)(r(t)(e))}}};var kl=v(Xe),jl=Fr(),UD=de(ta),zl=eo(ta),Jl=ea(ta),zD=v(Ke),JD=Be(),GD=ao(ta)(Sn),oo=h(ar(_n));var Gl=Q(Ze(_n)),kD=function(){function n(){}return n.value=new n,n}(),jD=function(){function n(){}return n.value=new n,n}(),VD=function(){function n(){}return n.value=new n,n}(),QD=function(){function n(){}return n.value=new n,n}(),HD=function(){function n(){}return n.value=new n,n}(),Vl=function(){function n(){}return n.value=new n,n}(),KD=function(){function n(){}return n.value=new n,n}(),YD=function(){function n(){}return n.value=new n,n}(),XD=function(){function n(){}return n.value=new n,n}(),ZD=function(){function n(r){this.value0=r}return n.create=function(r){return new n(r)},n}(),ny=function(){function n(r){this.value0=r}return n.create=function(r){return new n(r)},n}();var ry=function(n){return kl(function(r){var t=function(){var e=Ar(jl(r));return e==="string"?kD.value:e==="meaeure"?jD.value:e==="bollean"?VD.value:e==="interval"?QD.value:e==="entity_domain"?HD.value:e==="entity_set"?Vl.value:e==="role"?KD.value:e==="composite"?YD.value:e==="time"?XD.value:new ZD(r)}();return t})(xu(n))},ty=function(n){return function(r){return UD(ro(n))(r)}},Ou=function(n){return jl(n.value0.conceptId)},Ql=function(n){return function(r){var t=function(i){var f=ro("concept_type"),l=zl(f)(i),c=function(){if(l instanceof D)return"";if(l instanceof m)return l.value0;throw new Error("Failed pattern match at Data.DDF.Concept (line 175, column 13 - line 177, column 20): "+[l.constructor.name])}(),_=ro("concept"),p=Jl(_)(Jl(f)(i)),y=zl(_)(i),d=function(){if(y instanceof D)return"";if(y instanceof m)return y.value0;throw new Error("Failed pattern match at Data.DDF.Concept (line 169, column 14 - line 171, column 20): "+[y.constructor.name])}();return{conceptId:d,conceptType:c,props:p}},e=ue(zD(JD)(n)),a=function(i){return GD(Gr(e)(i))},u=cu(n)!==Ln(r);return u?yn(["Bad csv row"]):oo(t(a(r)))}};var ey=function(n){return function(r){return function(t){return new ny({conceptId:n,conceptType:r,props:t})}}},ay=function(n){if(n.value0.conceptType instanceof Vl){var r=ty("domain")(n.value0.props);return r?oo(n):yn(["missing domain field for entity_set: "+Ar(Ou(n))])}return oo(n)},Hl=function(n){var r=du(n.conceptId)||du(n.conceptType);if(r)return yn(["concept or concept_type field is empty."]);var t=ry(n.conceptType),e=xu(n.conceptId);return Yr(Gl(Gl(kl(ey)(e))(t))(oo(n.props)))(ay)};import ht from"path";var oy=ht.normalize;function oa(n){return ht.join.apply(this,n)}var Pu=ht.basename;var uy=ht.extname,iy=ht.sep,fy=ht.delimiter,cy=ht.parse,ly=ht.isAbsolute;var qr=S(Qn),ir=at(ot)(Qn),gt=Dn(vr),Bt=h(rr),Bu=gl(Sn),Yl=v(su),Wu=hn(dr),sy=h(ar(_n)),uo=function(){function n(){}return n.value=new n,n}(),ua=function(){function n(r){this.value0=r}return n.create=function(r){return new n(r)},n}(),Xl=function(){function n(r){this.value0=r}return n.create=function(r){return new n(r)},n}();var _y=function(){function n(r,t,e){this.value0=r,this.value1=t,this.value2=e}return n.create=function(r){return function(t){return function(e){return new n(r,t,e)}}},n}();var py=qr(ur)(function(n){return ir(gt(Gn("-")))(function(){return qr(ur)(function(r){return Bt(new W(n,new m(r)))})})}),my=qr(ur)(function(n){return Bt(new W(n,D.value))}),vy=Bu([or(py),or(my)]),dy=function(n){return n.value1 instanceof ua},Dy=function(n){return n.value1 instanceof Xl},yy=function(n){return n.value1 instanceof uo},hy=za(".csv"),Uu=function(n){return n==="concepts"?fr(yy):n==="entities"?fr(dy):n==="datapoints"?fr(Dy):function(r){return[]}},ia=function(n){return n.value0},zu=gt(Gn("ddf--")),gy=ir(zu)(function(){return ir(gt(Gn("entities--")))(function(){return qr(ur)(function(n){return ir(Xr)(function(){return Bt(new ua({domain:n,set:D.value}))})})})}),by=ir(zu)(function(){return ir(gt(Gn("entities--")))(function(){return qr(ur)(function(n){return ir(gt(Gn("--")))(function(){return qr(ur)(function(r){return ir(Xr)(function(){return Bt(new ua({domain:n,set:new m(r)}))})})})})})}),wy=Bu([or(by),or(gy)]),Ey=ir(zu)(function(){return ir(gt(Gn("datapoints--")))(function(){return qr(ur)(function(n){return ir(gt(Gn("--by--")))(function(){return qr(wl(vy)(Gn("--")))(function(r){var t=Yl(er)(r),e=Yl(Rn)(r);return Bt(new Xl({indicator:n,pkeys:t,constrains:e}))})})})})}),Cy=qr(Gn("ddf--concepts--"))(function(n){return qr(Wu(Gn("discrete"))(Gn("continuous")))(function(r){return ir(gt(Xr))(function(){return Bt(n+r)})})}),Ty=Ce(Nr)(Gn("ddf--concepts"))(Xr),Fy=function(){return Et(Nr)(Bu([or(Ty),or(Cy)]))(Bt(uo.value))}(),Zl=function(n){var r=hy(Pu(n));if(r instanceof D)return yn([n+" is not a csv file"]);if(r instanceof m){var t=Wu(Fy)(Wu(wy)(Ey)),e=pe(t)(r.value0);if(e instanceof F)return sy(new _y(n,e.value0,r.value0));if(e instanceof b)return yn([n+(" is not correct ddf file: "+e.value0.error)]);throw new Error("Failed pattern match at Data.DDF.FileInfo (line 175, column 7 - line 177, column 88): "+[e.constructor.name])}throw new Error("Failed pattern match at Data.DDF.FileInfo (line 169, column 23 - line 177, column 88): "+[r.constructor.name])};var ye=function(n){return n.throwError};var fo=function(n){return n.state};var Ju=function(n){var r=fo(n);return function(t){return r(function(e){return new W(void 0,t(e))})}};var Ry=v(Er);var fs=function(n){return n};var cs=function(n){return n};var Gu={lift:function(n){var r=S(n.Bind1()),t=h(n.Applicative0());return function(e){return r(e)(function(a){return t(new F(a))})}}},Wy=Dr(Gu),ls=function(n){return function(r){return n(r)}},ku=function(n){var r=v(n);return{map:function(t){return ls(r(Ry(t)))}}};var fa=function(n){return{Applicative0:function(){return co(n)},Bind1:function(){return ju(n)}}},ju=function(n){var r=S(n.Bind1()),t=h(n.Applicative0());return{bind:function(e){return function(a){return r(e)(jt(function(u){return t(b.create(u))})(function(u){var i=a(u);return i}))}},Apply0:function(){return Vu(n)}}},Vu=function(n){var r=ku(n.Bind1().Apply0().Functor0());return{apply:it(fa(n)),Functor0:function(){return r}}},co=function(n){return{pure:function(){var r=h(n.Applicative0());return function(t){return fs(r(F.create(t)))}}(),Apply0:function(){return Vu(n)}}};var ss=function(n){var r=n.Monad0(),t=Wy(r),e=fo(n),a=fa(r);return{state:function(u){return t(e(u))},Monad0:function(){return a}}};var Qu=function(n){var r=fa(n);return{throwError:function(){var t=h(n.Applicative0());return function(e){return fs(t(b.create(e)))}}(),Monad0:function(){return r}}};var ps=function(n){return n};var ms={lift:function(n){var r=S(n.Bind1()),t=h(n.Applicative0());return function(e){return function(a){return r(e)(function(u){return t(new W(u,a))})}}}};var Hu=function(n){var r=v(n);return{map:function(t){return function(e){return function(a){return r(function(u){return new W(t(u.value0),u.value1)})(e(a))}}}}};var bt=function(n){return{Applicative0:function(){return Uy(n)},Bind1:function(){return By(n)}}},By=function(n){var r=S(n.Bind1());return{bind:function(t){return function(e){return function(a){return r(t(a))(function(u){var i=e(u.value0);return i(u.value1)})}}},Apply0:function(){return vs(n)}}},vs=function(n){var r=Hu(n.Bind1().Apply0().Functor0());return{apply:it(bt(n)),Functor0:function(){return r}}},Uy=function(n){var r=h(n.Applicative0());return{pure:function(t){return function(e){return r(new W(t,e))}},Apply0:function(){return vs(n)}}};var ds=function(n){var r=h(n.Applicative0()),t=bt(n);return{state:function(e){return function(a){return r(e(a))}},Monad0:function(){return t}}};var Jy=Dr(Gu),Gy=Dr(ms),ky=function(n){return n},ca=function(n){var r=Ju(ss(ds(n)));return function(t){var e=I(t.Semigroup0());return function(a){return r(function(u){return e(u)(a)})}}},Ds=function(n){var r=ye(Qu(bt(n)));return function(t){return r(t)}},ys=function(n){var r=S(n.Bind1()),t=h(n.Applicative0());return function(e){var a=pn(e),u=I(e.Semigroup0());return function(i){return r(ps(cs(i))(a))(function(f){return t(function(){if(f.value0 instanceof b)return new W(u(f.value0.value0)(f.value1),D.value);if(f.value0 instanceof F)return new W(f.value1,new m(f.value0.value0));throw new Error("Failed pattern match at Data.DDF.Validation.ValidationT (line 46, column 7 - line 48, column 43): "+[f.value0.constructor.name])}())})}}};var hs={lift:function(n){var r=Jy(bt(n)),t=Gy(n);return function(e){return ky(r(t(e)))}}},Ku=function(n){return fa(bt(n))},gs=function(n){return ku(Hu(n))},he=function(n){return ju(bt(n))};var ge=function(n){return co(bt(n))};var rh=en(Qr);var th=function(n){return Ul(n)};var eh=function(n){return qu(n)},ah=function(n){var r=De(n);return function(t){return function(e){return r(t)(void 0)(e)}}};var oh=Wt,ws=function(n){var r=en(n);return function(t){var e=ah(t);return r(function(a){return function(u){return e(u)(a)}})(oh)}};var uh=function(n){var r=ea(n);return function(t){return function(e){return r(t)(e)}}},ih=function(n){var r=uh(n);return function(t){return function(e){return rh(cn(r))(t)(th(e))}}},Es=function(n){var r=ih(n);return function(t){return function(e){return eh(r(t)(e))}}};function Ts(n,r){return r.startsWith(n)}var Fs=function(n){return function(r){return Ts(n,r)}};var As=ee(pc),sh=Qe(hr),xs=ar(_n),nt=h(xs),Ns=g(st(Vn)),_h=ha(wr),ph=v(on),Yu=S(Qn),$s=h(rr),mh=I(Du),vh=at(ot),dh=vh(Qn),Dh=Dn(vr),yh=g(Un);var Xu=v(Ke),qs=zr(_c)(xs),hh=g(st(Ga)),Ss=Q(Ze(_n)),Ms=v(Xe);var gh=function(){function n(r){this.value0=r}return n.create=function(r){return new n(r)},n}(),bh=function(n){return function(r){var t=function(u){return function(i){return!!(u&&!i||!u&&i)}},e=As(r.headers),a=Yf(function(u){return function(i){return t(sh(u)(e))(i)}})(!1)(n);return a?nt(r):yn(["file MUST have one and only one of follwoing field: "+Ns(n)])}},Is=function(n){var r=_h(ph(fu)(n.headers));if(r instanceof D)return yn(["no headers"]);if(r instanceof m){if(n.rows instanceof D)return nt({headers:r.value0,rows:[]});if(n.rows instanceof m)return nt({headers:r.value0,rows:n.rows.value0});throw new Error("Failed pattern match at Data.DDF.CsvFile (line 129, column 14 - line 131, column 48): "+[n.rows.constructor.name])}throw new Error("Failed pattern match at Data.DDF.CsvFile (line 127, column 21 - line 131, column 48): "+[r.constructor.name])};var Ls=function(n){return function(r){return new gh({fileInfo:n,csvContent:r})}};var wh=Yu(Gn("is--"))(function(n){return Yu(ur)(function(r){return $s(mh(n)(r))})}),Eh=Fr(),Ch=Yu(hn(dr)(wh)(ur))(function(n){return dh(Dh(Xr))(function(){return $s(n)})}),Os=function(n){var r=pe(Ch)(n);if(r instanceof F)return nt(r.value0);if(r instanceof b){var t=yh(r.value0.pos),e="invalid header: "+(n+(", "+(r.value0.error+("at pos "+t))));return yn([e])}throw new Error("Failed pattern match at Data.DDF.CsvFile (line 63, column 17 - line 71, column 20): "+[r.constructor.name])},Th=function(n){var r=ws(n);return function(t){var e=r(t),a=Es(t);return function(u){return function(i){return function(f){var l=e(i),c=e(f);return a(l)(c)}}}}},Fh=Th(Sn)(Gt)(hr),Sh=function(n){return function(r){var t=As(r.headers),e=Fh(n)(t);return e?nt(r):yn(["file MUST have following field: "+Ns(n)])}},Ps=function(n){return n.value0.fileInfo},Rs=function(n){return n.value0.csvContent};var Mh=function(n){var r=qs(Xu(Os)(n.headers)),t=pr(r);if(t instanceof F){var e=Xu(Eh)(t.value0),a=gc(function(){var u=Fs("is--");return function(i){return u(Ar(i))}}())(e);return a.length===0?nt({headers:t.value0,rows:n.rows}):yn(["these headers are not valid Ids: "+hh(a)])}if(t instanceof b)return yn(t.value0);throw new Error("Failed pattern match at Data.DDF.CsvFile (line 139, column 5 - line 149, column 32): "+[t.constructor.name])},Ih=function(n){var r=qs(Xu(Os)(n.headers)),t=pr(r);if(t instanceof F)return nt({headers:t.value0,rows:n.rows});if(t instanceof b)return yn(t.value0);throw new Error("Failed pattern match at Data.DDF.CsvFile (line 157, column 5 - line 159, column 32): "+[t.constructor.name])},Ws=function(n){return function(r){if(n.value1 instanceof uo){var t=["concept","concept_type"],e=Yr(Yr(Is(r))(Sh(t)))(Mh);return Ss(Ms(Ls)(nt(n)))(e)}if(n.value1 instanceof ua){var t=function(){if(n.value1.value0.set instanceof m)return[Ar(n.value1.value0.set.value0),Ar(n.value1.value0.domain)];if(n.value1.value0.set instanceof D)return[Ar(n.value1.value0.domain)];throw new Error("Failed pattern match at Data.DDF.CsvFile (line 224, column 18 - line 226, column 39): "+[n.value1.value0.set.constructor.name])}(),e=Yr(Yr(Is(r))(bh(t)))(Ih);return Ss(Ms(Ls)(nt(n)))(e)}return yn(["not implemented"])}};var Nh=de(ce),$h=De(ce),qh=h(ar(_n)),Bs=function(){function n(r){this.value0=r}return n.create=function(r){return new n(r)},n}();var Us=function(){return new Bs({concepts:Wt})}();var zs=function(n){return function(r){var t=Ou(n),e=Nh(t)(r.value0.concepts);if(e)return yn(["concept "+(Ar(t)+" existed in dataset")]);if(!e){var a=$h(t)(n)(r.value0.concepts),u=new Bs({concepts:a});return qh(u)}throw new Error("Failed pattern match at Data.DDF.DataSet (line 51, column 32 - line 57, column 50): "+[e.constructor.name])}};var Zu=function(n){return function(r){return{message:r.message,file:r.file,lineNo:n,suggestions:r.suggestions}}},be=function(n){return function(r){return{message:r.message,file:n,lineNo:r.lineNo,suggestions:r.suggestions}}};var wt=function(n){return{message:n,file:"",lineNo:0,suggestions:""}};import{renameSync as Wh,truncateSync as Bh,chownSync as Uh,chmodSync as zh,statSync as Js,lstatSync as Jh,linkSync as Gh,symlinkSync as kh,readlinkSync as jh,realpathSync as Vh,unlinkSync as Qh,rmdirSync as Hh,rmSync as Kh,mkdirSync as Yh,readdirSync as Gs,utimesSync as Xh,readFileSync as Zh,writeFileSync as ng,appendFileSync as rg,existsSync as ks,openSync as tg,readSync as eg,writeSync as ag,fsyncSync as og,closeSync as ug}from"fs";var _o=Tr;function _i(n,r){return r[n]()}var m_=Array.isArray||function(n){return Object.prototype.toString.call(n)==="[object Array]"};var v_=function(){function n(r){this.value0=r}return n.create=function(r){return new n(r)},n}();var d_=function(n){return _i("isFile",n.value0)};var D_=function(n){return _i("isDirectory",n.value0)};var m0=v(lr);var pi=function(n){return m0(v_.create)(_o(function(r){return Js(n)}))};var h_=function(n){return _o(function(r){return Gs(n)})};var g_=function(n){return _o(function(r){return ks(n)})};var v0=h(ar(_n));var w_=function(n){var r=function(e){if(e)return v0(n);if(!e)return yn(["no datapackage in this folder"]);throw new Error("Failed pattern match at Data.JSON.DataPackage (line 45, column 5 - line 45, column 23): "+[e.constructor.name])},t=oa([n,"datapackage.json"]);return function(){var a=g_(t)();return r(a)}};var Ut=function(n){return function(){console.log(n)}};import E_ from"process";function C_(n){return()=>n.slice()}function mi(n){return function(r){var t=[];for(var e in r)hasOwnProperty.call(r,e)&&t.push(n(e)(r[e]));return t}}var T0=Object.keys||mi(function(n){return function(){return n}});var T_=function(){return C_(E_.argv)}();var B0=Qe(hr),U0=v(Cn),F_=Yo(Wr),vi=v(lr),z0=Jn(Xn)(Wr),J0=I(_n);var di=function(n){return function(r){return function(){var e=h_(n)(),a=fr(function(c){return!B0(c)(r)})(e),u=U0(function(c){return oa([n,c])})(a),i=F_(function(c){return vi(d_)(pi(c))})(u)(),f=F_(function(c){return vi(D_)(pi(c))})(u)(),l=vi(Tt)(z0(function(c){return di(c)([])})(f))();return J0(i)(l)}}};var rt=v(Cn),po=at(ot),S_=g(Ie()()(St({reflectSymbol:function(){return"file"}})(St({reflectSymbol:function(){return"lineNo"}})(St({reflectSymbol:function(){return"message"}})(Le({reflectSymbol:function(){return"suggestions"}})(Vn))(Vn))(Un))(Vn))),k0=ys(Pn)(Ht),A_=he(Pn),sa=S(A_),Di=po(A_),x_=ge(Pn),yi=Ct(x_),M_=Ds(Pn),I_=Dr(hs)(Pn),j0=Ve(Ku(Pn)),V0=Dn(gs(lr)),Q0=h(x_),H0=function(n){return function(r){var t=he(r),e=ge(r),a=h(e),u=po(t),i=ca(r)(Ht);return S(t)(ko(e)(Xn)(n)(function(f){var l=pr(Zl(f));if(l instanceof F)return a([l.value0]);if(l instanceof b){var c=rt(function(){var _=be(f);return function(p){return _(wt(p))}}())(l.value0);return u(i(c))(function(){return a([])})}throw new Error("Failed pattern match at Main (line 50, column 11 - line 56, column 22): "+[l.constructor.name])}))(function(f){return a(Tt(f))})}},L_=function(n){return function(r){var t=he(r),e=ge(r),a=h(e),u=po(t),i=ca(r)(Ht);return S(t)(ko(e)(Xn)(n)(function(f){var l=ia(f.value0),c=pr(Ws(f.value0)(f.value1));if(c instanceof F)return a([c.value0]);if(c instanceof b){var _=rt(function(){var p=be(l);return function(y){return p(wt(y))}}())(c.value0);return u(i(_))(function(){return a([])})}throw new Error("Failed pattern match at Main (line 66, column 11 - line 72, column 22): "+[c.constructor.name])}))(function(f){return a(Tt(f))})}},K0=function(n){return function(r){return function(t){var e=po(he(t)),a=ca(t)(Ht),u=h(ge(t)),i=Rs(n),f=ia(Ps(n)),l=function(c){return function(_){return function(p){var y=Yr(Ql(c)(p.value1))(Hl),d=pr(y);if(d instanceof b){var o=rt(function(){var un=be(f),V=Zu(p.value0+1|0);return function(N){return un(V(wt(N)))}}())(d.value0);return e(a(o))(function(){return u(_)})}if(d instanceof F){var s=pr(zs(d.value0)(_));if(s instanceof b){var o=rt(function(){var V=be(f),N=Zu(p.value0+1|0);return function(q){return V(N(wt(q)))}}())(s.value0);return e(a(o))(function(){return u(_)})}if(s instanceof F)return u(s.value0);throw new Error("Failed pattern match at Main (line 92, column 11 - line 98, column 38): "+[s.constructor.name])}throw new Error("Failed pattern match at Main (line 85, column 7 - line 98, column 38): "+[d.constructor.name])}}};return Ve(Ku(t))(function(c){return function(_){return l(i.headers)(c)(_)}})(r)(i.rows)}}},Y0=function(n){return function(){var t=w_(n)(),e=pr(t);if(e instanceof b){var a=rt(function(){var f=be(n);return function(l){return f(wt(l))}}())(e.value0);return Ut($t(`
-`)(rt(S_)(a)))()}if(e instanceof F){var u=di(n)([".git","etl","lang","assets"])(),i=k0(sa(H0(u)(Pn))(function(f){return Di(yi(Ln(f)===0)(M_([wt("No csv files in this folder. Please begin with a ddf--concepts.csv file.")])))(function(){var l=Uu("concepts")(f);return Di(yi(Ln(l)===0)(M_([wt("No concepts csv files in this folder. Dataset must at least have a ddf--concepts.csv file.")])))(function(){return sa(I_(eu(rt(ia)(l))))(function(c){var _=Gr(l)(c);return sa(L_(_)(Pn))(function(p){return sa(j0(function(y){return function(d){return K0(d)(y)(Pn)}})(Us)(p))(function(y){var d=Uu("entities")(f);return Di(yi(Ln(d)>0)(sa(I_(eu(rt(ia)(d))))(function(o){var s=Gr(d)(o);return V0(L_(s)(Pn))})))(function(){return Q0(y)})})})})})})}))();return Ut($t(`
-`)(rt(S_)(i.value0)))(),Ut("Done.")()}throw new Error("Failed pattern match at Main (line 105, column 3 - line 145, column 18): "+[e.constructor.name])}},N_=function(){var r=T_(),t=je(r)(2);if(t instanceof D)return Ut("please provide a file path")();if(t instanceof m)return Y0(t.value0)();throw new Error("Failed pattern match at Main (line 152, column 3 - line 154, column 26): "+[t.constructor.name])};N_();
+// output/Control.Apply/foreign.js
+var arrayApply = function(fs) {
+  return function(xs) {
+    var l = fs.length;
+    var k = xs.length;
+    var result = new Array(l * k);
+    var n = 0;
+    for (var i = 0; i < l; i++) {
+      var f = fs[i];
+      for (var j = 0; j < k; j++) {
+        result[n++] = f(xs[j]);
+      }
+    }
+    return result;
+  };
+};
+
+// output/Control.Semigroupoid/index.js
+var semigroupoidFn = {
+  compose: function(f) {
+    return function(g) {
+      return function(x) {
+        return f(g(x));
+      };
+    };
+  }
+};
+
+// output/Control.Category/index.js
+var identity = function(dict) {
+  return dict.identity;
+};
+var categoryFn = {
+  identity: function(x) {
+    return x;
+  },
+  Semigroupoid0: function() {
+    return semigroupoidFn;
+  }
+};
+
+// output/Data.Boolean/index.js
+var otherwise = true;
+
+// output/Data.Function/index.js
+var flip = function(f) {
+  return function(b) {
+    return function(a) {
+      return f(a)(b);
+    };
+  };
+};
+var $$const = function(a) {
+  return function(v) {
+    return a;
+  };
+};
+
+// output/Data.Functor/foreign.js
+var arrayMap = function(f) {
+  return function(arr) {
+    var l = arr.length;
+    var result = new Array(l);
+    for (var i = 0; i < l; i++) {
+      result[i] = f(arr[i]);
+    }
+    return result;
+  };
+};
+
+// output/Data.Unit/foreign.js
+var unit = void 0;
+
+// output/Type.Proxy/index.js
+var $$Proxy = /* @__PURE__ */ function() {
+  function $$Proxy2() {
+  }
+  ;
+  $$Proxy2.value = new $$Proxy2();
+  return $$Proxy2;
+}();
+
+// output/Data.Functor/index.js
+var map = function(dict) {
+  return dict.map;
+};
+var mapFlipped = function(dictFunctor) {
+  var map18 = map(dictFunctor);
+  return function(fa) {
+    return function(f) {
+      return map18(f)(fa);
+    };
+  };
+};
+var $$void = function(dictFunctor) {
+  return map(dictFunctor)($$const(unit));
+};
+var functorArray = {
+  map: arrayMap
+};
+
+// output/Control.Apply/index.js
+var identity2 = /* @__PURE__ */ identity(categoryFn);
+var applyArray = {
+  apply: arrayApply,
+  Functor0: function() {
+    return functorArray;
+  }
+};
+var apply = function(dict) {
+  return dict.apply;
+};
+var applyFirst = function(dictApply) {
+  var apply1 = apply(dictApply);
+  var map18 = map(dictApply.Functor0());
+  return function(a) {
+    return function(b) {
+      return apply1(map18($$const)(a))(b);
+    };
+  };
+};
+var applySecond = function(dictApply) {
+  var apply1 = apply(dictApply);
+  var map18 = map(dictApply.Functor0());
+  return function(a) {
+    return function(b) {
+      return apply1(map18($$const(identity2))(a))(b);
+    };
+  };
+};
+
+// output/Control.Applicative/index.js
+var pure = function(dict) {
+  return dict.pure;
+};
+var when = function(dictApplicative) {
+  var pure15 = pure(dictApplicative);
+  return function(v) {
+    return function(v1) {
+      if (v) {
+        return v1;
+      }
+      ;
+      if (!v) {
+        return pure15(unit);
+      }
+      ;
+      throw new Error("Failed pattern match at Control.Applicative (line 63, column 1 - line 63, column 63): " + [v.constructor.name, v1.constructor.name]);
+    };
+  };
+};
+var liftA1 = function(dictApplicative) {
+  var apply5 = apply(dictApplicative.Apply0());
+  var pure15 = pure(dictApplicative);
+  return function(f) {
+    return function(a) {
+      return apply5(pure15(f))(a);
+    };
+  };
+};
+
+// output/Control.Bind/foreign.js
+var arrayBind = function(arr) {
+  return function(f) {
+    var result = [];
+    for (var i = 0, l = arr.length; i < l; i++) {
+      Array.prototype.push.apply(result, f(arr[i]));
+    }
+    return result;
+  };
+};
+
+// output/Control.Bind/index.js
+var identity3 = /* @__PURE__ */ identity(categoryFn);
+var discard = function(dict) {
+  return dict.discard;
+};
+var bindArray = {
+  bind: arrayBind,
+  Apply0: function() {
+    return applyArray;
+  }
+};
+var bind = function(dict) {
+  return dict.bind;
+};
+var discardUnit = {
+  discard: function(dictBind) {
+    return bind(dictBind);
+  }
+};
+var join = function(dictBind) {
+  var bind12 = bind(dictBind);
+  return function(m) {
+    return bind12(m)(identity3);
+  };
+};
+
+// output/Control.Monad.Trans.Class/index.js
+var lift = function(dict) {
+  return dict.lift;
+};
+
+// output/Data.Array/foreign.js
+var range = function(start) {
+  return function(end) {
+    var step2 = start > end ? -1 : 1;
+    var result = new Array(step2 * (end - start) + 1);
+    var i = start, n = 0;
+    while (i !== end) {
+      result[n++] = i;
+      i += step2;
+    }
+    result[n] = i;
+    return result;
+  };
+};
+var replicateFill = function(count) {
+  return function(value) {
+    if (count < 1) {
+      return [];
+    }
+    var result = new Array(count);
+    return result.fill(value);
+  };
+};
+var replicatePolyfill = function(count) {
+  return function(value) {
+    var result = [];
+    var n = 0;
+    for (var i = 0; i < count; i++) {
+      result[n++] = value;
+    }
+    return result;
+  };
+};
+var replicate = typeof Array.prototype.fill === "function" ? replicateFill : replicatePolyfill;
+var fromFoldableImpl = function() {
+  function Cons3(head4, tail2) {
+    this.head = head4;
+    this.tail = tail2;
+  }
+  var emptyList = {};
+  function curryCons(head4) {
+    return function(tail2) {
+      return new Cons3(head4, tail2);
+    };
+  }
+  function listToArray(list) {
+    var result = [];
+    var count = 0;
+    var xs = list;
+    while (xs !== emptyList) {
+      result[count++] = xs.head;
+      xs = xs.tail;
+    }
+    return result;
+  }
+  return function(foldr3) {
+    return function(xs) {
+      return listToArray(foldr3(curryCons)(emptyList)(xs));
+    };
+  };
+}();
+var length = function(xs) {
+  return xs.length;
+};
+var unconsImpl = function(empty6) {
+  return function(next) {
+    return function(xs) {
+      return xs.length === 0 ? empty6({}) : next(xs[0])(xs.slice(1));
+    };
+  };
+};
+var indexImpl = function(just) {
+  return function(nothing) {
+    return function(xs) {
+      return function(i) {
+        return i < 0 || i >= xs.length ? nothing : just(xs[i]);
+      };
+    };
+  };
+};
+var findIndexImpl = function(just) {
+  return function(nothing) {
+    return function(f) {
+      return function(xs) {
+        for (var i = 0, l = xs.length; i < l; i++) {
+          if (f(xs[i]))
+            return just(i);
+        }
+        return nothing;
+      };
+    };
+  };
+};
+var concat = function(xss) {
+  if (xss.length <= 1e4) {
+    return Array.prototype.concat.apply([], xss);
+  }
+  var result = [];
+  for (var i = 0, l = xss.length; i < l; i++) {
+    var xs = xss[i];
+    for (var j = 0, m = xs.length; j < m; j++) {
+      result.push(xs[j]);
+    }
+  }
+  return result;
+};
+var filter = function(f) {
+  return function(xs) {
+    return xs.filter(f);
+  };
+};
+var sortByImpl = function() {
+  function mergeFromTo(compare4, fromOrdering, xs1, xs2, from2, to) {
+    var mid;
+    var i;
+    var j;
+    var k;
+    var x;
+    var y;
+    var c;
+    mid = from2 + (to - from2 >> 1);
+    if (mid - from2 > 1)
+      mergeFromTo(compare4, fromOrdering, xs2, xs1, from2, mid);
+    if (to - mid > 1)
+      mergeFromTo(compare4, fromOrdering, xs2, xs1, mid, to);
+    i = from2;
+    j = mid;
+    k = from2;
+    while (i < mid && j < to) {
+      x = xs2[i];
+      y = xs2[j];
+      c = fromOrdering(compare4(x)(y));
+      if (c > 0) {
+        xs1[k++] = y;
+        ++j;
+      } else {
+        xs1[k++] = x;
+        ++i;
+      }
+    }
+    while (i < mid) {
+      xs1[k++] = xs2[i++];
+    }
+    while (j < to) {
+      xs1[k++] = xs2[j++];
+    }
+  }
+  return function(compare4) {
+    return function(fromOrdering) {
+      return function(xs) {
+        var out;
+        if (xs.length < 2)
+          return xs;
+        out = xs.slice(0);
+        mergeFromTo(compare4, fromOrdering, out, xs.slice(0), 0, xs.length);
+        return out;
+      };
+    };
+  };
+}();
+var zipWith = function(f) {
+  return function(xs) {
+    return function(ys) {
+      var l = xs.length < ys.length ? xs.length : ys.length;
+      var result = new Array(l);
+      for (var i = 0; i < l; i++) {
+        result[i] = f(xs[i])(ys[i]);
+      }
+      return result;
+    };
+  };
+};
+
+// output/Data.Semigroup/foreign.js
+var concatString = function(s1) {
+  return function(s2) {
+    return s1 + s2;
+  };
+};
+var concatArray = function(xs) {
+  return function(ys) {
+    if (xs.length === 0)
+      return ys;
+    if (ys.length === 0)
+      return xs;
+    return xs.concat(ys);
+  };
+};
+
+// output/Data.Symbol/index.js
+var reflectSymbol = function(dict) {
+  return dict.reflectSymbol;
+};
+
+// output/Record.Unsafe/foreign.js
+var unsafeGet = function(label) {
+  return function(rec) {
+    return rec[label];
+  };
+};
+
+// output/Data.Semigroup/index.js
+var semigroupString = {
+  append: concatString
+};
+var semigroupArray = {
+  append: concatArray
+};
+var append = function(dict) {
+  return dict.append;
+};
+
+// output/Control.Alt/index.js
+var alt = function(dict) {
+  return dict.alt;
+};
+
+// output/Control.Monad/index.js
+var ap = function(dictMonad) {
+  var bind7 = bind(dictMonad.Bind1());
+  var pure15 = pure(dictMonad.Applicative0());
+  return function(f) {
+    return function(a) {
+      return bind7(f)(function(f$prime) {
+        return bind7(a)(function(a$prime) {
+          return pure15(f$prime(a$prime));
+        });
+      });
+    };
+  };
+};
+
+// output/Data.Bounded/foreign.js
+var topChar = String.fromCharCode(65535);
+var bottomChar = String.fromCharCode(0);
+var topNumber = Number.POSITIVE_INFINITY;
+var bottomNumber = Number.NEGATIVE_INFINITY;
+
+// output/Data.Ord/foreign.js
+var unsafeCompareImpl = function(lt) {
+  return function(eq3) {
+    return function(gt) {
+      return function(x) {
+        return function(y) {
+          return x < y ? lt : x === y ? eq3 : gt;
+        };
+      };
+    };
+  };
+};
+var ordIntImpl = unsafeCompareImpl;
+var ordStringImpl = unsafeCompareImpl;
+var ordCharImpl = unsafeCompareImpl;
+
+// output/Data.Eq/foreign.js
+var refEq = function(r1) {
+  return function(r2) {
+    return r1 === r2;
+  };
+};
+var eqIntImpl = refEq;
+var eqCharImpl = refEq;
+var eqStringImpl = refEq;
+
+// output/Data.Eq/index.js
+var eqString = {
+  eq: eqStringImpl
+};
+var eqInt = {
+  eq: eqIntImpl
+};
+var eqChar = {
+  eq: eqCharImpl
+};
+var eq = function(dict) {
+  return dict.eq;
+};
+
+// output/Data.Ordering/index.js
+var LT = /* @__PURE__ */ function() {
+  function LT2() {
+  }
+  ;
+  LT2.value = new LT2();
+  return LT2;
+}();
+var GT = /* @__PURE__ */ function() {
+  function GT2() {
+  }
+  ;
+  GT2.value = new GT2();
+  return GT2;
+}();
+var EQ = /* @__PURE__ */ function() {
+  function EQ2() {
+  }
+  ;
+  EQ2.value = new EQ2();
+  return EQ2;
+}();
+
+// output/Data.Ring/foreign.js
+var intSub = function(x) {
+  return function(y) {
+    return x - y | 0;
+  };
+};
+
+// output/Data.Semiring/foreign.js
+var intAdd = function(x) {
+  return function(y) {
+    return x + y | 0;
+  };
+};
+var intMul = function(x) {
+  return function(y) {
+    return x * y | 0;
+  };
+};
+
+// output/Data.Semiring/index.js
+var semiringInt = {
+  add: intAdd,
+  zero: 0,
+  mul: intMul,
+  one: 1
+};
+
+// output/Data.Ring/index.js
+var ringInt = {
+  sub: intSub,
+  Semiring0: function() {
+    return semiringInt;
+  }
+};
+
+// output/Data.Ord/index.js
+var ordString = /* @__PURE__ */ function() {
+  return {
+    compare: ordStringImpl(LT.value)(EQ.value)(GT.value),
+    Eq0: function() {
+      return eqString;
+    }
+  };
+}();
+var ordInt = /* @__PURE__ */ function() {
+  return {
+    compare: ordIntImpl(LT.value)(EQ.value)(GT.value),
+    Eq0: function() {
+      return eqInt;
+    }
+  };
+}();
+var ordChar = /* @__PURE__ */ function() {
+  return {
+    compare: ordCharImpl(LT.value)(EQ.value)(GT.value),
+    Eq0: function() {
+      return eqChar;
+    }
+  };
+}();
+var compare = function(dict) {
+  return dict.compare;
+};
+
+// output/Data.Bounded/index.js
+var top = function(dict) {
+  return dict.top;
+};
+var boundedChar = {
+  top: topChar,
+  bottom: bottomChar,
+  Ord0: function() {
+    return ordChar;
+  }
+};
+var bottom = function(dict) {
+  return dict.bottom;
+};
+
+// output/Data.Show/foreign.js
+var showIntImpl = function(n) {
+  return n.toString();
+};
+var showCharImpl = function(c) {
+  var code = c.charCodeAt(0);
+  if (code < 32 || code === 127) {
+    switch (c) {
+      case "\x07":
+        return "'\\a'";
+      case "\b":
+        return "'\\b'";
+      case "\f":
+        return "'\\f'";
+      case "\n":
+        return "'\\n'";
+      case "\r":
+        return "'\\r'";
+      case "	":
+        return "'\\t'";
+      case "\v":
+        return "'\\v'";
+    }
+    return "'\\" + code.toString(10) + "'";
+  }
+  return c === "'" || c === "\\" ? "'\\" + c + "'" : "'" + c + "'";
+};
+var showStringImpl = function(s) {
+  var l = s.length;
+  return '"' + s.replace(
+    /[\0-\x1F\x7F"\\]/g,
+    function(c, i) {
+      switch (c) {
+        case '"':
+        case "\\":
+          return "\\" + c;
+        case "\x07":
+          return "\\a";
+        case "\b":
+          return "\\b";
+        case "\f":
+          return "\\f";
+        case "\n":
+          return "\\n";
+        case "\r":
+          return "\\r";
+        case "	":
+          return "\\t";
+        case "\v":
+          return "\\v";
+      }
+      var k = i + 1;
+      var empty6 = k < l && s[k] >= "0" && s[k] <= "9" ? "\\&" : "";
+      return "\\" + c.charCodeAt(0).toString(10) + empty6;
+    }
+  ) + '"';
+};
+var showArrayImpl = function(f) {
+  return function(xs) {
+    var ss = [];
+    for (var i = 0, l = xs.length; i < l; i++) {
+      ss[i] = f(xs[i]);
+    }
+    return "[" + ss.join(",") + "]";
+  };
+};
+
+// output/Data.Show/index.js
+var showString = {
+  show: showStringImpl
+};
+var showRecordFields = function(dict) {
+  return dict.showRecordFields;
+};
+var showRecord = function() {
+  return function() {
+    return function(dictShowRecordFields) {
+      var showRecordFields1 = showRecordFields(dictShowRecordFields);
+      return {
+        show: function(record) {
+          return "{" + (showRecordFields1($$Proxy.value)(record) + "}");
+        }
+      };
+    };
+  };
+};
+var showInt = {
+  show: showIntImpl
+};
+var showChar = {
+  show: showCharImpl
+};
+var show = function(dict) {
+  return dict.show;
+};
+var showArray = function(dictShow) {
+  return {
+    show: showArrayImpl(show(dictShow))
+  };
+};
+var showRecordFieldsCons = function(dictIsSymbol) {
+  var reflectSymbol2 = reflectSymbol(dictIsSymbol);
+  return function(dictShowRecordFields) {
+    var showRecordFields1 = showRecordFields(dictShowRecordFields);
+    return function(dictShow) {
+      var show12 = show(dictShow);
+      return {
+        showRecordFields: function(v) {
+          return function(record) {
+            var tail2 = showRecordFields1($$Proxy.value)(record);
+            var key = reflectSymbol2($$Proxy.value);
+            var focus = unsafeGet(key)(record);
+            return " " + (key + (": " + (show12(focus) + ("," + tail2))));
+          };
+        }
+      };
+    };
+  };
+};
+var showRecordFieldsConsNil = function(dictIsSymbol) {
+  var reflectSymbol2 = reflectSymbol(dictIsSymbol);
+  return function(dictShow) {
+    var show12 = show(dictShow);
+    return {
+      showRecordFields: function(v) {
+        return function(record) {
+          var key = reflectSymbol2($$Proxy.value);
+          var focus = unsafeGet(key)(record);
+          return " " + (key + (": " + (show12(focus) + " ")));
+        };
+      }
+    };
+  };
+};
+
+// output/Data.Maybe/index.js
+var Nothing = /* @__PURE__ */ function() {
+  function Nothing2() {
+  }
+  ;
+  Nothing2.value = new Nothing2();
+  return Nothing2;
+}();
+var Just = /* @__PURE__ */ function() {
+  function Just2(value0) {
+    this.value0 = value0;
+  }
+  ;
+  Just2.create = function(value0) {
+    return new Just2(value0);
+  };
+  return Just2;
+}();
+var maybe = function(v) {
+  return function(v1) {
+    return function(v2) {
+      if (v2 instanceof Nothing) {
+        return v;
+      }
+      ;
+      if (v2 instanceof Just) {
+        return v1(v2.value0);
+      }
+      ;
+      throw new Error("Failed pattern match at Data.Maybe (line 237, column 1 - line 237, column 51): " + [v.constructor.name, v1.constructor.name, v2.constructor.name]);
+    };
+  };
+};
+var isNothing = /* @__PURE__ */ maybe(true)(/* @__PURE__ */ $$const(false));
+var isJust = /* @__PURE__ */ maybe(false)(/* @__PURE__ */ $$const(true));
+var functorMaybe = {
+  map: function(v) {
+    return function(v1) {
+      if (v1 instanceof Just) {
+        return new Just(v(v1.value0));
+      }
+      ;
+      return Nothing.value;
+    };
+  }
+};
+var map2 = /* @__PURE__ */ map(functorMaybe);
+var fromJust = function() {
+  return function(v) {
+    if (v instanceof Just) {
+      return v.value0;
+    }
+    ;
+    throw new Error("Failed pattern match at Data.Maybe (line 288, column 1 - line 288, column 46): " + [v.constructor.name]);
+  };
+};
+var applyMaybe = {
+  apply: function(v) {
+    return function(v1) {
+      if (v instanceof Just) {
+        return map2(v.value0)(v1);
+      }
+      ;
+      if (v instanceof Nothing) {
+        return Nothing.value;
+      }
+      ;
+      throw new Error("Failed pattern match at Data.Maybe (line 67, column 1 - line 69, column 30): " + [v.constructor.name, v1.constructor.name]);
+    };
+  },
+  Functor0: function() {
+    return functorMaybe;
+  }
+};
+var bindMaybe = {
+  bind: function(v) {
+    return function(v1) {
+      if (v instanceof Just) {
+        return v1(v.value0);
+      }
+      ;
+      if (v instanceof Nothing) {
+        return Nothing.value;
+      }
+      ;
+      throw new Error("Failed pattern match at Data.Maybe (line 125, column 1 - line 127, column 28): " + [v.constructor.name, v1.constructor.name]);
+    };
+  },
+  Apply0: function() {
+    return applyMaybe;
+  }
+};
+
+// output/Data.Either/index.js
+var Left = /* @__PURE__ */ function() {
+  function Left2(value0) {
+    this.value0 = value0;
+  }
+  ;
+  Left2.create = function(value0) {
+    return new Left2(value0);
+  };
+  return Left2;
+}();
+var Right = /* @__PURE__ */ function() {
+  function Right2(value0) {
+    this.value0 = value0;
+  }
+  ;
+  Right2.create = function(value0) {
+    return new Right2(value0);
+  };
+  return Right2;
+}();
+var functorEither = {
+  map: function(f) {
+    return function(m) {
+      if (m instanceof Left) {
+        return new Left(m.value0);
+      }
+      ;
+      if (m instanceof Right) {
+        return new Right(f(m.value0));
+      }
+      ;
+      throw new Error("Failed pattern match at Data.Either (line 0, column 0 - line 0, column 0): " + [m.constructor.name]);
+    };
+  }
+};
+var map3 = /* @__PURE__ */ map(functorEither);
+var either = function(v) {
+  return function(v1) {
+    return function(v2) {
+      if (v2 instanceof Left) {
+        return v(v2.value0);
+      }
+      ;
+      if (v2 instanceof Right) {
+        return v1(v2.value0);
+      }
+      ;
+      throw new Error("Failed pattern match at Data.Either (line 208, column 1 - line 208, column 64): " + [v.constructor.name, v1.constructor.name, v2.constructor.name]);
+    };
+  };
+};
+var applyEither = {
+  apply: function(v) {
+    return function(v1) {
+      if (v instanceof Left) {
+        return new Left(v.value0);
+      }
+      ;
+      if (v instanceof Right) {
+        return map3(v.value0)(v1);
+      }
+      ;
+      throw new Error("Failed pattern match at Data.Either (line 70, column 1 - line 72, column 30): " + [v.constructor.name, v1.constructor.name]);
+    };
+  },
+  Functor0: function() {
+    return functorEither;
+  }
+};
+var bindEither = {
+  bind: /* @__PURE__ */ either(function(e) {
+    return function(v) {
+      return new Left(e);
+    };
+  })(function(a) {
+    return function(f) {
+      return f(a);
+    };
+  }),
+  Apply0: function() {
+    return applyEither;
+  }
+};
+var applicativeEither = /* @__PURE__ */ function() {
+  return {
+    pure: Right.create,
+    Apply0: function() {
+      return applyEither;
+    }
+  };
+}();
+var monadEither = {
+  Applicative0: function() {
+    return applicativeEither;
+  },
+  Bind1: function() {
+    return bindEither;
+  }
+};
+
+// output/Data.EuclideanRing/foreign.js
+var intDegree = function(x) {
+  return Math.min(Math.abs(x), 2147483647);
+};
+var intDiv = function(x) {
+  return function(y) {
+    if (y === 0)
+      return 0;
+    return y > 0 ? Math.floor(x / y) : -Math.floor(x / -y);
+  };
+};
+var intMod = function(x) {
+  return function(y) {
+    if (y === 0)
+      return 0;
+    var yy = Math.abs(y);
+    return (x % yy + yy) % yy;
+  };
+};
+
+// output/Data.CommutativeRing/index.js
+var commutativeRingInt = {
+  Ring0: function() {
+    return ringInt;
+  }
+};
+
+// output/Data.EuclideanRing/index.js
+var mod = function(dict) {
+  return dict.mod;
+};
+var euclideanRingInt = {
+  degree: intDegree,
+  div: intDiv,
+  mod: intMod,
+  CommutativeRing0: function() {
+    return commutativeRingInt;
+  }
+};
+var div = function(dict) {
+  return dict.div;
+};
+
+// output/Data.Monoid/index.js
+var monoidArray = {
+  mempty: [],
+  Semigroup0: function() {
+    return semigroupArray;
+  }
+};
+var mempty = function(dict) {
+  return dict.mempty;
+};
+
+// output/Effect/foreign.js
+var pureE = function(a) {
+  return function() {
+    return a;
+  };
+};
+var bindE = function(a) {
+  return function(f) {
+    return function() {
+      return f(a())();
+    };
+  };
+};
+
+// output/Effect/index.js
+var $runtime_lazy = function(name2, moduleName, init3) {
+  var state2 = 0;
+  var val;
+  return function(lineNumber) {
+    if (state2 === 2)
+      return val;
+    if (state2 === 1)
+      throw new ReferenceError(name2 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
+    state2 = 1;
+    val = init3();
+    state2 = 2;
+    return val;
+  };
+};
+var monadEffect = {
+  Applicative0: function() {
+    return applicativeEffect;
+  },
+  Bind1: function() {
+    return bindEffect;
+  }
+};
+var bindEffect = {
+  bind: bindE,
+  Apply0: function() {
+    return $lazy_applyEffect(0);
+  }
+};
+var applicativeEffect = {
+  pure: pureE,
+  Apply0: function() {
+    return $lazy_applyEffect(0);
+  }
+};
+var $lazy_functorEffect = /* @__PURE__ */ $runtime_lazy("functorEffect", "Effect", function() {
+  return {
+    map: liftA1(applicativeEffect)
+  };
+});
+var $lazy_applyEffect = /* @__PURE__ */ $runtime_lazy("applyEffect", "Effect", function() {
+  return {
+    apply: ap(monadEffect),
+    Functor0: function() {
+      return $lazy_functorEffect(0);
+    }
+  };
+});
+var functorEffect = /* @__PURE__ */ $lazy_functorEffect(20);
+
+// output/Control.Monad.Rec.Class/index.js
+var Loop = /* @__PURE__ */ function() {
+  function Loop2(value0) {
+    this.value0 = value0;
+  }
+  ;
+  Loop2.create = function(value0) {
+    return new Loop2(value0);
+  };
+  return Loop2;
+}();
+var Done = /* @__PURE__ */ function() {
+  function Done2(value0) {
+    this.value0 = value0;
+  }
+  ;
+  Done2.create = function(value0) {
+    return new Done2(value0);
+  };
+  return Done2;
+}();
+var tailRecM = function(dict) {
+  return dict.tailRecM;
+};
+var tailRec = function(f) {
+  var go = function($copy_v) {
+    var $tco_done = false;
+    var $tco_result;
+    function $tco_loop(v) {
+      if (v instanceof Loop) {
+        $copy_v = f(v.value0);
+        return;
+      }
+      ;
+      if (v instanceof Done) {
+        $tco_done = true;
+        return v.value0;
+      }
+      ;
+      throw new Error("Failed pattern match at Control.Monad.Rec.Class (line 103, column 3 - line 103, column 25): " + [v.constructor.name]);
+    }
+    ;
+    while (!$tco_done) {
+      $tco_result = $tco_loop($copy_v);
+    }
+    ;
+    return $tco_result;
+  };
+  return function($85) {
+    return go(f($85));
+  };
+};
+var monadRecEither = {
+  tailRecM: function(f) {
+    return function(a0) {
+      var g = function(v) {
+        if (v instanceof Left) {
+          return new Done(new Left(v.value0));
+        }
+        ;
+        if (v instanceof Right && v.value0 instanceof Loop) {
+          return new Loop(f(v.value0.value0));
+        }
+        ;
+        if (v instanceof Right && v.value0 instanceof Done) {
+          return new Done(new Right(v.value0.value0));
+        }
+        ;
+        throw new Error("Failed pattern match at Control.Monad.Rec.Class (line 145, column 7 - line 145, column 33): " + [v.constructor.name]);
+      };
+      return tailRec(g)(f(a0));
+    };
+  },
+  Monad0: function() {
+    return monadEither;
+  }
+};
+var bifunctorStep = {
+  bimap: function(v) {
+    return function(v1) {
+      return function(v2) {
+        if (v2 instanceof Loop) {
+          return new Loop(v(v2.value0));
+        }
+        ;
+        if (v2 instanceof Done) {
+          return new Done(v1(v2.value0));
+        }
+        ;
+        throw new Error("Failed pattern match at Control.Monad.Rec.Class (line 33, column 1 - line 35, column 34): " + [v.constructor.name, v1.constructor.name, v2.constructor.name]);
+      };
+    };
+  }
+};
+
+// output/Data.Array.ST/foreign.js
+var sortByImpl2 = function() {
+  function mergeFromTo(compare4, fromOrdering, xs1, xs2, from2, to) {
+    var mid;
+    var i;
+    var j;
+    var k;
+    var x;
+    var y;
+    var c;
+    mid = from2 + (to - from2 >> 1);
+    if (mid - from2 > 1)
+      mergeFromTo(compare4, fromOrdering, xs2, xs1, from2, mid);
+    if (to - mid > 1)
+      mergeFromTo(compare4, fromOrdering, xs2, xs1, mid, to);
+    i = from2;
+    j = mid;
+    k = from2;
+    while (i < mid && j < to) {
+      x = xs2[i];
+      y = xs2[j];
+      c = fromOrdering(compare4(x)(y));
+      if (c > 0) {
+        xs1[k++] = y;
+        ++j;
+      } else {
+        xs1[k++] = x;
+        ++i;
+      }
+    }
+    while (i < mid) {
+      xs1[k++] = xs2[i++];
+    }
+    while (j < to) {
+      xs1[k++] = xs2[j++];
+    }
+  }
+  return function(compare4) {
+    return function(fromOrdering) {
+      return function(xs) {
+        return function() {
+          if (xs.length < 2)
+            return xs;
+          mergeFromTo(compare4, fromOrdering, xs, xs.slice(0), 0, xs.length);
+          return xs;
+        };
+      };
+    };
+  };
+}();
+
+// output/Data.HeytingAlgebra/foreign.js
+var boolConj = function(b1) {
+  return function(b2) {
+    return b1 && b2;
+  };
+};
+var boolDisj = function(b1) {
+  return function(b2) {
+    return b1 || b2;
+  };
+};
+var boolNot = function(b) {
+  return !b;
+};
+
+// output/Data.HeytingAlgebra/index.js
+var not = function(dict) {
+  return dict.not;
+};
+var ff = function(dict) {
+  return dict.ff;
+};
+var disj = function(dict) {
+  return dict.disj;
+};
+var heytingAlgebraBoolean = {
+  ff: false,
+  tt: true,
+  implies: function(a) {
+    return function(b) {
+      return disj(heytingAlgebraBoolean)(not(heytingAlgebraBoolean)(a))(b);
+    };
+  },
+  conj: boolConj,
+  disj: boolDisj,
+  not: boolNot
+};
+
+// output/Data.Foldable/foreign.js
+var foldrArray = function(f) {
+  return function(init3) {
+    return function(xs) {
+      var acc = init3;
+      var len = xs.length;
+      for (var i = len - 1; i >= 0; i--) {
+        acc = f(xs[i])(acc);
+      }
+      return acc;
+    };
+  };
+};
+var foldlArray = function(f) {
+  return function(init3) {
+    return function(xs) {
+      var acc = init3;
+      var len = xs.length;
+      for (var i = 0; i < len; i++) {
+        acc = f(acc)(xs[i]);
+      }
+      return acc;
+    };
+  };
+};
+
+// output/Data.Tuple/index.js
+var Tuple = /* @__PURE__ */ function() {
+  function Tuple2(value0, value1) {
+    this.value0 = value0;
+    this.value1 = value1;
+  }
+  ;
+  Tuple2.create = function(value0) {
+    return function(value1) {
+      return new Tuple2(value0, value1);
+    };
+  };
+  return Tuple2;
+}();
+var snd = function(v) {
+  return v.value1;
+};
+var fst = function(v) {
+  return v.value0;
+};
+
+// output/Data.Bifunctor/index.js
+var bimap = function(dict) {
+  return dict.bimap;
+};
+
+// output/Data.Monoid.Disj/index.js
+var Disj = function(x) {
+  return x;
+};
+var semigroupDisj = function(dictHeytingAlgebra) {
+  var disj2 = disj(dictHeytingAlgebra);
+  return {
+    append: function(v) {
+      return function(v1) {
+        return disj2(v)(v1);
+      };
+    }
+  };
+};
+var monoidDisj = function(dictHeytingAlgebra) {
+  var semigroupDisj1 = semigroupDisj(dictHeytingAlgebra);
+  return {
+    mempty: ff(dictHeytingAlgebra),
+    Semigroup0: function() {
+      return semigroupDisj1;
+    }
+  };
+};
+
+// output/Unsafe.Coerce/foreign.js
+var unsafeCoerce2 = function(x) {
+  return x;
+};
+
+// output/Safe.Coerce/index.js
+var coerce = function() {
+  return unsafeCoerce2;
+};
+
+// output/Data.Newtype/index.js
+var coerce2 = /* @__PURE__ */ coerce();
+var unwrap = function() {
+  return coerce2;
+};
+var alaF = function() {
+  return function() {
+    return function() {
+      return function() {
+        return function(v) {
+          return coerce2;
+        };
+      };
+    };
+  };
+};
+
+// output/Data.Foldable/index.js
+var alaF2 = /* @__PURE__ */ alaF()()()();
+var foldr = function(dict) {
+  return dict.foldr;
+};
+var foldl = function(dict) {
+  return dict.foldl;
+};
+var foldMapDefaultR = function(dictFoldable) {
+  var foldr22 = foldr(dictFoldable);
+  return function(dictMonoid) {
+    var append3 = append(dictMonoid.Semigroup0());
+    var mempty2 = mempty(dictMonoid);
+    return function(f) {
+      return foldr22(function(x) {
+        return function(acc) {
+          return append3(f(x))(acc);
+        };
+      })(mempty2);
+    };
+  };
+};
+var foldableArray = {
+  foldr: foldrArray,
+  foldl: foldlArray,
+  foldMap: function(dictMonoid) {
+    return foldMapDefaultR(foldableArray)(dictMonoid);
+  }
+};
+var foldMap = function(dict) {
+  return dict.foldMap;
+};
+var any = function(dictFoldable) {
+  var foldMap2 = foldMap(dictFoldable);
+  return function(dictHeytingAlgebra) {
+    return alaF2(Disj)(foldMap2(monoidDisj(dictHeytingAlgebra)));
+  };
+};
+var elem = function(dictFoldable) {
+  var any1 = any(dictFoldable)(heytingAlgebraBoolean);
+  return function(dictEq) {
+    var $457 = eq(dictEq);
+    return function($458) {
+      return any1($457($458));
+    };
+  };
+};
+
+// output/Data.Traversable/foreign.js
+var traverseArrayImpl = function() {
+  function array1(a) {
+    return [a];
+  }
+  function array2(a) {
+    return function(b) {
+      return [a, b];
+    };
+  }
+  function array3(a) {
+    return function(b) {
+      return function(c) {
+        return [a, b, c];
+      };
+    };
+  }
+  function concat22(xs) {
+    return function(ys) {
+      return xs.concat(ys);
+    };
+  }
+  return function(apply5) {
+    return function(map18) {
+      return function(pure15) {
+        return function(f) {
+          return function(array) {
+            function go(bot, top2) {
+              switch (top2 - bot) {
+                case 0:
+                  return pure15([]);
+                case 1:
+                  return map18(array1)(f(array[bot]));
+                case 2:
+                  return apply5(map18(array2)(f(array[bot])))(f(array[bot + 1]));
+                case 3:
+                  return apply5(apply5(map18(array3)(f(array[bot])))(f(array[bot + 1])))(f(array[bot + 2]));
+                default:
+                  var pivot = bot + Math.floor((top2 - bot) / 4) * 2;
+                  return apply5(map18(concat22)(go(bot, pivot)))(go(pivot, top2));
+              }
+            }
+            return go(0, array.length);
+          };
+        };
+      };
+    };
+  };
+}();
+
+// output/Data.Traversable/index.js
+var identity4 = /* @__PURE__ */ identity(categoryFn);
+var traverse = function(dict) {
+  return dict.traverse;
+};
+var sequenceDefault = function(dictTraversable) {
+  var traverse22 = traverse(dictTraversable);
+  return function(dictApplicative) {
+    return traverse22(dictApplicative)(identity4);
+  };
+};
+var traversableArray = {
+  traverse: function(dictApplicative) {
+    var Apply0 = dictApplicative.Apply0();
+    return traverseArrayImpl(apply(Apply0))(map(Apply0.Functor0()))(pure(dictApplicative));
+  },
+  sequence: function(dictApplicative) {
+    return sequenceDefault(traversableArray)(dictApplicative);
+  },
+  Functor0: function() {
+    return functorArray;
+  },
+  Foldable1: function() {
+    return foldableArray;
+  }
+};
+var sequence = function(dict) {
+  return dict.sequence;
+};
+var $$for = function(dictApplicative) {
+  return function(dictTraversable) {
+    var traverse22 = traverse(dictTraversable)(dictApplicative);
+    return function(x) {
+      return function(f) {
+        return traverse22(f)(x);
+      };
+    };
+  };
+};
+
+// output/Data.Unfoldable/foreign.js
+var unfoldrArrayImpl = function(isNothing2) {
+  return function(fromJust5) {
+    return function(fst2) {
+      return function(snd2) {
+        return function(f) {
+          return function(b) {
+            var result = [];
+            var value = b;
+            while (true) {
+              var maybe2 = f(value);
+              if (isNothing2(maybe2))
+                return result;
+              var tuple = fromJust5(maybe2);
+              result.push(fst2(tuple));
+              value = snd2(tuple);
+            }
+          };
+        };
+      };
+    };
+  };
+};
+
+// output/Data.Unfoldable1/foreign.js
+var unfoldr1ArrayImpl = function(isNothing2) {
+  return function(fromJust5) {
+    return function(fst2) {
+      return function(snd2) {
+        return function(f) {
+          return function(b) {
+            var result = [];
+            var value = b;
+            while (true) {
+              var tuple = f(value);
+              result.push(fst2(tuple));
+              var maybe2 = snd2(tuple);
+              if (isNothing2(maybe2))
+                return result;
+              value = fromJust5(maybe2);
+            }
+          };
+        };
+      };
+    };
+  };
+};
+
+// output/Data.Unfoldable1/index.js
+var fromJust2 = /* @__PURE__ */ fromJust();
+var unfoldable1Array = {
+  unfoldr1: /* @__PURE__ */ unfoldr1ArrayImpl(isNothing)(fromJust2)(fst)(snd)
+};
+
+// output/Data.Unfoldable/index.js
+var fromJust3 = /* @__PURE__ */ fromJust();
+var unfoldr = function(dict) {
+  return dict.unfoldr;
+};
+var unfoldableArray = {
+  unfoldr: /* @__PURE__ */ unfoldrArrayImpl(isNothing)(fromJust3)(fst)(snd),
+  Unfoldable10: function() {
+    return unfoldable1Array;
+  }
+};
+
+// output/Data.Array/index.js
+var traverse2 = /* @__PURE__ */ traverse(traversableArray);
+var zip = /* @__PURE__ */ function() {
+  return zipWith(Tuple.create);
+}();
+var tail = /* @__PURE__ */ function() {
+  return unconsImpl($$const(Nothing.value))(function(v) {
+    return function(xs) {
+      return new Just(xs);
+    };
+  });
+}();
+var singleton2 = function(a) {
+  return [a];
+};
+var index = /* @__PURE__ */ function() {
+  return indexImpl(Just.create)(Nothing.value);
+}();
+var head = function(xs) {
+  return index(xs)(0);
+};
+var fromFoldable = function(dictFoldable) {
+  return fromFoldableImpl(foldr(dictFoldable));
+};
+var foldr2 = /* @__PURE__ */ foldr(foldableArray);
+var foldM = function(dictMonad) {
+  var pure15 = pure(dictMonad.Applicative0());
+  var bind12 = bind(dictMonad.Bind1());
+  return function(f) {
+    return function(b) {
+      return unconsImpl(function(v) {
+        return pure15(b);
+      })(function(a) {
+        return function(as) {
+          return bind12(f(b)(a))(function(b$prime) {
+            return foldM(dictMonad)(f)(b$prime)(as);
+          });
+        };
+      });
+    };
+  };
+};
+var findIndex = /* @__PURE__ */ function() {
+  return findIndexImpl(Just.create)(Nothing.value);
+}();
+var elemIndex = function(dictEq) {
+  var eq22 = eq(dictEq);
+  return function(x) {
+    return findIndex(function(v) {
+      return eq22(v)(x);
+    });
+  };
+};
+var elem2 = function(dictEq) {
+  var elemIndex1 = elemIndex(dictEq);
+  return function(a) {
+    return function(arr) {
+      return isJust(elemIndex1(a)(arr));
+    };
+  };
+};
+var concatMap = /* @__PURE__ */ flip(/* @__PURE__ */ bind(bindArray));
+var mapMaybe = function(f) {
+  return concatMap(function() {
+    var $188 = maybe([])(singleton2);
+    return function($189) {
+      return $188(f($189));
+    };
+  }());
+};
+var filterA = function(dictApplicative) {
+  var traverse12 = traverse2(dictApplicative);
+  var map32 = map(dictApplicative.Apply0().Functor0());
+  return function(p) {
+    var $190 = map32(mapMaybe(function(v) {
+      if (v.value1) {
+        return new Just(v.value0);
+      }
+      ;
+      return Nothing.value;
+    }));
+    var $191 = traverse12(function(x) {
+      return map32(Tuple.create(x))(p(x));
+    });
+    return function($192) {
+      return $190($191($192));
+    };
+  };
+};
+
+// node_modules/csv-parse/lib/api/CsvError.js
+var CsvError = class extends Error {
+  constructor(code, message2, options, ...contexts) {
+    if (Array.isArray(message2))
+      message2 = message2.join(" ");
+    super(message2);
+    if (Error.captureStackTrace !== void 0) {
+      Error.captureStackTrace(this, CsvError);
+    }
+    this.code = code;
+    for (const context of contexts) {
+      for (const key in context) {
+        const value = context[key];
+        this[key] = Buffer.isBuffer(value) ? value.toString(options.encoding) : value == null ? value : JSON.parse(JSON.stringify(value));
+      }
+    }
+  }
+};
+
+// node_modules/csv-parse/lib/utils/is_object.js
+var is_object = function(obj) {
+  return typeof obj === "object" && obj !== null && !Array.isArray(obj);
+};
+
+// node_modules/csv-parse/lib/api/normalize_columns_array.js
+var normalize_columns_array = function(columns) {
+  const normalizedColumns = [];
+  for (let i = 0, l = columns.length; i < l; i++) {
+    const column = columns[i];
+    if (column === void 0 || column === null || column === false) {
+      normalizedColumns[i] = { disabled: true };
+    } else if (typeof column === "string") {
+      normalizedColumns[i] = { name: column };
+    } else if (is_object(column)) {
+      if (typeof column.name !== "string") {
+        throw new CsvError("CSV_OPTION_COLUMNS_MISSING_NAME", [
+          "Option columns missing name:",
+          `property "name" is required at position ${i}`,
+          "when column is an object literal"
+        ]);
+      }
+      normalizedColumns[i] = column;
+    } else {
+      throw new CsvError("CSV_INVALID_COLUMN_DEFINITION", [
+        "Invalid column definition:",
+        "expect a string or a literal object,",
+        `got ${JSON.stringify(column)} at position ${i}`
+      ]);
+    }
+  }
+  return normalizedColumns;
+};
+
+// node_modules/csv-parse/lib/utils/ResizeableBuffer.js
+var ResizeableBuffer = class {
+  constructor(size6 = 100) {
+    this.size = size6;
+    this.length = 0;
+    this.buf = Buffer.allocUnsafe(size6);
+  }
+  prepend(val) {
+    if (Buffer.isBuffer(val)) {
+      const length6 = this.length + val.length;
+      if (length6 >= this.size) {
+        this.resize();
+        if (length6 >= this.size) {
+          throw Error("INVALID_BUFFER_STATE");
+        }
+      }
+      const buf = this.buf;
+      this.buf = Buffer.allocUnsafe(this.size);
+      val.copy(this.buf, 0);
+      buf.copy(this.buf, val.length);
+      this.length += val.length;
+    } else {
+      const length6 = this.length++;
+      if (length6 === this.size) {
+        this.resize();
+      }
+      const buf = this.clone();
+      this.buf[0] = val;
+      buf.copy(this.buf, 1, 0, length6);
+    }
+  }
+  append(val) {
+    const length6 = this.length++;
+    if (length6 === this.size) {
+      this.resize();
+    }
+    this.buf[length6] = val;
+  }
+  clone() {
+    return Buffer.from(this.buf.slice(0, this.length));
+  }
+  resize() {
+    const length6 = this.length;
+    this.size = this.size * 2;
+    const buf = Buffer.allocUnsafe(this.size);
+    this.buf.copy(buf, 0, 0, length6);
+    this.buf = buf;
+  }
+  toString(encoding) {
+    if (encoding) {
+      return this.buf.slice(0, this.length).toString(encoding);
+    } else {
+      return Uint8Array.prototype.slice.call(this.buf.slice(0, this.length));
+    }
+  }
+  toJSON() {
+    return this.toString("utf8");
+  }
+  reset() {
+    this.length = 0;
+  }
+};
+var ResizeableBuffer_default = ResizeableBuffer;
+
+// node_modules/csv-parse/lib/api/init_state.js
+var np = 12;
+var cr = 13;
+var nl = 10;
+var space = 32;
+var tab = 9;
+var init_state = function(options) {
+  return {
+    bomSkipped: false,
+    bufBytesStart: 0,
+    castField: options.cast_function,
+    commenting: false,
+    error: void 0,
+    enabled: options.from_line === 1,
+    escaping: false,
+    escapeIsQuote: Buffer.isBuffer(options.escape) && Buffer.isBuffer(options.quote) && Buffer.compare(options.escape, options.quote) === 0,
+    expectedRecordLength: Array.isArray(options.columns) ? options.columns.length : void 0,
+    field: new ResizeableBuffer_default(20),
+    firstLineToHeaders: options.cast_first_line_to_header,
+    needMoreDataSize: Math.max(
+      options.comment !== null ? options.comment.length : 0,
+      ...options.delimiter.map((delimiter2) => delimiter2.length),
+      options.quote !== null ? options.quote.length : 0
+    ),
+    previousBuf: void 0,
+    quoting: false,
+    stop: false,
+    rawBuffer: new ResizeableBuffer_default(100),
+    record: [],
+    recordHasError: false,
+    record_length: 0,
+    recordDelimiterMaxLength: options.record_delimiter.length === 0 ? 2 : Math.max(...options.record_delimiter.map((v) => v.length)),
+    trimChars: [Buffer.from(" ", options.encoding)[0], Buffer.from("	", options.encoding)[0]],
+    wasQuoting: false,
+    wasRowDelimiter: false,
+    timchars: [
+      Buffer.from(Buffer.from([cr], "utf8").toString(), options.encoding),
+      Buffer.from(Buffer.from([nl], "utf8").toString(), options.encoding),
+      Buffer.from(Buffer.from([np], "utf8").toString(), options.encoding),
+      Buffer.from(Buffer.from([space], "utf8").toString(), options.encoding),
+      Buffer.from(Buffer.from([tab], "utf8").toString(), options.encoding)
+    ]
+  };
+};
+
+// node_modules/csv-parse/lib/utils/underscore.js
+var underscore = function(str) {
+  return str.replace(/([A-Z])/g, function(_, match2) {
+    return "_" + match2.toLowerCase();
+  });
+};
+
+// node_modules/csv-parse/lib/api/normalize_options.js
+var normalize_options = function(opts) {
+  const options = {};
+  for (const opt in opts) {
+    options[underscore(opt)] = opts[opt];
+  }
+  if (options.encoding === void 0 || options.encoding === true) {
+    options.encoding = "utf8";
+  } else if (options.encoding === null || options.encoding === false) {
+    options.encoding = null;
+  } else if (typeof options.encoding !== "string" && options.encoding !== null) {
+    throw new CsvError("CSV_INVALID_OPTION_ENCODING", [
+      "Invalid option encoding:",
+      "encoding must be a string or null to return a buffer,",
+      `got ${JSON.stringify(options.encoding)}`
+    ], options);
+  }
+  if (options.bom === void 0 || options.bom === null || options.bom === false) {
+    options.bom = false;
+  } else if (options.bom !== true) {
+    throw new CsvError("CSV_INVALID_OPTION_BOM", [
+      "Invalid option bom:",
+      "bom must be true,",
+      `got ${JSON.stringify(options.bom)}`
+    ], options);
+  }
+  options.cast_function = null;
+  if (options.cast === void 0 || options.cast === null || options.cast === false || options.cast === "") {
+    options.cast = void 0;
+  } else if (typeof options.cast === "function") {
+    options.cast_function = options.cast;
+    options.cast = true;
+  } else if (options.cast !== true) {
+    throw new CsvError("CSV_INVALID_OPTION_CAST", [
+      "Invalid option cast:",
+      "cast must be true or a function,",
+      `got ${JSON.stringify(options.cast)}`
+    ], options);
+  }
+  if (options.cast_date === void 0 || options.cast_date === null || options.cast_date === false || options.cast_date === "") {
+    options.cast_date = false;
+  } else if (options.cast_date === true) {
+    options.cast_date = function(value) {
+      const date2 = Date.parse(value);
+      return !isNaN(date2) ? new Date(date2) : value;
+    };
+  } else if (typeof options.cast_date !== "function") {
+    throw new CsvError("CSV_INVALID_OPTION_CAST_DATE", [
+      "Invalid option cast_date:",
+      "cast_date must be true or a function,",
+      `got ${JSON.stringify(options.cast_date)}`
+    ], options);
+  }
+  options.cast_first_line_to_header = null;
+  if (options.columns === true) {
+    options.cast_first_line_to_header = void 0;
+  } else if (typeof options.columns === "function") {
+    options.cast_first_line_to_header = options.columns;
+    options.columns = true;
+  } else if (Array.isArray(options.columns)) {
+    options.columns = normalize_columns_array(options.columns);
+  } else if (options.columns === void 0 || options.columns === null || options.columns === false) {
+    options.columns = false;
+  } else {
+    throw new CsvError("CSV_INVALID_OPTION_COLUMNS", [
+      "Invalid option columns:",
+      "expect an array, a function or true,",
+      `got ${JSON.stringify(options.columns)}`
+    ], options);
+  }
+  if (options.group_columns_by_name === void 0 || options.group_columns_by_name === null || options.group_columns_by_name === false) {
+    options.group_columns_by_name = false;
+  } else if (options.group_columns_by_name !== true) {
+    throw new CsvError("CSV_INVALID_OPTION_GROUP_COLUMNS_BY_NAME", [
+      "Invalid option group_columns_by_name:",
+      "expect an boolean,",
+      `got ${JSON.stringify(options.group_columns_by_name)}`
+    ], options);
+  } else if (options.columns === false) {
+    throw new CsvError("CSV_INVALID_OPTION_GROUP_COLUMNS_BY_NAME", [
+      "Invalid option group_columns_by_name:",
+      "the `columns` mode must be activated."
+    ], options);
+  }
+  if (options.comment === void 0 || options.comment === null || options.comment === false || options.comment === "") {
+    options.comment = null;
+  } else {
+    if (typeof options.comment === "string") {
+      options.comment = Buffer.from(options.comment, options.encoding);
+    }
+    if (!Buffer.isBuffer(options.comment)) {
+      throw new CsvError("CSV_INVALID_OPTION_COMMENT", [
+        "Invalid option comment:",
+        "comment must be a buffer or a string,",
+        `got ${JSON.stringify(options.comment)}`
+      ], options);
+    }
+  }
+  const delimiter_json = JSON.stringify(options.delimiter);
+  if (!Array.isArray(options.delimiter))
+    options.delimiter = [options.delimiter];
+  if (options.delimiter.length === 0) {
+    throw new CsvError("CSV_INVALID_OPTION_DELIMITER", [
+      "Invalid option delimiter:",
+      "delimiter must be a non empty string or buffer or array of string|buffer,",
+      `got ${delimiter_json}`
+    ], options);
+  }
+  options.delimiter = options.delimiter.map(function(delimiter2) {
+    if (delimiter2 === void 0 || delimiter2 === null || delimiter2 === false) {
+      return Buffer.from(",", options.encoding);
+    }
+    if (typeof delimiter2 === "string") {
+      delimiter2 = Buffer.from(delimiter2, options.encoding);
+    }
+    if (!Buffer.isBuffer(delimiter2) || delimiter2.length === 0) {
+      throw new CsvError("CSV_INVALID_OPTION_DELIMITER", [
+        "Invalid option delimiter:",
+        "delimiter must be a non empty string or buffer or array of string|buffer,",
+        `got ${delimiter_json}`
+      ], options);
+    }
+    return delimiter2;
+  });
+  if (options.escape === void 0 || options.escape === true) {
+    options.escape = Buffer.from('"', options.encoding);
+  } else if (typeof options.escape === "string") {
+    options.escape = Buffer.from(options.escape, options.encoding);
+  } else if (options.escape === null || options.escape === false) {
+    options.escape = null;
+  }
+  if (options.escape !== null) {
+    if (!Buffer.isBuffer(options.escape)) {
+      throw new Error(`Invalid Option: escape must be a buffer, a string or a boolean, got ${JSON.stringify(options.escape)}`);
+    }
+  }
+  if (options.from === void 0 || options.from === null) {
+    options.from = 1;
+  } else {
+    if (typeof options.from === "string" && /\d+/.test(options.from)) {
+      options.from = parseInt(options.from);
+    }
+    if (Number.isInteger(options.from)) {
+      if (options.from < 0) {
+        throw new Error(`Invalid Option: from must be a positive integer, got ${JSON.stringify(opts.from)}`);
+      }
+    } else {
+      throw new Error(`Invalid Option: from must be an integer, got ${JSON.stringify(options.from)}`);
+    }
+  }
+  if (options.from_line === void 0 || options.from_line === null) {
+    options.from_line = 1;
+  } else {
+    if (typeof options.from_line === "string" && /\d+/.test(options.from_line)) {
+      options.from_line = parseInt(options.from_line);
+    }
+    if (Number.isInteger(options.from_line)) {
+      if (options.from_line <= 0) {
+        throw new Error(`Invalid Option: from_line must be a positive integer greater than 0, got ${JSON.stringify(opts.from_line)}`);
+      }
+    } else {
+      throw new Error(`Invalid Option: from_line must be an integer, got ${JSON.stringify(opts.from_line)}`);
+    }
+  }
+  if (options.ignore_last_delimiters === void 0 || options.ignore_last_delimiters === null) {
+    options.ignore_last_delimiters = false;
+  } else if (typeof options.ignore_last_delimiters === "number") {
+    options.ignore_last_delimiters = Math.floor(options.ignore_last_delimiters);
+    if (options.ignore_last_delimiters === 0) {
+      options.ignore_last_delimiters = false;
+    }
+  } else if (typeof options.ignore_last_delimiters !== "boolean") {
+    throw new CsvError("CSV_INVALID_OPTION_IGNORE_LAST_DELIMITERS", [
+      "Invalid option `ignore_last_delimiters`:",
+      "the value must be a boolean value or an integer,",
+      `got ${JSON.stringify(options.ignore_last_delimiters)}`
+    ], options);
+  }
+  if (options.ignore_last_delimiters === true && options.columns === false) {
+    throw new CsvError("CSV_IGNORE_LAST_DELIMITERS_REQUIRES_COLUMNS", [
+      "The option `ignore_last_delimiters`",
+      "requires the activation of the `columns` option"
+    ], options);
+  }
+  if (options.info === void 0 || options.info === null || options.info === false) {
+    options.info = false;
+  } else if (options.info !== true) {
+    throw new Error(`Invalid Option: info must be true, got ${JSON.stringify(options.info)}`);
+  }
+  if (options.max_record_size === void 0 || options.max_record_size === null || options.max_record_size === false) {
+    options.max_record_size = 0;
+  } else if (Number.isInteger(options.max_record_size) && options.max_record_size >= 0) {
+  } else if (typeof options.max_record_size === "string" && /\d+/.test(options.max_record_size)) {
+    options.max_record_size = parseInt(options.max_record_size);
+  } else {
+    throw new Error(`Invalid Option: max_record_size must be a positive integer, got ${JSON.stringify(options.max_record_size)}`);
+  }
+  if (options.objname === void 0 || options.objname === null || options.objname === false) {
+    options.objname = void 0;
+  } else if (Buffer.isBuffer(options.objname)) {
+    if (options.objname.length === 0) {
+      throw new Error(`Invalid Option: objname must be a non empty buffer`);
+    }
+    if (options.encoding === null) {
+    } else {
+      options.objname = options.objname.toString(options.encoding);
+    }
+  } else if (typeof options.objname === "string") {
+    if (options.objname.length === 0) {
+      throw new Error(`Invalid Option: objname must be a non empty string`);
+    }
+  } else if (typeof options.objname === "number") {
+  } else {
+    throw new Error(`Invalid Option: objname must be a string or a buffer, got ${options.objname}`);
+  }
+  if (options.objname !== void 0) {
+    if (typeof options.objname === "number") {
+      if (options.columns !== false) {
+        throw Error("Invalid Option: objname index cannot be combined with columns or be defined as a field");
+      }
+    } else {
+      if (options.columns === false) {
+        throw Error("Invalid Option: objname field must be combined with columns or be defined as an index");
+      }
+    }
+  }
+  if (options.on_record === void 0 || options.on_record === null) {
+    options.on_record = void 0;
+  } else if (typeof options.on_record !== "function") {
+    throw new CsvError("CSV_INVALID_OPTION_ON_RECORD", [
+      "Invalid option `on_record`:",
+      "expect a function,",
+      `got ${JSON.stringify(options.on_record)}`
+    ], options);
+  }
+  if (options.quote === null || options.quote === false || options.quote === "") {
+    options.quote = null;
+  } else {
+    if (options.quote === void 0 || options.quote === true) {
+      options.quote = Buffer.from('"', options.encoding);
+    } else if (typeof options.quote === "string") {
+      options.quote = Buffer.from(options.quote, options.encoding);
+    }
+    if (!Buffer.isBuffer(options.quote)) {
+      throw new Error(`Invalid Option: quote must be a buffer or a string, got ${JSON.stringify(options.quote)}`);
+    }
+  }
+  if (options.raw === void 0 || options.raw === null || options.raw === false) {
+    options.raw = false;
+  } else if (options.raw !== true) {
+    throw new Error(`Invalid Option: raw must be true, got ${JSON.stringify(options.raw)}`);
+  }
+  if (options.record_delimiter === void 0) {
+    options.record_delimiter = [];
+  } else if (typeof options.record_delimiter === "string" || Buffer.isBuffer(options.record_delimiter)) {
+    if (options.record_delimiter.length === 0) {
+      throw new CsvError("CSV_INVALID_OPTION_RECORD_DELIMITER", [
+        "Invalid option `record_delimiter`:",
+        "value must be a non empty string or buffer,",
+        `got ${JSON.stringify(options.record_delimiter)}`
+      ], options);
+    }
+    options.record_delimiter = [options.record_delimiter];
+  } else if (!Array.isArray(options.record_delimiter)) {
+    throw new CsvError("CSV_INVALID_OPTION_RECORD_DELIMITER", [
+      "Invalid option `record_delimiter`:",
+      "value must be a string, a buffer or array of string|buffer,",
+      `got ${JSON.stringify(options.record_delimiter)}`
+    ], options);
+  }
+  options.record_delimiter = options.record_delimiter.map(function(rd, i) {
+    if (typeof rd !== "string" && !Buffer.isBuffer(rd)) {
+      throw new CsvError("CSV_INVALID_OPTION_RECORD_DELIMITER", [
+        "Invalid option `record_delimiter`:",
+        "value must be a string, a buffer or array of string|buffer",
+        `at index ${i},`,
+        `got ${JSON.stringify(rd)}`
+      ], options);
+    } else if (rd.length === 0) {
+      throw new CsvError("CSV_INVALID_OPTION_RECORD_DELIMITER", [
+        "Invalid option `record_delimiter`:",
+        "value must be a non empty string or buffer",
+        `at index ${i},`,
+        `got ${JSON.stringify(rd)}`
+      ], options);
+    }
+    if (typeof rd === "string") {
+      rd = Buffer.from(rd, options.encoding);
+    }
+    return rd;
+  });
+  if (typeof options.relax_column_count === "boolean") {
+  } else if (options.relax_column_count === void 0 || options.relax_column_count === null) {
+    options.relax_column_count = false;
+  } else {
+    throw new Error(`Invalid Option: relax_column_count must be a boolean, got ${JSON.stringify(options.relax_column_count)}`);
+  }
+  if (typeof options.relax_column_count_less === "boolean") {
+  } else if (options.relax_column_count_less === void 0 || options.relax_column_count_less === null) {
+    options.relax_column_count_less = false;
+  } else {
+    throw new Error(`Invalid Option: relax_column_count_less must be a boolean, got ${JSON.stringify(options.relax_column_count_less)}`);
+  }
+  if (typeof options.relax_column_count_more === "boolean") {
+  } else if (options.relax_column_count_more === void 0 || options.relax_column_count_more === null) {
+    options.relax_column_count_more = false;
+  } else {
+    throw new Error(`Invalid Option: relax_column_count_more must be a boolean, got ${JSON.stringify(options.relax_column_count_more)}`);
+  }
+  if (typeof options.relax_quotes === "boolean") {
+  } else if (options.relax_quotes === void 0 || options.relax_quotes === null) {
+    options.relax_quotes = false;
+  } else {
+    throw new Error(`Invalid Option: relax_quotes must be a boolean, got ${JSON.stringify(options.relax_quotes)}`);
+  }
+  if (typeof options.skip_empty_lines === "boolean") {
+  } else if (options.skip_empty_lines === void 0 || options.skip_empty_lines === null) {
+    options.skip_empty_lines = false;
+  } else {
+    throw new Error(`Invalid Option: skip_empty_lines must be a boolean, got ${JSON.stringify(options.skip_empty_lines)}`);
+  }
+  if (typeof options.skip_records_with_empty_values === "boolean") {
+  } else if (options.skip_records_with_empty_values === void 0 || options.skip_records_with_empty_values === null) {
+    options.skip_records_with_empty_values = false;
+  } else {
+    throw new Error(`Invalid Option: skip_records_with_empty_values must be a boolean, got ${JSON.stringify(options.skip_records_with_empty_values)}`);
+  }
+  if (typeof options.skip_records_with_error === "boolean") {
+  } else if (options.skip_records_with_error === void 0 || options.skip_records_with_error === null) {
+    options.skip_records_with_error = false;
+  } else {
+    throw new Error(`Invalid Option: skip_records_with_error must be a boolean, got ${JSON.stringify(options.skip_records_with_error)}`);
+  }
+  if (options.rtrim === void 0 || options.rtrim === null || options.rtrim === false) {
+    options.rtrim = false;
+  } else if (options.rtrim !== true) {
+    throw new Error(`Invalid Option: rtrim must be a boolean, got ${JSON.stringify(options.rtrim)}`);
+  }
+  if (options.ltrim === void 0 || options.ltrim === null || options.ltrim === false) {
+    options.ltrim = false;
+  } else if (options.ltrim !== true) {
+    throw new Error(`Invalid Option: ltrim must be a boolean, got ${JSON.stringify(options.ltrim)}`);
+  }
+  if (options.trim === void 0 || options.trim === null || options.trim === false) {
+    options.trim = false;
+  } else if (options.trim !== true) {
+    throw new Error(`Invalid Option: trim must be a boolean, got ${JSON.stringify(options.trim)}`);
+  }
+  if (options.trim === true && opts.ltrim !== false) {
+    options.ltrim = true;
+  } else if (options.ltrim !== true) {
+    options.ltrim = false;
+  }
+  if (options.trim === true && opts.rtrim !== false) {
+    options.rtrim = true;
+  } else if (options.rtrim !== true) {
+    options.rtrim = false;
+  }
+  if (options.to === void 0 || options.to === null) {
+    options.to = -1;
+  } else {
+    if (typeof options.to === "string" && /\d+/.test(options.to)) {
+      options.to = parseInt(options.to);
+    }
+    if (Number.isInteger(options.to)) {
+      if (options.to <= 0) {
+        throw new Error(`Invalid Option: to must be a positive integer greater than 0, got ${JSON.stringify(opts.to)}`);
+      }
+    } else {
+      throw new Error(`Invalid Option: to must be an integer, got ${JSON.stringify(opts.to)}`);
+    }
+  }
+  if (options.to_line === void 0 || options.to_line === null) {
+    options.to_line = -1;
+  } else {
+    if (typeof options.to_line === "string" && /\d+/.test(options.to_line)) {
+      options.to_line = parseInt(options.to_line);
+    }
+    if (Number.isInteger(options.to_line)) {
+      if (options.to_line <= 0) {
+        throw new Error(`Invalid Option: to_line must be a positive integer greater than 0, got ${JSON.stringify(opts.to_line)}`);
+      }
+    } else {
+      throw new Error(`Invalid Option: to_line must be an integer, got ${JSON.stringify(opts.to_line)}`);
+    }
+  }
+  return options;
+};
+
+// node_modules/csv-parse/lib/api/index.js
+var isRecordEmpty = function(record) {
+  return record.every((field) => field == null || field.toString && field.toString().trim() === "");
+};
+var cr2 = 13;
+var nl2 = 10;
+var boms = {
+  "utf8": Buffer.from([239, 187, 191]),
+  "utf16le": Buffer.from([255, 254])
+};
+var transform = function(original_options = {}) {
+  const info2 = {
+    bytes: 0,
+    comment_lines: 0,
+    empty_lines: 0,
+    invalid_field_length: 0,
+    lines: 1,
+    records: 0
+  };
+  const options = normalize_options(original_options);
+  return {
+    info: info2,
+    original_options,
+    options,
+    state: init_state(options),
+    __needMoreData: function(i, bufLen, end) {
+      if (end)
+        return false;
+      const { quote } = this.options;
+      const { quoting, needMoreDataSize, recordDelimiterMaxLength } = this.state;
+      const numOfCharLeft = bufLen - i - 1;
+      const requiredLength = Math.max(
+        needMoreDataSize,
+        recordDelimiterMaxLength,
+        quoting ? quote.length + recordDelimiterMaxLength : 0
+      );
+      return numOfCharLeft < requiredLength;
+    },
+    parse: function(nextBuf, end, push2, close) {
+      const { bom, from_line, ltrim, max_record_size, raw, relax_quotes, rtrim, skip_empty_lines, to, to_line } = this.options;
+      let { comment, escape, quote, record_delimiter } = this.options;
+      const { bomSkipped, previousBuf, rawBuffer, escapeIsQuote } = this.state;
+      let buf;
+      if (previousBuf === void 0) {
+        if (nextBuf === void 0) {
+          close();
+          return;
+        } else {
+          buf = nextBuf;
+        }
+      } else if (previousBuf !== void 0 && nextBuf === void 0) {
+        buf = previousBuf;
+      } else {
+        buf = Buffer.concat([previousBuf, nextBuf]);
+      }
+      if (bomSkipped === false) {
+        if (bom === false) {
+          this.state.bomSkipped = true;
+        } else if (buf.length < 3) {
+          if (end === false) {
+            this.state.previousBuf = buf;
+            return;
+          }
+        } else {
+          for (const encoding in boms) {
+            if (boms[encoding].compare(buf, 0, boms[encoding].length) === 0) {
+              const bomLength = boms[encoding].length;
+              this.state.bufBytesStart += bomLength;
+              buf = buf.slice(bomLength);
+              this.options = normalize_options({ ...this.original_options, encoding });
+              ({ comment, escape, quote } = this.options);
+              break;
+            }
+          }
+          this.state.bomSkipped = true;
+        }
+      }
+      const bufLen = buf.length;
+      let pos;
+      for (pos = 0; pos < bufLen; pos++) {
+        if (this.__needMoreData(pos, bufLen, end)) {
+          break;
+        }
+        if (this.state.wasRowDelimiter === true) {
+          this.info.lines++;
+          this.state.wasRowDelimiter = false;
+        }
+        if (to_line !== -1 && this.info.lines > to_line) {
+          this.state.stop = true;
+          close();
+          return;
+        }
+        if (this.state.quoting === false && record_delimiter.length === 0) {
+          const record_delimiterCount = this.__autoDiscoverRecordDelimiter(buf, pos);
+          if (record_delimiterCount) {
+            record_delimiter = this.options.record_delimiter;
+          }
+        }
+        const chr = buf[pos];
+        if (raw === true) {
+          rawBuffer.append(chr);
+        }
+        if ((chr === cr2 || chr === nl2) && this.state.wasRowDelimiter === false) {
+          this.state.wasRowDelimiter = true;
+        }
+        if (this.state.escaping === true) {
+          this.state.escaping = false;
+        } else {
+          if (escape !== null && this.state.quoting === true && this.__isEscape(buf, pos, chr) && pos + escape.length < bufLen) {
+            if (escapeIsQuote) {
+              if (this.__isQuote(buf, pos + escape.length)) {
+                this.state.escaping = true;
+                pos += escape.length - 1;
+                continue;
+              }
+            } else {
+              this.state.escaping = true;
+              pos += escape.length - 1;
+              continue;
+            }
+          }
+          if (this.state.commenting === false && this.__isQuote(buf, pos)) {
+            if (this.state.quoting === true) {
+              const nextChr = buf[pos + quote.length];
+              const isNextChrTrimable = rtrim && this.__isCharTrimable(buf, pos + quote.length);
+              const isNextChrComment = comment !== null && this.__compareBytes(comment, buf, pos + quote.length, nextChr);
+              const isNextChrDelimiter = this.__isDelimiter(buf, pos + quote.length, nextChr);
+              const isNextChrRecordDelimiter = record_delimiter.length === 0 ? this.__autoDiscoverRecordDelimiter(buf, pos + quote.length) : this.__isRecordDelimiter(nextChr, buf, pos + quote.length);
+              if (escape !== null && this.__isEscape(buf, pos, chr) && this.__isQuote(buf, pos + escape.length)) {
+                pos += escape.length - 1;
+              } else if (!nextChr || isNextChrDelimiter || isNextChrRecordDelimiter || isNextChrComment || isNextChrTrimable) {
+                this.state.quoting = false;
+                this.state.wasQuoting = true;
+                pos += quote.length - 1;
+                continue;
+              } else if (relax_quotes === false) {
+                const err = this.__error(
+                  new CsvError("CSV_INVALID_CLOSING_QUOTE", [
+                    "Invalid Closing Quote:",
+                    `got "${String.fromCharCode(nextChr)}"`,
+                    `at line ${this.info.lines}`,
+                    "instead of delimiter, record delimiter, trimable character",
+                    "(if activated) or comment"
+                  ], this.options, this.__infoField())
+                );
+                if (err !== void 0)
+                  return err;
+              } else {
+                this.state.quoting = false;
+                this.state.wasQuoting = true;
+                this.state.field.prepend(quote);
+                pos += quote.length - 1;
+              }
+            } else {
+              if (this.state.field.length !== 0) {
+                if (relax_quotes === false) {
+                  const err = this.__error(
+                    new CsvError("INVALID_OPENING_QUOTE", [
+                      "Invalid Opening Quote:",
+                      `a quote is found inside a field at line ${this.info.lines}`
+                    ], this.options, this.__infoField(), {
+                      field: this.state.field
+                    })
+                  );
+                  if (err !== void 0)
+                    return err;
+                }
+              } else {
+                this.state.quoting = true;
+                pos += quote.length - 1;
+                continue;
+              }
+            }
+          }
+          if (this.state.quoting === false) {
+            const recordDelimiterLength = this.__isRecordDelimiter(chr, buf, pos);
+            if (recordDelimiterLength !== 0) {
+              const skipCommentLine = this.state.commenting && (this.state.wasQuoting === false && this.state.record.length === 0 && this.state.field.length === 0);
+              if (skipCommentLine) {
+                this.info.comment_lines++;
+              } else {
+                if (this.state.enabled === false && this.info.lines + (this.state.wasRowDelimiter === true ? 1 : 0) >= from_line) {
+                  this.state.enabled = true;
+                  this.__resetField();
+                  this.__resetRecord();
+                  pos += recordDelimiterLength - 1;
+                  continue;
+                }
+                if (skip_empty_lines === true && this.state.wasQuoting === false && this.state.record.length === 0 && this.state.field.length === 0) {
+                  this.info.empty_lines++;
+                  pos += recordDelimiterLength - 1;
+                  continue;
+                }
+                this.info.bytes = this.state.bufBytesStart + pos;
+                const errField = this.__onField();
+                if (errField !== void 0)
+                  return errField;
+                this.info.bytes = this.state.bufBytesStart + pos + recordDelimiterLength;
+                const errRecord = this.__onRecord(push2);
+                if (errRecord !== void 0)
+                  return errRecord;
+                if (to !== -1 && this.info.records >= to) {
+                  this.state.stop = true;
+                  close();
+                  return;
+                }
+              }
+              this.state.commenting = false;
+              pos += recordDelimiterLength - 1;
+              continue;
+            }
+            if (this.state.commenting) {
+              continue;
+            }
+            const commentCount = comment === null ? 0 : this.__compareBytes(comment, buf, pos, chr);
+            if (commentCount !== 0) {
+              this.state.commenting = true;
+              continue;
+            }
+            const delimiterLength = this.__isDelimiter(buf, pos, chr);
+            if (delimiterLength !== 0) {
+              this.info.bytes = this.state.bufBytesStart + pos;
+              const errField = this.__onField();
+              if (errField !== void 0)
+                return errField;
+              pos += delimiterLength - 1;
+              continue;
+            }
+          }
+        }
+        if (this.state.commenting === false) {
+          if (max_record_size !== 0 && this.state.record_length + this.state.field.length > max_record_size) {
+            return this.__error(
+              new CsvError("CSV_MAX_RECORD_SIZE", [
+                "Max Record Size:",
+                "record exceed the maximum number of tolerated bytes",
+                `of ${max_record_size}`,
+                `at line ${this.info.lines}`
+              ], this.options, this.__infoField())
+            );
+          }
+        }
+        const lappend = ltrim === false || this.state.quoting === true || this.state.field.length !== 0 || !this.__isCharTrimable(buf, pos);
+        const rappend = rtrim === false || this.state.wasQuoting === false;
+        if (lappend === true && rappend === true) {
+          this.state.field.append(chr);
+        } else if (rtrim === true && !this.__isCharTrimable(buf, pos)) {
+          return this.__error(
+            new CsvError("CSV_NON_TRIMABLE_CHAR_AFTER_CLOSING_QUOTE", [
+              "Invalid Closing Quote:",
+              "found non trimable byte after quote",
+              `at line ${this.info.lines}`
+            ], this.options, this.__infoField())
+          );
+        } else {
+          if (lappend === false) {
+            pos += this.__isCharTrimable(buf, pos) - 1;
+          }
+          continue;
+        }
+      }
+      if (end === true) {
+        if (this.state.quoting === true) {
+          const err = this.__error(
+            new CsvError("CSV_QUOTE_NOT_CLOSED", [
+              "Quote Not Closed:",
+              `the parsing is finished with an opening quote at line ${this.info.lines}`
+            ], this.options, this.__infoField())
+          );
+          if (err !== void 0)
+            return err;
+        } else {
+          if (this.state.wasQuoting === true || this.state.record.length !== 0 || this.state.field.length !== 0) {
+            this.info.bytes = this.state.bufBytesStart + pos;
+            const errField = this.__onField();
+            if (errField !== void 0)
+              return errField;
+            const errRecord = this.__onRecord(push2);
+            if (errRecord !== void 0)
+              return errRecord;
+          } else if (this.state.wasRowDelimiter === true) {
+            this.info.empty_lines++;
+          } else if (this.state.commenting === true) {
+            this.info.comment_lines++;
+          }
+        }
+      } else {
+        this.state.bufBytesStart += pos;
+        this.state.previousBuf = buf.slice(pos);
+      }
+      if (this.state.wasRowDelimiter === true) {
+        this.info.lines++;
+        this.state.wasRowDelimiter = false;
+      }
+    },
+    __onRecord: function(push2) {
+      const { columns, group_columns_by_name, encoding, info: info3, from: from2, relax_column_count, relax_column_count_less, relax_column_count_more, raw, skip_records_with_empty_values } = this.options;
+      const { enabled, record } = this.state;
+      if (enabled === false) {
+        return this.__resetRecord();
+      }
+      const recordLength = record.length;
+      if (columns === true) {
+        if (skip_records_with_empty_values === true && isRecordEmpty(record)) {
+          this.__resetRecord();
+          return;
+        }
+        return this.__firstLineToColumns(record);
+      }
+      if (columns === false && this.info.records === 0) {
+        this.state.expectedRecordLength = recordLength;
+      }
+      if (recordLength !== this.state.expectedRecordLength) {
+        const err = columns === false ? new CsvError("CSV_RECORD_INCONSISTENT_FIELDS_LENGTH", [
+          "Invalid Record Length:",
+          `expect ${this.state.expectedRecordLength},`,
+          `got ${recordLength} on line ${this.info.lines}`
+        ], this.options, this.__infoField(), {
+          record
+        }) : new CsvError("CSV_RECORD_INCONSISTENT_COLUMNS", [
+          "Invalid Record Length:",
+          `columns length is ${columns.length},`,
+          `got ${recordLength} on line ${this.info.lines}`
+        ], this.options, this.__infoField(), {
+          record
+        });
+        if (relax_column_count === true || relax_column_count_less === true && recordLength < this.state.expectedRecordLength || relax_column_count_more === true && recordLength > this.state.expectedRecordLength) {
+          this.info.invalid_field_length++;
+          this.state.error = err;
+        } else {
+          const finalErr = this.__error(err);
+          if (finalErr)
+            return finalErr;
+        }
+      }
+      if (skip_records_with_empty_values === true && isRecordEmpty(record)) {
+        this.__resetRecord();
+        return;
+      }
+      if (this.state.recordHasError === true) {
+        this.__resetRecord();
+        this.state.recordHasError = false;
+        return;
+      }
+      this.info.records++;
+      if (from2 === 1 || this.info.records >= from2) {
+        const { objname } = this.options;
+        if (columns !== false) {
+          const obj = {};
+          for (let i = 0, l = record.length; i < l; i++) {
+            if (columns[i] === void 0 || columns[i].disabled)
+              continue;
+            if (group_columns_by_name === true && obj[columns[i].name] !== void 0) {
+              if (Array.isArray(obj[columns[i].name])) {
+                obj[columns[i].name] = obj[columns[i].name].concat(record[i]);
+              } else {
+                obj[columns[i].name] = [obj[columns[i].name], record[i]];
+              }
+            } else {
+              obj[columns[i].name] = record[i];
+            }
+          }
+          if (raw === true || info3 === true) {
+            const extRecord = Object.assign(
+              { record: obj },
+              raw === true ? { raw: this.state.rawBuffer.toString(encoding) } : {},
+              info3 === true ? { info: this.__infoRecord() } : {}
+            );
+            const err = this.__push(
+              objname === void 0 ? extRecord : [obj[objname], extRecord],
+              push2
+            );
+            if (err) {
+              return err;
+            }
+          } else {
+            const err = this.__push(
+              objname === void 0 ? obj : [obj[objname], obj],
+              push2
+            );
+            if (err) {
+              return err;
+            }
+          }
+        } else {
+          if (raw === true || info3 === true) {
+            const extRecord = Object.assign(
+              { record },
+              raw === true ? { raw: this.state.rawBuffer.toString(encoding) } : {},
+              info3 === true ? { info: this.__infoRecord() } : {}
+            );
+            const err = this.__push(
+              objname === void 0 ? extRecord : [record[objname], extRecord],
+              push2
+            );
+            if (err) {
+              return err;
+            }
+          } else {
+            const err = this.__push(
+              objname === void 0 ? record : [record[objname], record],
+              push2
+            );
+            if (err) {
+              return err;
+            }
+          }
+        }
+      }
+      this.__resetRecord();
+    },
+    __firstLineToColumns: function(record) {
+      const { firstLineToHeaders } = this.state;
+      try {
+        const headers = firstLineToHeaders === void 0 ? record : firstLineToHeaders.call(null, record);
+        if (!Array.isArray(headers)) {
+          return this.__error(
+            new CsvError("CSV_INVALID_COLUMN_MAPPING", [
+              "Invalid Column Mapping:",
+              "expect an array from column function,",
+              `got ${JSON.stringify(headers)}`
+            ], this.options, this.__infoField(), {
+              headers
+            })
+          );
+        }
+        const normalizedHeaders = normalize_columns_array(headers);
+        this.state.expectedRecordLength = normalizedHeaders.length;
+        this.options.columns = normalizedHeaders;
+        this.__resetRecord();
+        return;
+      } catch (err) {
+        return err;
+      }
+    },
+    __resetRecord: function() {
+      if (this.options.raw === true) {
+        this.state.rawBuffer.reset();
+      }
+      this.state.error = void 0;
+      this.state.record = [];
+      this.state.record_length = 0;
+    },
+    __onField: function() {
+      const { cast, encoding, rtrim, max_record_size } = this.options;
+      const { enabled, wasQuoting } = this.state;
+      if (enabled === false) {
+        return this.__resetField();
+      }
+      let field = this.state.field.toString(encoding);
+      if (rtrim === true && wasQuoting === false) {
+        field = field.trimRight();
+      }
+      if (cast === true) {
+        const [err, f] = this.__cast(field);
+        if (err !== void 0)
+          return err;
+        field = f;
+      }
+      this.state.record.push(field);
+      if (max_record_size !== 0 && typeof field === "string") {
+        this.state.record_length += field.length;
+      }
+      this.__resetField();
+    },
+    __resetField: function() {
+      this.state.field.reset();
+      this.state.wasQuoting = false;
+    },
+    __push: function(record, push2) {
+      const { on_record } = this.options;
+      if (on_record !== void 0) {
+        const info3 = this.__infoRecord();
+        try {
+          record = on_record.call(null, record, info3);
+        } catch (err) {
+          return err;
+        }
+        if (record === void 0 || record === null) {
+          return;
+        }
+      }
+      push2(record);
+    },
+    __cast: function(field) {
+      const { columns, relax_column_count } = this.options;
+      const isColumns = Array.isArray(columns);
+      if (isColumns === true && relax_column_count && this.options.columns.length <= this.state.record.length) {
+        return [void 0, void 0];
+      }
+      if (this.state.castField !== null) {
+        try {
+          const info3 = this.__infoField();
+          return [void 0, this.state.castField.call(null, field, info3)];
+        } catch (err) {
+          return [err];
+        }
+      }
+      if (this.__isFloat(field)) {
+        return [void 0, parseFloat(field)];
+      } else if (this.options.cast_date !== false) {
+        const info3 = this.__infoField();
+        return [void 0, this.options.cast_date.call(null, field, info3)];
+      }
+      return [void 0, field];
+    },
+    __isCharTrimable: function(buf, pos) {
+      const isTrim = (buf2, pos2) => {
+        const { timchars } = this.state;
+        loop1:
+          for (let i = 0; i < timchars.length; i++) {
+            const timchar = timchars[i];
+            for (let j = 0; j < timchar.length; j++) {
+              if (timchar[j] !== buf2[pos2 + j])
+                continue loop1;
+            }
+            return timchar.length;
+          }
+        return 0;
+      };
+      return isTrim(buf, pos);
+    },
+    __isFloat: function(value) {
+      return value - parseFloat(value) + 1 >= 0;
+    },
+    __compareBytes: function(sourceBuf, targetBuf, targetPos, firstByte) {
+      if (sourceBuf[0] !== firstByte)
+        return 0;
+      const sourceLength = sourceBuf.length;
+      for (let i = 1; i < sourceLength; i++) {
+        if (sourceBuf[i] !== targetBuf[targetPos + i])
+          return 0;
+      }
+      return sourceLength;
+    },
+    __isDelimiter: function(buf, pos, chr) {
+      const { delimiter: delimiter2, ignore_last_delimiters } = this.options;
+      if (ignore_last_delimiters === true && this.state.record.length === this.options.columns.length - 1) {
+        return 0;
+      } else if (ignore_last_delimiters !== false && typeof ignore_last_delimiters === "number" && this.state.record.length === ignore_last_delimiters - 1) {
+        return 0;
+      }
+      loop1:
+        for (let i = 0; i < delimiter2.length; i++) {
+          const del = delimiter2[i];
+          if (del[0] === chr) {
+            for (let j = 1; j < del.length; j++) {
+              if (del[j] !== buf[pos + j])
+                continue loop1;
+            }
+            return del.length;
+          }
+        }
+      return 0;
+    },
+    __isRecordDelimiter: function(chr, buf, pos) {
+      const { record_delimiter } = this.options;
+      const recordDelimiterLength = record_delimiter.length;
+      loop1:
+        for (let i = 0; i < recordDelimiterLength; i++) {
+          const rd = record_delimiter[i];
+          const rdLength = rd.length;
+          if (rd[0] !== chr) {
+            continue;
+          }
+          for (let j = 1; j < rdLength; j++) {
+            if (rd[j] !== buf[pos + j]) {
+              continue loop1;
+            }
+          }
+          return rd.length;
+        }
+      return 0;
+    },
+    __isEscape: function(buf, pos, chr) {
+      const { escape } = this.options;
+      if (escape === null)
+        return false;
+      const l = escape.length;
+      if (escape[0] === chr) {
+        for (let i = 0; i < l; i++) {
+          if (escape[i] !== buf[pos + i]) {
+            return false;
+          }
+        }
+        return true;
+      }
+      return false;
+    },
+    __isQuote: function(buf, pos) {
+      const { quote } = this.options;
+      if (quote === null)
+        return false;
+      const l = quote.length;
+      for (let i = 0; i < l; i++) {
+        if (quote[i] !== buf[pos + i]) {
+          return false;
+        }
+      }
+      return true;
+    },
+    __autoDiscoverRecordDelimiter: function(buf, pos) {
+      const { encoding } = this.options;
+      const chr = buf[pos];
+      if (chr === cr2) {
+        if (buf[pos + 1] === nl2) {
+          this.options.record_delimiter.push(Buffer.from("\r\n", encoding));
+          this.state.recordDelimiterMaxLength = 2;
+          return 2;
+        } else {
+          this.options.record_delimiter.push(Buffer.from("\r", encoding));
+          this.state.recordDelimiterMaxLength = 1;
+          return 1;
+        }
+      } else if (chr === nl2) {
+        this.options.record_delimiter.push(Buffer.from("\n", encoding));
+        this.state.recordDelimiterMaxLength = 1;
+        return 1;
+      }
+      return 0;
+    },
+    __error: function(msg) {
+      const { encoding, raw, skip_records_with_error } = this.options;
+      const err = typeof msg === "string" ? new Error(msg) : msg;
+      if (skip_records_with_error) {
+        this.state.recordHasError = true;
+        if (this.options.on_skip !== void 0) {
+          this.options.on_skip(err, raw ? this.state.rawBuffer.toString(encoding) : void 0);
+        }
+        return void 0;
+      } else {
+        return err;
+      }
+    },
+    __infoDataSet: function() {
+      return {
+        ...this.info,
+        columns: this.options.columns
+      };
+    },
+    __infoRecord: function() {
+      const { columns, raw, encoding } = this.options;
+      return {
+        ...this.__infoDataSet(),
+        error: this.state.error,
+        header: columns === true,
+        index: this.state.record.length,
+        raw: raw ? this.state.rawBuffer.toString(encoding) : void 0
+      };
+    },
+    __infoField: function() {
+      const { columns } = this.options;
+      const isColumns = Array.isArray(columns);
+      return {
+        ...this.__infoRecord(),
+        column: isColumns === true ? columns.length > this.state.record.length ? columns[this.state.record.length].name : null : this.state.record.length,
+        quoting: this.state.wasQuoting
+      };
+    }
+  };
+};
+
+// node_modules/csv-parse/lib/sync.js
+var parse = function(data, opts = {}) {
+  if (typeof data === "string") {
+    data = Buffer.from(data);
+  }
+  const records = opts && opts.objname ? {} : [];
+  const parser = transform(opts);
+  const push2 = (record) => {
+    if (parser.options.objname === void 0)
+      records.push(record);
+    else {
+      records[record[0]] = record[1];
+    }
+  };
+  const close = () => {
+  };
+  const err1 = parser.parse(data, false, push2, close);
+  if (err1 !== void 0)
+    throw err1;
+  const err2 = parser.parse(void 0, true, push2, close);
+  if (err2 !== void 0)
+    throw err2;
+  return records;
+};
+
+// output/Data.Csv/foreign.js
+import { readFileSync } from "node:fs";
+function readCsvImpl(filepath2) {
+  let csvLine = readFileSync(filepath2, { encoding: "utf-8" });
+  return parse(csvLine, {
+    columns: false,
+    relax_column_count: true
+  });
+}
+
+// output/Data.Csv/index.js
+var map4 = /* @__PURE__ */ map(functorArray);
+var pure2 = /* @__PURE__ */ pure(applicativeEffect);
+var map1 = /* @__PURE__ */ map(functorMaybe);
+var map22 = /* @__PURE__ */ map(functorEffect);
+var toCsvRow = function(v) {
+  if (v.length === 0) {
+    return [];
+  }
+  ;
+  var mkRow = function(tpls) {
+    return tpls;
+  };
+  var idxs = range(1)(length(v));
+  var tuples = zip(idxs)(v);
+  return map4(mkRow)(tuples);
+};
+var readCsv = function(x) {
+  return pure2(readCsvImpl(x));
+};
+var create = function(recs) {
+  var rows = map1(toCsvRow)(tail(recs));
+  var headers = head(recs);
+  return {
+    headers,
+    rows
+  };
+};
+var readCsvs = /* @__PURE__ */ traverse(traversableArray)(applicativeEffect)(function(f) {
+  return map22(create)(readCsv(f));
+});
+
+// output/Data.Array.NonEmpty.Internal/foreign.js
+var traverse1Impl = function() {
+  function Cont(fn) {
+    this.fn = fn;
+  }
+  var emptyList = {};
+  var ConsCell = function(head4, tail2) {
+    this.head = head4;
+    this.tail = tail2;
+  };
+  function finalCell(head4) {
+    return new ConsCell(head4, emptyList);
+  }
+  function consList(x) {
+    return function(xs) {
+      return new ConsCell(x, xs);
+    };
+  }
+  function listToArray(list) {
+    var arr = [];
+    var xs = list;
+    while (xs !== emptyList) {
+      arr.push(xs.head);
+      xs = xs.tail;
+    }
+    return arr;
+  }
+  return function(apply5) {
+    return function(map18) {
+      return function(f) {
+        var buildFrom = function(x, ys) {
+          return apply5(map18(consList)(f(x)))(ys);
+        };
+        var go = function(acc, currentLen, xs) {
+          if (currentLen === 0) {
+            return acc;
+          } else {
+            var last3 = xs[currentLen - 1];
+            return new Cont(function() {
+              var built = go(buildFrom(last3, acc), currentLen - 1, xs);
+              return built;
+            });
+          }
+        };
+        return function(array) {
+          var acc = map18(finalCell)(f(array[array.length - 1]));
+          var result = go(acc, array.length - 1, array);
+          while (result instanceof Cont) {
+            result = result.fn();
+          }
+          return map18(listToArray)(result);
+        };
+      };
+    };
+  };
+}();
+
+// output/Data.FoldableWithIndex/index.js
+var foldrWithIndex = function(dict) {
+  return dict.foldrWithIndex;
+};
+var foldlWithIndex = function(dict) {
+  return dict.foldlWithIndex;
+};
+var foldMapWithIndex = function(dict) {
+  return dict.foldMapWithIndex;
+};
+
+// output/Data.Array.NonEmpty.Internal/index.js
+var NonEmptyArray = function(x) {
+  return x;
+};
+var traversableNonEmptyArray = traversableArray;
+var functorNonEmptyArray = functorArray;
+var foldableNonEmptyArray = foldableArray;
+
+// output/Data.NonEmpty/index.js
+var NonEmpty = /* @__PURE__ */ function() {
+  function NonEmpty2(value0, value1) {
+    this.value0 = value0;
+    this.value1 = value1;
+  }
+  ;
+  NonEmpty2.create = function(value0) {
+    return function(value1) {
+      return new NonEmpty2(value0, value1);
+    };
+  };
+  return NonEmpty2;
+}();
+var functorNonEmpty = function(dictFunctor) {
+  var map24 = map(dictFunctor);
+  return {
+    map: function(f) {
+      return function(m) {
+        return new NonEmpty(f(m.value0), map24(f)(m.value1));
+      };
+    }
+  };
+};
+var foldableNonEmpty = function(dictFoldable) {
+  var foldMap2 = foldMap(dictFoldable);
+  var foldl3 = foldl(dictFoldable);
+  var foldr3 = foldr(dictFoldable);
+  return {
+    foldMap: function(dictMonoid) {
+      var append12 = append(dictMonoid.Semigroup0());
+      var foldMap12 = foldMap2(dictMonoid);
+      return function(f) {
+        return function(v) {
+          return append12(f(v.value0))(foldMap12(f)(v.value1));
+        };
+      };
+    },
+    foldl: function(f) {
+      return function(b) {
+        return function(v) {
+          return foldl3(f)(f(b)(v.value0))(v.value1);
+        };
+      };
+    },
+    foldr: function(f) {
+      return function(b) {
+        return function(v) {
+          return f(v.value0)(foldr3(f)(b)(v.value1));
+        };
+      };
+    }
+  };
+};
+var foldable1NonEmpty = function(dictFoldable) {
+  var foldl3 = foldl(dictFoldable);
+  var foldr3 = foldr(dictFoldable);
+  var foldableNonEmpty1 = foldableNonEmpty(dictFoldable);
+  return {
+    foldMap1: function(dictSemigroup) {
+      var append12 = append(dictSemigroup);
+      return function(f) {
+        return function(v) {
+          return foldl3(function(s) {
+            return function(a1) {
+              return append12(s)(f(a1));
+            };
+          })(f(v.value0))(v.value1);
+        };
+      };
+    },
+    foldr1: function(f) {
+      return function(v) {
+        return maybe(v.value0)(f(v.value0))(foldr3(function(a1) {
+          var $250 = maybe(a1)(f(a1));
+          return function($251) {
+            return Just.create($250($251));
+          };
+        })(Nothing.value)(v.value1));
+      };
+    },
+    foldl1: function(f) {
+      return function(v) {
+        return foldl3(f)(v.value0)(v.value1);
+      };
+    },
+    Foldable0: function() {
+      return foldableNonEmpty1;
+    }
+  };
+};
+
+// output/Data.Array.NonEmpty/index.js
+var unsafeFromArray = NonEmptyArray;
+var toArray = function(v) {
+  return v;
+};
+var fromFoldable1 = function(dictFoldable1) {
+  var $117 = fromFoldable(dictFoldable1.Foldable0());
+  return function($118) {
+    return unsafeFromArray($117($118));
+  };
+};
+var fromArray = function(xs) {
+  if (length(xs) > 0) {
+    return new Just(unsafeFromArray(xs));
+  }
+  ;
+  if (otherwise) {
+    return Nothing.value;
+  }
+  ;
+  throw new Error("Failed pattern match at Data.Array.NonEmpty (line 160, column 1 - line 160, column 58): " + [xs.constructor.name]);
+};
+var adaptAny = function(f) {
+  return function($128) {
+    return f(toArray($128));
+  };
+};
+var filter2 = function(f) {
+  return adaptAny(filter(f));
+};
+var length2 = /* @__PURE__ */ adaptAny(length);
+
+// output/Data.List.Types/index.js
+var Nil = /* @__PURE__ */ function() {
+  function Nil3() {
+  }
+  ;
+  Nil3.value = new Nil3();
+  return Nil3;
+}();
+var Cons = /* @__PURE__ */ function() {
+  function Cons3(value0, value1) {
+    this.value0 = value0;
+    this.value1 = value1;
+  }
+  ;
+  Cons3.create = function(value0) {
+    return function(value1) {
+      return new Cons3(value0, value1);
+    };
+  };
+  return Cons3;
+}();
+var listMap = function(f) {
+  var chunkedRevMap = function($copy_chunksAcc) {
+    return function($copy_v) {
+      var $tco_var_chunksAcc = $copy_chunksAcc;
+      var $tco_done = false;
+      var $tco_result;
+      function $tco_loop(chunksAcc, v) {
+        if (v instanceof Cons && (v.value1 instanceof Cons && v.value1.value1 instanceof Cons)) {
+          $tco_var_chunksAcc = new Cons(v, chunksAcc);
+          $copy_v = v.value1.value1.value1;
+          return;
+        }
+        ;
+        var unrolledMap = function(v1) {
+          if (v1 instanceof Cons && (v1.value1 instanceof Cons && v1.value1.value1 instanceof Nil)) {
+            return new Cons(f(v1.value0), new Cons(f(v1.value1.value0), Nil.value));
+          }
+          ;
+          if (v1 instanceof Cons && v1.value1 instanceof Nil) {
+            return new Cons(f(v1.value0), Nil.value);
+          }
+          ;
+          return Nil.value;
+        };
+        var reverseUnrolledMap = function($copy_v1) {
+          return function($copy_acc) {
+            var $tco_var_v1 = $copy_v1;
+            var $tco_done1 = false;
+            var $tco_result2;
+            function $tco_loop2(v1, acc) {
+              if (v1 instanceof Cons && (v1.value0 instanceof Cons && (v1.value0.value1 instanceof Cons && v1.value0.value1.value1 instanceof Cons))) {
+                $tco_var_v1 = v1.value1;
+                $copy_acc = new Cons(f(v1.value0.value0), new Cons(f(v1.value0.value1.value0), new Cons(f(v1.value0.value1.value1.value0), acc)));
+                return;
+              }
+              ;
+              $tco_done1 = true;
+              return acc;
+            }
+            ;
+            while (!$tco_done1) {
+              $tco_result2 = $tco_loop2($tco_var_v1, $copy_acc);
+            }
+            ;
+            return $tco_result2;
+          };
+        };
+        $tco_done = true;
+        return reverseUnrolledMap(chunksAcc)(unrolledMap(v));
+      }
+      ;
+      while (!$tco_done) {
+        $tco_result = $tco_loop($tco_var_chunksAcc, $copy_v);
+      }
+      ;
+      return $tco_result;
+    };
+  };
+  return chunkedRevMap(Nil.value);
+};
+var functorList = {
+  map: listMap
+};
+var functorNonEmptyList = /* @__PURE__ */ functorNonEmpty(functorList);
+var foldableList = {
+  foldr: function(f) {
+    return function(b) {
+      var rev = function() {
+        var go = function($copy_acc) {
+          return function($copy_v) {
+            var $tco_var_acc = $copy_acc;
+            var $tco_done = false;
+            var $tco_result;
+            function $tco_loop(acc, v) {
+              if (v instanceof Nil) {
+                $tco_done = true;
+                return acc;
+              }
+              ;
+              if (v instanceof Cons) {
+                $tco_var_acc = new Cons(v.value0, acc);
+                $copy_v = v.value1;
+                return;
+              }
+              ;
+              throw new Error("Failed pattern match at Data.List.Types (line 107, column 7 - line 107, column 23): " + [acc.constructor.name, v.constructor.name]);
+            }
+            ;
+            while (!$tco_done) {
+              $tco_result = $tco_loop($tco_var_acc, $copy_v);
+            }
+            ;
+            return $tco_result;
+          };
+        };
+        return go(Nil.value);
+      }();
+      var $281 = foldl(foldableList)(flip(f))(b);
+      return function($282) {
+        return $281(rev($282));
+      };
+    };
+  },
+  foldl: function(f) {
+    var go = function($copy_b) {
+      return function($copy_v) {
+        var $tco_var_b = $copy_b;
+        var $tco_done1 = false;
+        var $tco_result;
+        function $tco_loop(b, v) {
+          if (v instanceof Nil) {
+            $tco_done1 = true;
+            return b;
+          }
+          ;
+          if (v instanceof Cons) {
+            $tco_var_b = f(b)(v.value0);
+            $copy_v = v.value1;
+            return;
+          }
+          ;
+          throw new Error("Failed pattern match at Data.List.Types (line 111, column 12 - line 113, column 30): " + [v.constructor.name]);
+        }
+        ;
+        while (!$tco_done1) {
+          $tco_result = $tco_loop($tco_var_b, $copy_v);
+        }
+        ;
+        return $tco_result;
+      };
+    };
+    return go;
+  },
+  foldMap: function(dictMonoid) {
+    var append22 = append(dictMonoid.Semigroup0());
+    var mempty2 = mempty(dictMonoid);
+    return function(f) {
+      return foldl(foldableList)(function(acc) {
+        var $283 = append22(acc);
+        return function($284) {
+          return $283(f($284));
+        };
+      })(mempty2);
+    };
+  }
+};
+var foldable1NonEmptyList = /* @__PURE__ */ foldable1NonEmpty(foldableList);
+
+// output/Data.String.CodeUnits/foreign.js
+var fromCharArray = function(a) {
+  return a.join("");
+};
+var singleton4 = function(c) {
+  return c;
+};
+var _charAt = function(just) {
+  return function(nothing) {
+    return function(i) {
+      return function(s) {
+        return i >= 0 && i < s.length ? just(s.charAt(i)) : nothing;
+      };
+    };
+  };
+};
+var length3 = function(s) {
+  return s.length;
+};
+var drop2 = function(n) {
+  return function(s) {
+    return s.substring(n);
+  };
+};
+var splitAt2 = function(i) {
+  return function(s) {
+    return { before: s.substring(0, i), after: s.substring(i) };
+  };
+};
+
+// output/Data.String.Unsafe/foreign.js
+var charAt = function(i) {
+  return function(s) {
+    if (i >= 0 && i < s.length)
+      return s.charAt(i);
+    throw new Error("Data.String.Unsafe.charAt: Invalid index.");
+  };
+};
+
+// output/Data.String.CodeUnits/index.js
+var stripSuffix = function(v) {
+  return function(str) {
+    var v1 = splitAt2(length3(str) - length3(v) | 0)(str);
+    var $14 = v1.after === v;
+    if ($14) {
+      return new Just(v1.before);
+    }
+    ;
+    return Nothing.value;
+  };
+};
+var charAt2 = /* @__PURE__ */ function() {
+  return _charAt(Just.create)(Nothing.value);
+}();
+
+// output/Data.String.Common/foreign.js
+var joinWith = function(s) {
+  return function(xs) {
+    return xs.join(s);
+  };
+};
+
+// output/Data.String.Common/index.js
+var $$null = function(s) {
+  return s === "";
+};
+
+// output/Data.String.NonEmpty.Internal/index.js
+var show2 = /* @__PURE__ */ show(showString);
+var NonEmptyString = function(x) {
+  return x;
+};
+var toString = function(v) {
+  return v;
+};
+var showNonEmptyString = {
+  show: function(v) {
+    return "(NonEmptyString.unsafeFromString " + (show2(v) + ")");
+  }
+};
+var semigroupNonEmptyString = semigroupString;
+var ordNonEmptyString = ordString;
+var fromString = function(v) {
+  if (v === "") {
+    return Nothing.value;
+  }
+  ;
+  return new Just(v);
+};
+var eqNonEmptyString = eqString;
+
+// output/Data.String.NonEmpty.CodeUnits/index.js
+var fromJust4 = /* @__PURE__ */ fromJust();
+var toNonEmptyString = NonEmptyString;
+var fromCharArray2 = function(v) {
+  if (v.length === 0) {
+    return Nothing.value;
+  }
+  ;
+  return new Just(toNonEmptyString(fromCharArray(v)));
+};
+var fromNonEmptyCharArray = function($40) {
+  return fromJust4(fromCharArray2(toArray($40)));
+};
+
+// output/Data.Validation.Semigroup/index.js
+var V = function(x) {
+  return x;
+};
+var validation = function(v) {
+  return function(v1) {
+    return function(v2) {
+      if (v2 instanceof Left) {
+        return v(v2.value0);
+      }
+      ;
+      if (v2 instanceof Right) {
+        return v1(v2.value0);
+      }
+      ;
+      throw new Error("Failed pattern match at Data.Validation.Semigroup (line 48, column 1 - line 48, column 84): " + [v.constructor.name, v1.constructor.name, v2.constructor.name]);
+    };
+  };
+};
+var toEither = function(v) {
+  return v;
+};
+var invalid = function($100) {
+  return V(Left.create($100));
+};
+var functorV = functorEither;
+var applyV = function(dictSemigroup) {
+  var append12 = append(dictSemigroup);
+  return {
+    apply: function(v) {
+      return function(v1) {
+        if (v instanceof Left && v1 instanceof Left) {
+          return new Left(append12(v.value0)(v1.value0));
+        }
+        ;
+        if (v instanceof Left) {
+          return new Left(v.value0);
+        }
+        ;
+        if (v1 instanceof Left) {
+          return new Left(v1.value0);
+        }
+        ;
+        if (v instanceof Right && v1 instanceof Right) {
+          return new Right(v.value0(v1.value0));
+        }
+        ;
+        throw new Error("Failed pattern match at Data.Validation.Semigroup (line 89, column 1 - line 93, column 54): " + [v.constructor.name, v1.constructor.name]);
+      };
+    },
+    Functor0: function() {
+      return functorV;
+    }
+  };
+};
+var applicativeV = function(dictSemigroup) {
+  var applyV1 = applyV(dictSemigroup);
+  return {
+    pure: function($108) {
+      return V(Right.create($108));
+    },
+    Apply0: function() {
+      return applyV1;
+    }
+  };
+};
+var andThen = function(v1) {
+  return function(f) {
+    return validation(invalid)(f)(v1);
+  };
+};
+
+// output/Data.Enum/foreign.js
+function toCharCode(c) {
+  return c.charCodeAt(0);
+}
+function fromCharCode(c) {
+  return String.fromCharCode(c);
+}
+
+// output/Data.Enum/index.js
+var bottom1 = /* @__PURE__ */ bottom(boundedChar);
+var top1 = /* @__PURE__ */ top(boundedChar);
+var toEnum = function(dict) {
+  return dict.toEnum;
+};
+var fromEnum = function(dict) {
+  return dict.fromEnum;
+};
+var toEnumWithDefaults = function(dictBoundedEnum) {
+  var toEnum1 = toEnum(dictBoundedEnum);
+  var fromEnum1 = fromEnum(dictBoundedEnum);
+  var bottom2 = bottom(dictBoundedEnum.Bounded0());
+  return function(low) {
+    return function(high) {
+      return function(x) {
+        var v = toEnum1(x);
+        if (v instanceof Just) {
+          return v.value0;
+        }
+        ;
+        if (v instanceof Nothing) {
+          var $140 = x < fromEnum1(bottom2);
+          if ($140) {
+            return low;
+          }
+          ;
+          return high;
+        }
+        ;
+        throw new Error("Failed pattern match at Data.Enum (line 158, column 33 - line 160, column 62): " + [v.constructor.name]);
+      };
+    };
+  };
+};
+var defaultSucc = function(toEnum$prime) {
+  return function(fromEnum$prime) {
+    return function(a) {
+      return toEnum$prime(fromEnum$prime(a) + 1 | 0);
+    };
+  };
+};
+var defaultPred = function(toEnum$prime) {
+  return function(fromEnum$prime) {
+    return function(a) {
+      return toEnum$prime(fromEnum$prime(a) - 1 | 0);
+    };
+  };
+};
+var charToEnum = function(v) {
+  if (v >= toCharCode(bottom1) && v <= toCharCode(top1)) {
+    return new Just(fromCharCode(v));
+  }
+  ;
+  return Nothing.value;
+};
+var enumChar = {
+  succ: /* @__PURE__ */ defaultSucc(charToEnum)(toCharCode),
+  pred: /* @__PURE__ */ defaultPred(charToEnum)(toCharCode),
+  Ord0: function() {
+    return ordChar;
+  }
+};
+var boundedEnumChar = /* @__PURE__ */ function() {
+  return {
+    cardinality: toCharCode(top1) - toCharCode(bottom1) | 0,
+    toEnum: charToEnum,
+    fromEnum: toCharCode,
+    Bounded0: function() {
+      return boundedChar;
+    },
+    Enum1: function() {
+      return enumChar;
+    }
+  };
+}();
+
+// output/Data.Char/index.js
+var toCharCode2 = /* @__PURE__ */ fromEnum(boundedEnumChar);
+var fromCharCode2 = /* @__PURE__ */ toEnum(boundedEnumChar);
+
+// output/Data.String.CodePoints/foreign.js
+var hasArrayFrom = typeof Array.from === "function";
+var hasStringIterator = typeof Symbol !== "undefined" && Symbol != null && typeof Symbol.iterator !== "undefined" && typeof String.prototype[Symbol.iterator] === "function";
+var hasFromCodePoint = typeof String.prototype.fromCodePoint === "function";
+var hasCodePointAt = typeof String.prototype.codePointAt === "function";
+var _unsafeCodePointAt0 = function(fallback) {
+  return hasCodePointAt ? function(str) {
+    return str.codePointAt(0);
+  } : fallback;
+};
+var _singleton = function(fallback) {
+  return hasFromCodePoint ? String.fromCodePoint : fallback;
+};
+var _take = function(fallback) {
+  return function(n) {
+    if (hasStringIterator) {
+      return function(str) {
+        var accum = "";
+        var iter = str[Symbol.iterator]();
+        for (var i = 0; i < n; ++i) {
+          var o = iter.next();
+          if (o.done)
+            return accum;
+          accum += o.value;
+        }
+        return accum;
+      };
+    }
+    return fallback(n);
+  };
+};
+var _toCodePointArray = function(fallback) {
+  return function(unsafeCodePointAt02) {
+    if (hasArrayFrom) {
+      return function(str) {
+        return Array.from(str, unsafeCodePointAt02);
+      };
+    }
+    return fallback;
+  };
+};
+
+// output/Data.String.CodePoints/index.js
+var $runtime_lazy2 = function(name2, moduleName, init3) {
+  var state2 = 0;
+  var val;
+  return function(lineNumber) {
+    if (state2 === 2)
+      return val;
+    if (state2 === 1)
+      throw new ReferenceError(name2 + " was needed before it finished initializing (module " + moduleName + ", line " + lineNumber + ")", moduleName, lineNumber);
+    state2 = 1;
+    val = init3();
+    state2 = 2;
+    return val;
+  };
+};
+var fromEnum2 = /* @__PURE__ */ fromEnum(boundedEnumChar);
+var map5 = /* @__PURE__ */ map(functorMaybe);
+var unfoldr2 = /* @__PURE__ */ unfoldr(unfoldableArray);
+var div2 = /* @__PURE__ */ div(euclideanRingInt);
+var mod2 = /* @__PURE__ */ mod(euclideanRingInt);
+var compare2 = /* @__PURE__ */ compare(ordInt);
+var unsurrogate = function(lead) {
+  return function(trail) {
+    return (((lead - 55296 | 0) * 1024 | 0) + (trail - 56320 | 0) | 0) + 65536 | 0;
+  };
+};
+var isTrail = function(cu) {
+  return 56320 <= cu && cu <= 57343;
+};
+var isLead = function(cu) {
+  return 55296 <= cu && cu <= 56319;
+};
+var uncons2 = function(s) {
+  var v = length3(s);
+  if (v === 0) {
+    return Nothing.value;
+  }
+  ;
+  if (v === 1) {
+    return new Just({
+      head: fromEnum2(charAt(0)(s)),
+      tail: ""
+    });
+  }
+  ;
+  var cu1 = fromEnum2(charAt(1)(s));
+  var cu0 = fromEnum2(charAt(0)(s));
+  var $42 = isLead(cu0) && isTrail(cu1);
+  if ($42) {
+    return new Just({
+      head: unsurrogate(cu0)(cu1),
+      tail: drop2(2)(s)
+    });
+  }
+  ;
+  return new Just({
+    head: cu0,
+    tail: drop2(1)(s)
+  });
+};
+var unconsButWithTuple = function(s) {
+  return map5(function(v) {
+    return new Tuple(v.head, v.tail);
+  })(uncons2(s));
+};
+var toCodePointArrayFallback = function(s) {
+  return unfoldr2(unconsButWithTuple)(s);
+};
+var unsafeCodePointAt0Fallback = function(s) {
+  var cu0 = fromEnum2(charAt(0)(s));
+  var $46 = isLead(cu0) && length3(s) > 1;
+  if ($46) {
+    var cu1 = fromEnum2(charAt(1)(s));
+    var $47 = isTrail(cu1);
+    if ($47) {
+      return unsurrogate(cu0)(cu1);
+    }
+    ;
+    return cu0;
+  }
+  ;
+  return cu0;
+};
+var unsafeCodePointAt0 = /* @__PURE__ */ _unsafeCodePointAt0(unsafeCodePointAt0Fallback);
+var toCodePointArray = /* @__PURE__ */ _toCodePointArray(toCodePointArrayFallback)(unsafeCodePointAt0);
+var length4 = function($73) {
+  return length(toCodePointArray($73));
+};
+var fromCharCode3 = /* @__PURE__ */ function() {
+  var $74 = toEnumWithDefaults(boundedEnumChar)(bottom(boundedChar))(top(boundedChar));
+  return function($75) {
+    return singleton4($74($75));
+  };
+}();
+var singletonFallback = function(v) {
+  if (v <= 65535) {
+    return fromCharCode3(v);
+  }
+  ;
+  var lead = div2(v - 65536 | 0)(1024) + 55296 | 0;
+  var trail = mod2(v - 65536 | 0)(1024) + 56320 | 0;
+  return fromCharCode3(lead) + fromCharCode3(trail);
+};
+var singleton5 = /* @__PURE__ */ _singleton(singletonFallback);
+var takeFallback = function(n) {
+  return function(v) {
+    if (n < 1) {
+      return "";
+    }
+    ;
+    var v1 = uncons2(v);
+    if (v1 instanceof Just) {
+      return singleton5(v1.value0.head) + takeFallback(n - 1 | 0)(v1.value0.tail);
+    }
+    ;
+    return v;
+  };
+};
+var take3 = /* @__PURE__ */ _take(takeFallback);
+var splitAt3 = function(i) {
+  return function(s) {
+    var before = take3(i)(s);
+    return {
+      before,
+      after: drop2(length3(before))(s)
+    };
+  };
+};
+var eqCodePoint = {
+  eq: function(x) {
+    return function(y) {
+      return x === y;
+    };
+  }
+};
+var ordCodePoint = {
+  compare: function(x) {
+    return function(y) {
+      return compare2(x)(y);
+    };
+  },
+  Eq0: function() {
+    return eqCodePoint;
+  }
+};
+var boundedCodePoint = {
+  bottom: 0,
+  top: 1114111,
+  Ord0: function() {
+    return ordCodePoint;
+  }
+};
+var boundedEnumCodePoint = /* @__PURE__ */ function() {
+  return {
+    cardinality: 1114111 + 1 | 0,
+    fromEnum: function(v) {
+      return v;
+    },
+    toEnum: function(n) {
+      if (n >= 0 && n <= 1114111) {
+        return new Just(n);
+      }
+      ;
+      if (otherwise) {
+        return Nothing.value;
+      }
+      ;
+      throw new Error("Failed pattern match at Data.String.CodePoints (line 63, column 1 - line 68, column 26): " + [n.constructor.name]);
+    },
+    Bounded0: function() {
+      return boundedCodePoint;
+    },
+    Enum1: function() {
+      return $lazy_enumCodePoint(0);
+    }
+  };
+}();
+var $lazy_enumCodePoint = /* @__PURE__ */ $runtime_lazy2("enumCodePoint", "Data.String.CodePoints", function() {
+  return {
+    succ: defaultSucc(toEnum(boundedEnumCodePoint))(fromEnum(boundedEnumCodePoint)),
+    pred: defaultPred(toEnum(boundedEnumCodePoint))(fromEnum(boundedEnumCodePoint)),
+    Ord0: function() {
+      return ordCodePoint;
+    }
+  };
+});
+
+// output/Data.List/index.js
+var bimap2 = /* @__PURE__ */ bimap(bifunctorStep);
+var reverse2 = /* @__PURE__ */ function() {
+  var go = function($copy_acc) {
+    return function($copy_v) {
+      var $tco_var_acc = $copy_acc;
+      var $tco_done = false;
+      var $tco_result;
+      function $tco_loop(acc, v) {
+        if (v instanceof Nil) {
+          $tco_done = true;
+          return acc;
+        }
+        ;
+        if (v instanceof Cons) {
+          $tco_var_acc = new Cons(v.value0, acc);
+          $copy_v = v.value1;
+          return;
+        }
+        ;
+        throw new Error("Failed pattern match at Data.List (line 368, column 3 - line 368, column 19): " + [acc.constructor.name, v.constructor.name]);
+      }
+      ;
+      while (!$tco_done) {
+        $tco_result = $tco_loop($tco_var_acc, $copy_v);
+      }
+      ;
+      return $tco_result;
+    };
+  };
+  return go(Nil.value);
+}();
+var manyRec = function(dictMonadRec) {
+  var bind12 = bind(dictMonadRec.Monad0().Bind1());
+  var tailRecM4 = tailRecM(dictMonadRec);
+  return function(dictAlternative) {
+    var Alt0 = dictAlternative.Plus1().Alt0();
+    var alt5 = alt(Alt0);
+    var map18 = map(Alt0.Functor0());
+    var pure15 = pure(dictAlternative.Applicative0());
+    return function(p) {
+      var go = function(acc) {
+        return bind12(alt5(map18(Loop.create)(p))(pure15(new Done(unit))))(function(aa) {
+          return pure15(bimap2(function(v) {
+            return new Cons(v, acc);
+          })(function(v) {
+            return reverse2(acc);
+          })(aa));
+        });
+      };
+      return tailRecM4(go)(Nil.value);
+    };
+  };
+};
+
+// output/Partial.Unsafe/foreign.js
+var _unsafePartial = function(f) {
+  return f();
+};
+
+// output/Partial/foreign.js
+var _crashWith = function(msg) {
+  throw new Error(msg);
+};
+
+// output/Partial/index.js
+var crashWith = function() {
+  return _crashWith;
+};
+
+// output/Partial.Unsafe/index.js
+var crashWith2 = /* @__PURE__ */ crashWith();
+var unsafePartial = _unsafePartial;
+var unsafeCrashWith = function(msg) {
+  return unsafePartial(function() {
+    return crashWith2(msg);
+  });
+};
+
+// output/StringParser.Parser/index.js
+var map6 = /* @__PURE__ */ map(functorEither);
+var bind2 = /* @__PURE__ */ bind(bindEither);
+var pure3 = /* @__PURE__ */ pure(applicativeEither);
+var tailRecM3 = /* @__PURE__ */ tailRecM(monadRecEither);
+var unParser = function(v) {
+  return v;
+};
+var runParser = function(v) {
+  return function(s) {
+    return map6(function(v1) {
+      return v1.result;
+    })(v({
+      substring: s,
+      position: 0
+    }));
+  };
+};
+var functorParser = {
+  map: function(f) {
+    return function(v) {
+      var $69 = map6(function(v1) {
+        return {
+          result: f(v1.result),
+          suffix: v1.suffix
+        };
+      });
+      return function($70) {
+        return $69(v($70));
+      };
+    };
+  }
+};
+var fail = function(error3) {
+  return function(v) {
+    return new Left({
+      pos: v.position,
+      error: error3
+    });
+  };
+};
+var applyParser = {
+  apply: function(v) {
+    return function(v1) {
+      return function(s) {
+        return bind2(v(s))(function(v2) {
+          return bind2(v1(v2.suffix))(function(v3) {
+            return pure3({
+              result: v2.result(v3.result),
+              suffix: v3.suffix
+            });
+          });
+        });
+      };
+    };
+  },
+  Functor0: function() {
+    return functorParser;
+  }
+};
+var bindParser = {
+  bind: function(v) {
+    return function(f) {
+      return function(s) {
+        return bind2(v(s))(function(v1) {
+          return unParser(f(v1.result))(v1.suffix);
+        });
+      };
+    };
+  },
+  Apply0: function() {
+    return applyParser;
+  }
+};
+var applicativeParser = {
+  pure: function(a) {
+    return function(s) {
+      return new Right({
+        result: a,
+        suffix: s
+      });
+    };
+  },
+  Apply0: function() {
+    return applyParser;
+  }
+};
+var monadParser = {
+  Applicative0: function() {
+    return applicativeParser;
+  },
+  Bind1: function() {
+    return bindParser;
+  }
+};
+var monadRecParser = {
+  tailRecM: function(f) {
+    return function(a) {
+      var split3 = function(v) {
+        if (v.result instanceof Loop) {
+          return new Loop({
+            state: v.result.value0,
+            str: v.suffix
+          });
+        }
+        ;
+        if (v.result instanceof Done) {
+          return new Done({
+            result: v.result.value0,
+            suffix: v.suffix
+          });
+        }
+        ;
+        throw new Error("Failed pattern match at StringParser.Parser (line 87, column 5 - line 87, column 68): " + [v.constructor.name]);
+      };
+      return function(str) {
+        return tailRecM3(function(st) {
+          return map6(split3)(unParser(f(st.state))(st.str));
+        })({
+          state: a,
+          str
+        });
+      };
+    };
+  },
+  Monad0: function() {
+    return monadParser;
+  }
+};
+var altParser = {
+  alt: function(v) {
+    return function(v1) {
+      return function(s) {
+        var v2 = v(s);
+        if (v2 instanceof Left) {
+          if (s.position === v2.value0.pos) {
+            return v1(s);
+          }
+          ;
+          if (otherwise) {
+            return new Left({
+              error: v2.value0.error,
+              pos: v2.value0.pos
+            });
+          }
+          ;
+        }
+        ;
+        return v2;
+      };
+    };
+  },
+  Functor0: function() {
+    return functorParser;
+  }
+};
+var plusParser = {
+  empty: /* @__PURE__ */ fail("No alternative"),
+  Alt0: function() {
+    return altParser;
+  }
+};
+var alternativeParser = {
+  Applicative0: function() {
+    return applicativeParser;
+  },
+  Plus1: function() {
+    return plusParser;
+  }
+};
+
+// output/StringParser.Combinators/index.js
+var alt2 = /* @__PURE__ */ alt(altParser);
+var bind3 = /* @__PURE__ */ bind(bindParser);
+var pure4 = /* @__PURE__ */ pure(applicativeParser);
+var map7 = /* @__PURE__ */ map(functorParser);
+var applySecond2 = /* @__PURE__ */ applySecond(applyParser);
+var apply2 = /* @__PURE__ */ apply(applyParser);
+var withError = function(p) {
+  return function(msg) {
+    return alt2(p)(fail(msg));
+  };
+};
+var $$try = function(v) {
+  return function(s) {
+    var v1 = v(s);
+    if (v1 instanceof Left) {
+      return new Left({
+        pos: s.position,
+        error: v1.value0.error
+      });
+    }
+    ;
+    return v1;
+  };
+};
+var cons$prime = function(h) {
+  return function(t) {
+    return new NonEmpty(h, t);
+  };
+};
+var choice = function(dictFoldable) {
+  return foldl(dictFoldable)(alt2)(fail("Nothing to parse"));
+};
+var assertConsume = function(v) {
+  return function(s) {
+    var v1 = v(s);
+    if (v1 instanceof Right) {
+      var $34 = s.position < v1.value0.suffix.position;
+      if ($34) {
+        return new Right(v1.value0);
+      }
+      ;
+      return new Left({
+        pos: s.position,
+        error: "Consumed no input."
+      });
+    }
+    ;
+    return v1;
+  };
+};
+var many = /* @__PURE__ */ function() {
+  var $37 = manyRec(monadRecParser)(alternativeParser);
+  return function($38) {
+    return $37(assertConsume($38));
+  };
+}();
+var many1 = function(p) {
+  return apply2(map7(cons$prime)(p))(many(p));
+};
+var sepBy1 = function(p) {
+  return function(sep2) {
+    return bind3(p)(function(a) {
+      return bind3(many(applySecond2(sep2)(p)))(function(as) {
+        return pure4(cons$prime(a)(as));
+      });
+    });
+  };
+};
+
+// output/StringParser.CodeUnits/index.js
+var anyChar = function(v) {
+  var v1 = charAt2(0)(v.substring);
+  if (v1 instanceof Just) {
+    return new Right({
+      result: v1.value0,
+      suffix: {
+        substring: drop2(1)(v.substring),
+        position: v.position + 1 | 0
+      }
+    });
+  }
+  ;
+  if (v1 instanceof Nothing) {
+    return new Left({
+      pos: v.position,
+      error: "Unexpected EOF"
+    });
+  }
+  ;
+  throw new Error("Failed pattern match at StringParser.CodeUnits (line 50, column 3 - line 52, column 63): " + [v1.constructor.name]);
+};
+
+// output/StringParser.CodePoints/index.js
+var bind4 = /* @__PURE__ */ bind(bindParser);
+var elem3 = /* @__PURE__ */ elem(foldableArray)(eqInt);
+var pure5 = /* @__PURE__ */ pure(applicativeParser);
+var show3 = /* @__PURE__ */ show(showChar);
+var show22 = /* @__PURE__ */ show(showInt);
+var string = function(pattern) {
+  return function(v) {
+    var length6 = length4(pattern);
+    var v1 = splitAt3(length6)(v.substring);
+    var $45 = v1.before === pattern;
+    if ($45) {
+      return new Right({
+        result: pattern,
+        suffix: {
+          substring: v1.after,
+          position: v.position + length6 | 0
+        }
+      });
+    }
+    ;
+    return new Left({
+      pos: v.position,
+      error: "Expected '" + (pattern + "'.")
+    });
+  };
+};
+var lowerCaseChar = /* @__PURE__ */ $$try(/* @__PURE__ */ bind4(anyChar)(function(c) {
+  var $59 = elem3(toCharCode2(c))(range(97)(122));
+  if ($59) {
+    return pure5(c);
+  }
+  ;
+  return fail("Expected a lower case character but found " + show3(c));
+}));
+var eof = function(s) {
+  if (0 < length4(s.substring)) {
+    return new Left({
+      pos: s.position,
+      error: "Expected EOF"
+    });
+  }
+  ;
+  return new Right({
+    result: unit,
+    suffix: s
+  });
+};
+var anyDigit = /* @__PURE__ */ $$try(/* @__PURE__ */ bind4(anyChar)(function(c) {
+  var $63 = c >= "0" && c <= "9";
+  if ($63) {
+    return pure5(c);
+  }
+  ;
+  return fail("Character " + (show3(c) + " is not a digit"));
+}));
+var anyCodePoint = function(v) {
+  var v1 = uncons2(v.substring);
+  if (v1 instanceof Nothing) {
+    return new Left({
+      pos: v.position,
+      error: "Unexpected EOF"
+    });
+  }
+  ;
+  if (v1 instanceof Just) {
+    return new Right({
+      result: v1.value0.head,
+      suffix: {
+        substring: v1.value0.tail,
+        position: v.position + 1 | 0
+      }
+    });
+  }
+  ;
+  throw new Error("Failed pattern match at StringParser.CodePoints (line 72, column 3 - line 74, column 103): " + [v1.constructor.name]);
+};
+var anyChar2 = /* @__PURE__ */ function() {
+  var notAChar = function(cc) {
+    return fail("Code point " + (show22(cc) + " is not a character"));
+  };
+  return bind4(mapFlipped(functorParser)(anyCodePoint)(fromEnum(boundedEnumCodePoint)))(function(cc) {
+    var v = fromCharCode2(cc);
+    if (v instanceof Just) {
+      var $73 = cc > 65535;
+      if ($73) {
+        return notAChar(cc);
+      }
+      ;
+      return pure5(v.value0);
+    }
+    ;
+    if (v instanceof Nothing) {
+      return notAChar(cc);
+    }
+    ;
+    throw new Error("Failed pattern match at StringParser.CodePoints (line 57, column 3 - line 65, column 27): " + [v.constructor.name]);
+  });
+}();
+var satisfy = function(f) {
+  return $$try(bind4(anyChar2)(function(c) {
+    var $75 = f(c);
+    if ($75) {
+      return pure5(c);
+    }
+    ;
+    return fail("Character " + (show3(c) + " did not satisfy predicate"));
+  }));
+};
+var $$char = function(c) {
+  return withError(satisfy(function(v) {
+    return v === c;
+  }))("Could not match character " + show3(c));
+};
+
+// output/Data.DDF.Identifier/index.js
+var eq2 = /* @__PURE__ */ eq(eqNonEmptyString);
+var compare3 = /* @__PURE__ */ compare(ordNonEmptyString);
+var alt3 = /* @__PURE__ */ alt(altParser);
+var pure6 = /* @__PURE__ */ pure(applicativeParser);
+var pure1 = /* @__PURE__ */ pure(/* @__PURE__ */ applicativeV(semigroupArray));
+var show4 = /* @__PURE__ */ show(showInt);
+var unsafeCreate = function(x) {
+  var v = fromString(x);
+  if (v instanceof Just) {
+    return v.value0;
+  }
+  ;
+  if (v instanceof Nothing) {
+    return "undefined_id";
+  }
+  ;
+  throw new Error("Failed pattern match at Data.DDF.Identifier (line 80, column 18 - line 82, column 48): " + [v.constructor.name]);
+};
+var eqId = {
+  eq: function(x) {
+    return function(y) {
+      return eq2(x)(y);
+    };
+  }
+};
+var ordId = {
+  compare: function(x) {
+    return function(y) {
+      return compare3(x)(y);
+    };
+  },
+  Eq0: function() {
+    return eqId;
+  }
+};
+var alphaNumLower = /* @__PURE__ */ alt3(lowerCaseChar)(/* @__PURE__ */ withError(anyDigit)("expect lowercase alphanumeric value"));
+var alphaNumAnd_ = /* @__PURE__ */ alt3(alphaNumLower)(/* @__PURE__ */ withError(/* @__PURE__ */ $$char("_"))("expect lowercase alphanumeric and underscore _"));
+var identifier = /* @__PURE__ */ function() {
+  var stringFromChars = function() {
+    var $43 = fromFoldable1(foldable1NonEmptyList);
+    return function($44) {
+      return fromNonEmptyCharArray($43($44));
+    };
+  }();
+  return bind(bindParser)(many1(alphaNumAnd_))(function(chars) {
+    return pure6(stringFromChars(chars));
+  });
+}();
+var identifier$prime = /* @__PURE__ */ applyFirst(applyParser)(identifier)(eof);
+var parseId = function(x) {
+  var v = runParser(identifier$prime)(x);
+  if (v instanceof Right) {
+    return pure1(v.value0);
+  }
+  ;
+  if (v instanceof Left) {
+    var pos = show4(v.value0.pos);
+    var msg = "invalid id: " + (x + (", " + (v.value0.error + ("at pos " + pos))));
+    return invalid([msg]);
+  }
+  ;
+  throw new Error("Failed pattern match at Data.DDF.Identifier (line 63, column 13 - line 71, column 20): " + [v.constructor.name]);
+};
+
+// output/Data.Map.Internal/index.js
+var Leaf = /* @__PURE__ */ function() {
+  function Leaf2() {
+  }
+  ;
+  Leaf2.value = new Leaf2();
+  return Leaf2;
+}();
+var Two = /* @__PURE__ */ function() {
+  function Two2(value0, value1, value2, value3) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+  }
+  ;
+  Two2.create = function(value0) {
+    return function(value1) {
+      return function(value2) {
+        return function(value3) {
+          return new Two2(value0, value1, value2, value3);
+        };
+      };
+    };
+  };
+  return Two2;
+}();
+var Three = /* @__PURE__ */ function() {
+  function Three2(value0, value1, value2, value3, value4, value5, value6) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+    this.value4 = value4;
+    this.value5 = value5;
+    this.value6 = value6;
+  }
+  ;
+  Three2.create = function(value0) {
+    return function(value1) {
+      return function(value2) {
+        return function(value3) {
+          return function(value4) {
+            return function(value5) {
+              return function(value6) {
+                return new Three2(value0, value1, value2, value3, value4, value5, value6);
+              };
+            };
+          };
+        };
+      };
+    };
+  };
+  return Three2;
+}();
+var TwoLeft = /* @__PURE__ */ function() {
+  function TwoLeft2(value0, value1, value2) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+  }
+  ;
+  TwoLeft2.create = function(value0) {
+    return function(value1) {
+      return function(value2) {
+        return new TwoLeft2(value0, value1, value2);
+      };
+    };
+  };
+  return TwoLeft2;
+}();
+var TwoRight = /* @__PURE__ */ function() {
+  function TwoRight2(value0, value1, value2) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+  }
+  ;
+  TwoRight2.create = function(value0) {
+    return function(value1) {
+      return function(value2) {
+        return new TwoRight2(value0, value1, value2);
+      };
+    };
+  };
+  return TwoRight2;
+}();
+var ThreeLeft = /* @__PURE__ */ function() {
+  function ThreeLeft2(value0, value1, value2, value3, value4, value5) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+    this.value4 = value4;
+    this.value5 = value5;
+  }
+  ;
+  ThreeLeft2.create = function(value0) {
+    return function(value1) {
+      return function(value2) {
+        return function(value3) {
+          return function(value4) {
+            return function(value5) {
+              return new ThreeLeft2(value0, value1, value2, value3, value4, value5);
+            };
+          };
+        };
+      };
+    };
+  };
+  return ThreeLeft2;
+}();
+var ThreeMiddle = /* @__PURE__ */ function() {
+  function ThreeMiddle2(value0, value1, value2, value3, value4, value5) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+    this.value4 = value4;
+    this.value5 = value5;
+  }
+  ;
+  ThreeMiddle2.create = function(value0) {
+    return function(value1) {
+      return function(value2) {
+        return function(value3) {
+          return function(value4) {
+            return function(value5) {
+              return new ThreeMiddle2(value0, value1, value2, value3, value4, value5);
+            };
+          };
+        };
+      };
+    };
+  };
+  return ThreeMiddle2;
+}();
+var ThreeRight = /* @__PURE__ */ function() {
+  function ThreeRight2(value0, value1, value2, value3, value4, value5) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+    this.value4 = value4;
+    this.value5 = value5;
+  }
+  ;
+  ThreeRight2.create = function(value0) {
+    return function(value1) {
+      return function(value2) {
+        return function(value3) {
+          return function(value4) {
+            return function(value5) {
+              return new ThreeRight2(value0, value1, value2, value3, value4, value5);
+            };
+          };
+        };
+      };
+    };
+  };
+  return ThreeRight2;
+}();
+var KickUp = /* @__PURE__ */ function() {
+  function KickUp2(value0, value1, value2, value3) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+    this.value3 = value3;
+  }
+  ;
+  KickUp2.create = function(value0) {
+    return function(value1) {
+      return function(value2) {
+        return function(value3) {
+          return new KickUp2(value0, value1, value2, value3);
+        };
+      };
+    };
+  };
+  return KickUp2;
+}();
+var lookup = function(dictOrd) {
+  var compare4 = compare(dictOrd);
+  return function(k) {
+    var go = function($copy_v) {
+      var $tco_done = false;
+      var $tco_result;
+      function $tco_loop(v) {
+        if (v instanceof Leaf) {
+          $tco_done = true;
+          return Nothing.value;
+        }
+        ;
+        if (v instanceof Two) {
+          var v2 = compare4(k)(v.value1);
+          if (v2 instanceof EQ) {
+            $tco_done = true;
+            return new Just(v.value2);
+          }
+          ;
+          if (v2 instanceof LT) {
+            $copy_v = v.value0;
+            return;
+          }
+          ;
+          $copy_v = v.value3;
+          return;
+        }
+        ;
+        if (v instanceof Three) {
+          var v3 = compare4(k)(v.value1);
+          if (v3 instanceof EQ) {
+            $tco_done = true;
+            return new Just(v.value2);
+          }
+          ;
+          var v4 = compare4(k)(v.value4);
+          if (v4 instanceof EQ) {
+            $tco_done = true;
+            return new Just(v.value5);
+          }
+          ;
+          if (v3 instanceof LT) {
+            $copy_v = v.value0;
+            return;
+          }
+          ;
+          if (v4 instanceof GT) {
+            $copy_v = v.value6;
+            return;
+          }
+          ;
+          $copy_v = v.value3;
+          return;
+        }
+        ;
+        throw new Error("Failed pattern match at Data.Map.Internal (line 241, column 5 - line 241, column 22): " + [v.constructor.name]);
+      }
+      ;
+      while (!$tco_done) {
+        $tco_result = $tco_loop($copy_v);
+      }
+      ;
+      return $tco_result;
+    };
+    return go;
+  };
+};
+var member = function(dictOrd) {
+  var lookup1 = lookup(dictOrd);
+  return function(k) {
+    return function(m) {
+      return isJust(lookup1(k)(m));
+    };
+  };
+};
+var isEmpty = function(v) {
+  if (v instanceof Leaf) {
+    return true;
+  }
+  ;
+  return false;
+};
+var fromZipper = function($copy_dictOrd) {
+  return function($copy_v) {
+    return function($copy_tree) {
+      var $tco_var_dictOrd = $copy_dictOrd;
+      var $tco_var_v = $copy_v;
+      var $tco_done = false;
+      var $tco_result;
+      function $tco_loop(dictOrd, v, tree) {
+        if (v instanceof Nil) {
+          $tco_done = true;
+          return tree;
+        }
+        ;
+        if (v instanceof Cons) {
+          if (v.value0 instanceof TwoLeft) {
+            $tco_var_dictOrd = dictOrd;
+            $tco_var_v = v.value1;
+            $copy_tree = new Two(tree, v.value0.value0, v.value0.value1, v.value0.value2);
+            return;
+          }
+          ;
+          if (v.value0 instanceof TwoRight) {
+            $tco_var_dictOrd = dictOrd;
+            $tco_var_v = v.value1;
+            $copy_tree = new Two(v.value0.value0, v.value0.value1, v.value0.value2, tree);
+            return;
+          }
+          ;
+          if (v.value0 instanceof ThreeLeft) {
+            $tco_var_dictOrd = dictOrd;
+            $tco_var_v = v.value1;
+            $copy_tree = new Three(tree, v.value0.value0, v.value0.value1, v.value0.value2, v.value0.value3, v.value0.value4, v.value0.value5);
+            return;
+          }
+          ;
+          if (v.value0 instanceof ThreeMiddle) {
+            $tco_var_dictOrd = dictOrd;
+            $tco_var_v = v.value1;
+            $copy_tree = new Three(v.value0.value0, v.value0.value1, v.value0.value2, tree, v.value0.value3, v.value0.value4, v.value0.value5);
+            return;
+          }
+          ;
+          if (v.value0 instanceof ThreeRight) {
+            $tco_var_dictOrd = dictOrd;
+            $tco_var_v = v.value1;
+            $copy_tree = new Three(v.value0.value0, v.value0.value1, v.value0.value2, v.value0.value3, v.value0.value4, v.value0.value5, tree);
+            return;
+          }
+          ;
+          throw new Error("Failed pattern match at Data.Map.Internal (line 462, column 3 - line 467, column 88): " + [v.value0.constructor.name]);
+        }
+        ;
+        throw new Error("Failed pattern match at Data.Map.Internal (line 459, column 1 - line 459, column 80): " + [v.constructor.name, tree.constructor.name]);
+      }
+      ;
+      while (!$tco_done) {
+        $tco_result = $tco_loop($tco_var_dictOrd, $tco_var_v, $copy_tree);
+      }
+      ;
+      return $tco_result;
+    };
+  };
+};
+var insert2 = function(dictOrd) {
+  var fromZipper1 = fromZipper(dictOrd);
+  var compare4 = compare(dictOrd);
+  return function(k) {
+    return function(v) {
+      var up = function($copy_v1) {
+        return function($copy_v2) {
+          var $tco_var_v1 = $copy_v1;
+          var $tco_done = false;
+          var $tco_result;
+          function $tco_loop(v1, v2) {
+            if (v1 instanceof Nil) {
+              $tco_done = true;
+              return new Two(v2.value0, v2.value1, v2.value2, v2.value3);
+            }
+            ;
+            if (v1 instanceof Cons) {
+              if (v1.value0 instanceof TwoLeft) {
+                $tco_done = true;
+                return fromZipper1(v1.value1)(new Three(v2.value0, v2.value1, v2.value2, v2.value3, v1.value0.value0, v1.value0.value1, v1.value0.value2));
+              }
+              ;
+              if (v1.value0 instanceof TwoRight) {
+                $tco_done = true;
+                return fromZipper1(v1.value1)(new Three(v1.value0.value0, v1.value0.value1, v1.value0.value2, v2.value0, v2.value1, v2.value2, v2.value3));
+              }
+              ;
+              if (v1.value0 instanceof ThreeLeft) {
+                $tco_var_v1 = v1.value1;
+                $copy_v2 = new KickUp(new Two(v2.value0, v2.value1, v2.value2, v2.value3), v1.value0.value0, v1.value0.value1, new Two(v1.value0.value2, v1.value0.value3, v1.value0.value4, v1.value0.value5));
+                return;
+              }
+              ;
+              if (v1.value0 instanceof ThreeMiddle) {
+                $tco_var_v1 = v1.value1;
+                $copy_v2 = new KickUp(new Two(v1.value0.value0, v1.value0.value1, v1.value0.value2, v2.value0), v2.value1, v2.value2, new Two(v2.value3, v1.value0.value3, v1.value0.value4, v1.value0.value5));
+                return;
+              }
+              ;
+              if (v1.value0 instanceof ThreeRight) {
+                $tco_var_v1 = v1.value1;
+                $copy_v2 = new KickUp(new Two(v1.value0.value0, v1.value0.value1, v1.value0.value2, v1.value0.value3), v1.value0.value4, v1.value0.value5, new Two(v2.value0, v2.value1, v2.value2, v2.value3));
+                return;
+              }
+              ;
+              throw new Error("Failed pattern match at Data.Map.Internal (line 498, column 5 - line 503, column 108): " + [v1.value0.constructor.name, v2.constructor.name]);
+            }
+            ;
+            throw new Error("Failed pattern match at Data.Map.Internal (line 495, column 3 - line 495, column 56): " + [v1.constructor.name, v2.constructor.name]);
+          }
+          ;
+          while (!$tco_done) {
+            $tco_result = $tco_loop($tco_var_v1, $copy_v2);
+          }
+          ;
+          return $tco_result;
+        };
+      };
+      var down = function($copy_ctx) {
+        return function($copy_v1) {
+          var $tco_var_ctx = $copy_ctx;
+          var $tco_done1 = false;
+          var $tco_result;
+          function $tco_loop(ctx, v1) {
+            if (v1 instanceof Leaf) {
+              $tco_done1 = true;
+              return up(ctx)(new KickUp(Leaf.value, k, v, Leaf.value));
+            }
+            ;
+            if (v1 instanceof Two) {
+              var v2 = compare4(k)(v1.value1);
+              if (v2 instanceof EQ) {
+                $tco_done1 = true;
+                return fromZipper1(ctx)(new Two(v1.value0, k, v, v1.value3));
+              }
+              ;
+              if (v2 instanceof LT) {
+                $tco_var_ctx = new Cons(new TwoLeft(v1.value1, v1.value2, v1.value3), ctx);
+                $copy_v1 = v1.value0;
+                return;
+              }
+              ;
+              $tco_var_ctx = new Cons(new TwoRight(v1.value0, v1.value1, v1.value2), ctx);
+              $copy_v1 = v1.value3;
+              return;
+            }
+            ;
+            if (v1 instanceof Three) {
+              var v3 = compare4(k)(v1.value1);
+              if (v3 instanceof EQ) {
+                $tco_done1 = true;
+                return fromZipper1(ctx)(new Three(v1.value0, k, v, v1.value3, v1.value4, v1.value5, v1.value6));
+              }
+              ;
+              var v4 = compare4(k)(v1.value4);
+              if (v4 instanceof EQ) {
+                $tco_done1 = true;
+                return fromZipper1(ctx)(new Three(v1.value0, v1.value1, v1.value2, v1.value3, k, v, v1.value6));
+              }
+              ;
+              if (v3 instanceof LT) {
+                $tco_var_ctx = new Cons(new ThreeLeft(v1.value1, v1.value2, v1.value3, v1.value4, v1.value5, v1.value6), ctx);
+                $copy_v1 = v1.value0;
+                return;
+              }
+              ;
+              if (v3 instanceof GT && v4 instanceof LT) {
+                $tco_var_ctx = new Cons(new ThreeMiddle(v1.value0, v1.value1, v1.value2, v1.value4, v1.value5, v1.value6), ctx);
+                $copy_v1 = v1.value3;
+                return;
+              }
+              ;
+              $tco_var_ctx = new Cons(new ThreeRight(v1.value0, v1.value1, v1.value2, v1.value3, v1.value4, v1.value5), ctx);
+              $copy_v1 = v1.value6;
+              return;
+            }
+            ;
+            throw new Error("Failed pattern match at Data.Map.Internal (line 478, column 3 - line 478, column 55): " + [ctx.constructor.name, v1.constructor.name]);
+          }
+          ;
+          while (!$tco_done1) {
+            $tco_result = $tco_loop($tco_var_ctx, $copy_v1);
+          }
+          ;
+          return $tco_result;
+        };
+      };
+      return down(Nil.value);
+    };
+  };
+};
+var pop = function(dictOrd) {
+  var fromZipper1 = fromZipper(dictOrd);
+  var compare4 = compare(dictOrd);
+  return function(k) {
+    var up = function($copy_ctxs) {
+      return function($copy_tree) {
+        var $tco_var_ctxs = $copy_ctxs;
+        var $tco_done = false;
+        var $tco_result;
+        function $tco_loop(ctxs, tree) {
+          if (ctxs instanceof Nil) {
+            $tco_done = true;
+            return tree;
+          }
+          ;
+          if (ctxs instanceof Cons) {
+            if (ctxs.value0 instanceof TwoLeft && (ctxs.value0.value2 instanceof Leaf && tree instanceof Leaf)) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Two(Leaf.value, ctxs.value0.value0, ctxs.value0.value1, Leaf.value));
+            }
+            ;
+            if (ctxs.value0 instanceof TwoRight && (ctxs.value0.value0 instanceof Leaf && tree instanceof Leaf)) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Two(Leaf.value, ctxs.value0.value1, ctxs.value0.value2, Leaf.value));
+            }
+            ;
+            if (ctxs.value0 instanceof TwoLeft && ctxs.value0.value2 instanceof Two) {
+              $tco_var_ctxs = ctxs.value1;
+              $copy_tree = new Three(tree, ctxs.value0.value0, ctxs.value0.value1, ctxs.value0.value2.value0, ctxs.value0.value2.value1, ctxs.value0.value2.value2, ctxs.value0.value2.value3);
+              return;
+            }
+            ;
+            if (ctxs.value0 instanceof TwoRight && ctxs.value0.value0 instanceof Two) {
+              $tco_var_ctxs = ctxs.value1;
+              $copy_tree = new Three(ctxs.value0.value0.value0, ctxs.value0.value0.value1, ctxs.value0.value0.value2, ctxs.value0.value0.value3, ctxs.value0.value1, ctxs.value0.value2, tree);
+              return;
+            }
+            ;
+            if (ctxs.value0 instanceof TwoLeft && ctxs.value0.value2 instanceof Three) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Two(new Two(tree, ctxs.value0.value0, ctxs.value0.value1, ctxs.value0.value2.value0), ctxs.value0.value2.value1, ctxs.value0.value2.value2, new Two(ctxs.value0.value2.value3, ctxs.value0.value2.value4, ctxs.value0.value2.value5, ctxs.value0.value2.value6)));
+            }
+            ;
+            if (ctxs.value0 instanceof TwoRight && ctxs.value0.value0 instanceof Three) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Two(new Two(ctxs.value0.value0.value0, ctxs.value0.value0.value1, ctxs.value0.value0.value2, ctxs.value0.value0.value3), ctxs.value0.value0.value4, ctxs.value0.value0.value5, new Two(ctxs.value0.value0.value6, ctxs.value0.value1, ctxs.value0.value2, tree)));
+            }
+            ;
+            if (ctxs.value0 instanceof ThreeLeft && (ctxs.value0.value2 instanceof Leaf && (ctxs.value0.value5 instanceof Leaf && tree instanceof Leaf))) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Three(Leaf.value, ctxs.value0.value0, ctxs.value0.value1, Leaf.value, ctxs.value0.value3, ctxs.value0.value4, Leaf.value));
+            }
+            ;
+            if (ctxs.value0 instanceof ThreeMiddle && (ctxs.value0.value0 instanceof Leaf && (ctxs.value0.value5 instanceof Leaf && tree instanceof Leaf))) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Three(Leaf.value, ctxs.value0.value1, ctxs.value0.value2, Leaf.value, ctxs.value0.value3, ctxs.value0.value4, Leaf.value));
+            }
+            ;
+            if (ctxs.value0 instanceof ThreeRight && (ctxs.value0.value0 instanceof Leaf && (ctxs.value0.value3 instanceof Leaf && tree instanceof Leaf))) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Three(Leaf.value, ctxs.value0.value1, ctxs.value0.value2, Leaf.value, ctxs.value0.value4, ctxs.value0.value5, Leaf.value));
+            }
+            ;
+            if (ctxs.value0 instanceof ThreeLeft && ctxs.value0.value2 instanceof Two) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Two(new Three(tree, ctxs.value0.value0, ctxs.value0.value1, ctxs.value0.value2.value0, ctxs.value0.value2.value1, ctxs.value0.value2.value2, ctxs.value0.value2.value3), ctxs.value0.value3, ctxs.value0.value4, ctxs.value0.value5));
+            }
+            ;
+            if (ctxs.value0 instanceof ThreeMiddle && ctxs.value0.value0 instanceof Two) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Two(new Three(ctxs.value0.value0.value0, ctxs.value0.value0.value1, ctxs.value0.value0.value2, ctxs.value0.value0.value3, ctxs.value0.value1, ctxs.value0.value2, tree), ctxs.value0.value3, ctxs.value0.value4, ctxs.value0.value5));
+            }
+            ;
+            if (ctxs.value0 instanceof ThreeMiddle && ctxs.value0.value5 instanceof Two) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Two(ctxs.value0.value0, ctxs.value0.value1, ctxs.value0.value2, new Three(tree, ctxs.value0.value3, ctxs.value0.value4, ctxs.value0.value5.value0, ctxs.value0.value5.value1, ctxs.value0.value5.value2, ctxs.value0.value5.value3)));
+            }
+            ;
+            if (ctxs.value0 instanceof ThreeRight && ctxs.value0.value3 instanceof Two) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Two(ctxs.value0.value0, ctxs.value0.value1, ctxs.value0.value2, new Three(ctxs.value0.value3.value0, ctxs.value0.value3.value1, ctxs.value0.value3.value2, ctxs.value0.value3.value3, ctxs.value0.value4, ctxs.value0.value5, tree)));
+            }
+            ;
+            if (ctxs.value0 instanceof ThreeLeft && ctxs.value0.value2 instanceof Three) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Three(new Two(tree, ctxs.value0.value0, ctxs.value0.value1, ctxs.value0.value2.value0), ctxs.value0.value2.value1, ctxs.value0.value2.value2, new Two(ctxs.value0.value2.value3, ctxs.value0.value2.value4, ctxs.value0.value2.value5, ctxs.value0.value2.value6), ctxs.value0.value3, ctxs.value0.value4, ctxs.value0.value5));
+            }
+            ;
+            if (ctxs.value0 instanceof ThreeMiddle && ctxs.value0.value0 instanceof Three) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Three(new Two(ctxs.value0.value0.value0, ctxs.value0.value0.value1, ctxs.value0.value0.value2, ctxs.value0.value0.value3), ctxs.value0.value0.value4, ctxs.value0.value0.value5, new Two(ctxs.value0.value0.value6, ctxs.value0.value1, ctxs.value0.value2, tree), ctxs.value0.value3, ctxs.value0.value4, ctxs.value0.value5));
+            }
+            ;
+            if (ctxs.value0 instanceof ThreeMiddle && ctxs.value0.value5 instanceof Three) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Three(ctxs.value0.value0, ctxs.value0.value1, ctxs.value0.value2, new Two(tree, ctxs.value0.value3, ctxs.value0.value4, ctxs.value0.value5.value0), ctxs.value0.value5.value1, ctxs.value0.value5.value2, new Two(ctxs.value0.value5.value3, ctxs.value0.value5.value4, ctxs.value0.value5.value5, ctxs.value0.value5.value6)));
+            }
+            ;
+            if (ctxs.value0 instanceof ThreeRight && ctxs.value0.value3 instanceof Three) {
+              $tco_done = true;
+              return fromZipper1(ctxs.value1)(new Three(ctxs.value0.value0, ctxs.value0.value1, ctxs.value0.value2, new Two(ctxs.value0.value3.value0, ctxs.value0.value3.value1, ctxs.value0.value3.value2, ctxs.value0.value3.value3), ctxs.value0.value3.value4, ctxs.value0.value3.value5, new Two(ctxs.value0.value3.value6, ctxs.value0.value4, ctxs.value0.value5, tree)));
+            }
+            ;
+            $tco_done = true;
+            return unsafeCrashWith("The impossible happened in partial function `up`.");
+          }
+          ;
+          throw new Error("Failed pattern match at Data.Map.Internal (line 552, column 5 - line 573, column 86): " + [ctxs.constructor.name]);
+        }
+        ;
+        while (!$tco_done) {
+          $tco_result = $tco_loop($tco_var_ctxs, $copy_tree);
+        }
+        ;
+        return $tco_result;
+      };
+    };
+    var removeMaxNode = function($copy_ctx) {
+      return function($copy_m) {
+        var $tco_var_ctx = $copy_ctx;
+        var $tco_done1 = false;
+        var $tco_result;
+        function $tco_loop(ctx, m) {
+          if (m instanceof Two && (m.value0 instanceof Leaf && m.value3 instanceof Leaf)) {
+            $tco_done1 = true;
+            return up(ctx)(Leaf.value);
+          }
+          ;
+          if (m instanceof Two) {
+            $tco_var_ctx = new Cons(new TwoRight(m.value0, m.value1, m.value2), ctx);
+            $copy_m = m.value3;
+            return;
+          }
+          ;
+          if (m instanceof Three && (m.value0 instanceof Leaf && (m.value3 instanceof Leaf && m.value6 instanceof Leaf))) {
+            $tco_done1 = true;
+            return up(new Cons(new TwoRight(Leaf.value, m.value1, m.value2), ctx))(Leaf.value);
+          }
+          ;
+          if (m instanceof Three) {
+            $tco_var_ctx = new Cons(new ThreeRight(m.value0, m.value1, m.value2, m.value3, m.value4, m.value5), ctx);
+            $copy_m = m.value6;
+            return;
+          }
+          ;
+          $tco_done1 = true;
+          return unsafeCrashWith("The impossible happened in partial function `removeMaxNode`.");
+        }
+        ;
+        while (!$tco_done1) {
+          $tco_result = $tco_loop($tco_var_ctx, $copy_m);
+        }
+        ;
+        return $tco_result;
+      };
+    };
+    var maxNode = function($copy_m) {
+      var $tco_done2 = false;
+      var $tco_result;
+      function $tco_loop(m) {
+        if (m instanceof Two && m.value3 instanceof Leaf) {
+          $tco_done2 = true;
+          return {
+            key: m.value1,
+            value: m.value2
+          };
+        }
+        ;
+        if (m instanceof Two) {
+          $copy_m = m.value3;
+          return;
+        }
+        ;
+        if (m instanceof Three && m.value6 instanceof Leaf) {
+          $tco_done2 = true;
+          return {
+            key: m.value4,
+            value: m.value5
+          };
+        }
+        ;
+        if (m instanceof Three) {
+          $copy_m = m.value6;
+          return;
+        }
+        ;
+        $tco_done2 = true;
+        return unsafeCrashWith("The impossible happened in partial function `maxNode`.");
+      }
+      ;
+      while (!$tco_done2) {
+        $tco_result = $tco_loop($copy_m);
+      }
+      ;
+      return $tco_result;
+    };
+    var down = function($copy_ctx) {
+      return function($copy_m) {
+        var $tco_var_ctx = $copy_ctx;
+        var $tco_done3 = false;
+        var $tco_result;
+        function $tco_loop(ctx, m) {
+          if (m instanceof Leaf) {
+            $tco_done3 = true;
+            return Nothing.value;
+          }
+          ;
+          if (m instanceof Two) {
+            var v = compare4(k)(m.value1);
+            if (m.value3 instanceof Leaf && v instanceof EQ) {
+              $tco_done3 = true;
+              return new Just(new Tuple(m.value2, up(ctx)(Leaf.value)));
+            }
+            ;
+            if (v instanceof EQ) {
+              var max3 = maxNode(m.value0);
+              $tco_done3 = true;
+              return new Just(new Tuple(m.value2, removeMaxNode(new Cons(new TwoLeft(max3.key, max3.value, m.value3), ctx))(m.value0)));
+            }
+            ;
+            if (v instanceof LT) {
+              $tco_var_ctx = new Cons(new TwoLeft(m.value1, m.value2, m.value3), ctx);
+              $copy_m = m.value0;
+              return;
+            }
+            ;
+            $tco_var_ctx = new Cons(new TwoRight(m.value0, m.value1, m.value2), ctx);
+            $copy_m = m.value3;
+            return;
+          }
+          ;
+          if (m instanceof Three) {
+            var leaves = function() {
+              if (m.value0 instanceof Leaf && (m.value3 instanceof Leaf && m.value6 instanceof Leaf)) {
+                return true;
+              }
+              ;
+              return false;
+            }();
+            var v = compare4(k)(m.value4);
+            var v3 = compare4(k)(m.value1);
+            if (leaves && v3 instanceof EQ) {
+              $tco_done3 = true;
+              return new Just(new Tuple(m.value2, fromZipper1(ctx)(new Two(Leaf.value, m.value4, m.value5, Leaf.value))));
+            }
+            ;
+            if (leaves && v instanceof EQ) {
+              $tco_done3 = true;
+              return new Just(new Tuple(m.value5, fromZipper1(ctx)(new Two(Leaf.value, m.value1, m.value2, Leaf.value))));
+            }
+            ;
+            if (v3 instanceof EQ) {
+              var max3 = maxNode(m.value0);
+              $tco_done3 = true;
+              return new Just(new Tuple(m.value2, removeMaxNode(new Cons(new ThreeLeft(max3.key, max3.value, m.value3, m.value4, m.value5, m.value6), ctx))(m.value0)));
+            }
+            ;
+            if (v instanceof EQ) {
+              var max3 = maxNode(m.value3);
+              $tco_done3 = true;
+              return new Just(new Tuple(m.value5, removeMaxNode(new Cons(new ThreeMiddle(m.value0, m.value1, m.value2, max3.key, max3.value, m.value6), ctx))(m.value3)));
+            }
+            ;
+            if (v3 instanceof LT) {
+              $tco_var_ctx = new Cons(new ThreeLeft(m.value1, m.value2, m.value3, m.value4, m.value5, m.value6), ctx);
+              $copy_m = m.value0;
+              return;
+            }
+            ;
+            if (v3 instanceof GT && v instanceof LT) {
+              $tco_var_ctx = new Cons(new ThreeMiddle(m.value0, m.value1, m.value2, m.value4, m.value5, m.value6), ctx);
+              $copy_m = m.value3;
+              return;
+            }
+            ;
+            $tco_var_ctx = new Cons(new ThreeRight(m.value0, m.value1, m.value2, m.value3, m.value4, m.value5), ctx);
+            $copy_m = m.value6;
+            return;
+          }
+          ;
+          throw new Error("Failed pattern match at Data.Map.Internal (line 525, column 16 - line 548, column 80): " + [m.constructor.name]);
+        }
+        ;
+        while (!$tco_done3) {
+          $tco_result = $tco_loop($tco_var_ctx, $copy_m);
+        }
+        ;
+        return $tco_result;
+      };
+    };
+    return down(Nil.value);
+  };
+};
+var foldableMap = {
+  foldr: function(f) {
+    return function(z) {
+      return function(m) {
+        if (m instanceof Leaf) {
+          return z;
+        }
+        ;
+        if (m instanceof Two) {
+          return foldr(foldableMap)(f)(f(m.value2)(foldr(foldableMap)(f)(z)(m.value3)))(m.value0);
+        }
+        ;
+        if (m instanceof Three) {
+          return foldr(foldableMap)(f)(f(m.value2)(foldr(foldableMap)(f)(f(m.value5)(foldr(foldableMap)(f)(z)(m.value6)))(m.value3)))(m.value0);
+        }
+        ;
+        throw new Error("Failed pattern match at Data.Map.Internal (line 133, column 17 - line 136, column 85): " + [m.constructor.name]);
+      };
+    };
+  },
+  foldl: function(f) {
+    return function(z) {
+      return function(m) {
+        if (m instanceof Leaf) {
+          return z;
+        }
+        ;
+        if (m instanceof Two) {
+          return foldl(foldableMap)(f)(f(foldl(foldableMap)(f)(z)(m.value0))(m.value2))(m.value3);
+        }
+        ;
+        if (m instanceof Three) {
+          return foldl(foldableMap)(f)(f(foldl(foldableMap)(f)(f(foldl(foldableMap)(f)(z)(m.value0))(m.value2))(m.value3))(m.value5))(m.value6);
+        }
+        ;
+        throw new Error("Failed pattern match at Data.Map.Internal (line 137, column 17 - line 140, column 85): " + [m.constructor.name]);
+      };
+    };
+  },
+  foldMap: function(dictMonoid) {
+    var mempty2 = mempty(dictMonoid);
+    var append22 = append(dictMonoid.Semigroup0());
+    return function(f) {
+      return function(m) {
+        if (m instanceof Leaf) {
+          return mempty2;
+        }
+        ;
+        if (m instanceof Two) {
+          return append22(foldMap(foldableMap)(dictMonoid)(f)(m.value0))(append22(f(m.value2))(foldMap(foldableMap)(dictMonoid)(f)(m.value3)));
+        }
+        ;
+        if (m instanceof Three) {
+          return append22(foldMap(foldableMap)(dictMonoid)(f)(m.value0))(append22(f(m.value2))(append22(foldMap(foldableMap)(dictMonoid)(f)(m.value3))(append22(f(m.value5))(foldMap(foldableMap)(dictMonoid)(f)(m.value6)))));
+        }
+        ;
+        throw new Error("Failed pattern match at Data.Map.Internal (line 141, column 17 - line 144, column 93): " + [m.constructor.name]);
+      };
+    };
+  }
+};
+var foldableWithIndexMap = {
+  foldrWithIndex: function(f) {
+    return function(z) {
+      return function(m) {
+        if (m instanceof Leaf) {
+          return z;
+        }
+        ;
+        if (m instanceof Two) {
+          return foldrWithIndex(foldableWithIndexMap)(f)(f(m.value1)(m.value2)(foldrWithIndex(foldableWithIndexMap)(f)(z)(m.value3)))(m.value0);
+        }
+        ;
+        if (m instanceof Three) {
+          return foldrWithIndex(foldableWithIndexMap)(f)(f(m.value1)(m.value2)(foldrWithIndex(foldableWithIndexMap)(f)(f(m.value4)(m.value5)(foldrWithIndex(foldableWithIndexMap)(f)(z)(m.value6)))(m.value3)))(m.value0);
+        }
+        ;
+        throw new Error("Failed pattern match at Data.Map.Internal (line 147, column 26 - line 150, column 120): " + [m.constructor.name]);
+      };
+    };
+  },
+  foldlWithIndex: function(f) {
+    return function(z) {
+      return function(m) {
+        if (m instanceof Leaf) {
+          return z;
+        }
+        ;
+        if (m instanceof Two) {
+          return foldlWithIndex(foldableWithIndexMap)(f)(f(m.value1)(foldlWithIndex(foldableWithIndexMap)(f)(z)(m.value0))(m.value2))(m.value3);
+        }
+        ;
+        if (m instanceof Three) {
+          return foldlWithIndex(foldableWithIndexMap)(f)(f(m.value4)(foldlWithIndex(foldableWithIndexMap)(f)(f(m.value1)(foldlWithIndex(foldableWithIndexMap)(f)(z)(m.value0))(m.value2))(m.value3))(m.value5))(m.value6);
+        }
+        ;
+        throw new Error("Failed pattern match at Data.Map.Internal (line 151, column 26 - line 154, column 120): " + [m.constructor.name]);
+      };
+    };
+  },
+  foldMapWithIndex: function(dictMonoid) {
+    var mempty2 = mempty(dictMonoid);
+    var append22 = append(dictMonoid.Semigroup0());
+    return function(f) {
+      return function(m) {
+        if (m instanceof Leaf) {
+          return mempty2;
+        }
+        ;
+        if (m instanceof Two) {
+          return append22(foldMapWithIndex(foldableWithIndexMap)(dictMonoid)(f)(m.value0))(append22(f(m.value1)(m.value2))(foldMapWithIndex(foldableWithIndexMap)(dictMonoid)(f)(m.value3)));
+        }
+        ;
+        if (m instanceof Three) {
+          return append22(foldMapWithIndex(foldableWithIndexMap)(dictMonoid)(f)(m.value0))(append22(f(m.value1)(m.value2))(append22(foldMapWithIndex(foldableWithIndexMap)(dictMonoid)(f)(m.value3))(append22(f(m.value4)(m.value5))(foldMapWithIndex(foldableWithIndexMap)(dictMonoid)(f)(m.value6)))));
+        }
+        ;
+        throw new Error("Failed pattern match at Data.Map.Internal (line 155, column 26 - line 158, column 128): " + [m.constructor.name]);
+      };
+    };
+  },
+  Foldable0: function() {
+    return foldableMap;
+  }
+};
+var foldrWithIndex2 = /* @__PURE__ */ foldrWithIndex(foldableWithIndexMap);
+var keys = /* @__PURE__ */ function() {
+  return foldrWithIndex2(function(k) {
+    return function(v) {
+      return function(acc) {
+        return new Cons(k, acc);
+      };
+    };
+  })(Nil.value);
+}();
+var empty2 = /* @__PURE__ */ function() {
+  return Leaf.value;
+}();
+var fromFoldable3 = function(dictOrd) {
+  var insert1 = insert2(dictOrd);
+  return function(dictFoldable) {
+    return foldl(dictFoldable)(function(m) {
+      return function(v) {
+        return insert1(v.value0)(v.value1)(m);
+      };
+    })(empty2);
+  };
+};
+var $$delete2 = function(dictOrd) {
+  var pop1 = pop(dictOrd);
+  return function(k) {
+    return function(m) {
+      return maybe(m)(snd)(pop1(k)(m));
+    };
+  };
+};
+
+// output/Data.DDF.Concept/index.js
+var map8 = /* @__PURE__ */ map(functorV);
+var unwrap2 = /* @__PURE__ */ unwrap();
+var member2 = /* @__PURE__ */ member(ordId);
+var lookup2 = /* @__PURE__ */ lookup(ordId);
+var $$delete3 = /* @__PURE__ */ $$delete2(ordId);
+var map12 = /* @__PURE__ */ map(functorNonEmptyArray);
+var coerce3 = /* @__PURE__ */ coerce();
+var fromFoldable4 = /* @__PURE__ */ fromFoldable3(ordId)(foldableArray);
+var pure7 = /* @__PURE__ */ pure(/* @__PURE__ */ applicativeV(semigroupArray));
+var apply3 = /* @__PURE__ */ apply(/* @__PURE__ */ applyV(semigroupArray));
+var StringC = /* @__PURE__ */ function() {
+  function StringC2() {
+  }
+  ;
+  StringC2.value = new StringC2();
+  return StringC2;
+}();
+var MeasureC = /* @__PURE__ */ function() {
+  function MeasureC2() {
+  }
+  ;
+  MeasureC2.value = new MeasureC2();
+  return MeasureC2;
+}();
+var BooleanC = /* @__PURE__ */ function() {
+  function BooleanC2() {
+  }
+  ;
+  BooleanC2.value = new BooleanC2();
+  return BooleanC2;
+}();
+var IntervalC = /* @__PURE__ */ function() {
+  function IntervalC2() {
+  }
+  ;
+  IntervalC2.value = new IntervalC2();
+  return IntervalC2;
+}();
+var EntityDomainC = /* @__PURE__ */ function() {
+  function EntityDomainC2() {
+  }
+  ;
+  EntityDomainC2.value = new EntityDomainC2();
+  return EntityDomainC2;
+}();
+var EntitySetC = /* @__PURE__ */ function() {
+  function EntitySetC2() {
+  }
+  ;
+  EntitySetC2.value = new EntitySetC2();
+  return EntitySetC2;
+}();
+var RoleC = /* @__PURE__ */ function() {
+  function RoleC2() {
+  }
+  ;
+  RoleC2.value = new RoleC2();
+  return RoleC2;
+}();
+var CompositeC = /* @__PURE__ */ function() {
+  function CompositeC2() {
+  }
+  ;
+  CompositeC2.value = new CompositeC2();
+  return CompositeC2;
+}();
+var TimeC = /* @__PURE__ */ function() {
+  function TimeC2() {
+  }
+  ;
+  TimeC2.value = new TimeC2();
+  return TimeC2;
+}();
+var CustomC = /* @__PURE__ */ function() {
+  function CustomC2(value0) {
+    this.value0 = value0;
+  }
+  ;
+  CustomC2.create = function(value0) {
+    return new CustomC2(value0);
+  };
+  return CustomC2;
+}();
+var Concept = /* @__PURE__ */ function() {
+  function Concept2(value0) {
+    this.value0 = value0;
+  }
+  ;
+  Concept2.create = function(value0) {
+    return new Concept2(value0);
+  };
+  return Concept2;
+}();
+var parseConceptType = function(x) {
+  return map8(function(v) {
+    var res = function() {
+      var v1 = toString(unwrap2(v));
+      if (v1 === "string") {
+        return StringC.value;
+      }
+      ;
+      if (v1 === "meaeure") {
+        return MeasureC.value;
+      }
+      ;
+      if (v1 === "bollean") {
+        return BooleanC.value;
+      }
+      ;
+      if (v1 === "interval") {
+        return IntervalC.value;
+      }
+      ;
+      if (v1 === "entity_domain") {
+        return EntityDomainC.value;
+      }
+      ;
+      if (v1 === "entity_set") {
+        return EntitySetC.value;
+      }
+      ;
+      if (v1 === "role") {
+        return RoleC.value;
+      }
+      ;
+      if (v1 === "composite") {
+        return CompositeC.value;
+      }
+      ;
+      if (v1 === "time") {
+        return TimeC.value;
+      }
+      ;
+      return new CustomC(v);
+    }();
+    return res;
+  })(parseId(x));
+};
+var hasProp = function(f) {
+  return function(props) {
+    return member2(unsafeCreate(f))(props);
+  };
+};
+var getId = function(v) {
+  return unwrap2(v.value0.conceptId);
+};
+var fromCsvRow = function(headers) {
+  return function(row) {
+    var mkConcept = function(m) {
+      var conceptTypeCol = unsafeCreate("concept_type");
+      var ct = lookup2(conceptTypeCol)(m);
+      var ct$prime = function() {
+        if (ct instanceof Nothing) {
+          return "";
+        }
+        ;
+        if (ct instanceof Just) {
+          return ct.value0;
+        }
+        ;
+        throw new Error("Failed pattern match at Data.DDF.Concept (line 175, column 13 - line 177, column 20): " + [ct.constructor.name]);
+      }();
+      var conceptCol = unsafeCreate("concept");
+      var m$prime = $$delete3(conceptCol)($$delete3(conceptTypeCol)(m));
+      var cid = lookup2(conceptCol)(m);
+      var cid$prime = function() {
+        if (cid instanceof Nothing) {
+          return "";
+        }
+        ;
+        if (cid instanceof Just) {
+          return cid.value0;
+        }
+        ;
+        throw new Error("Failed pattern match at Data.DDF.Concept (line 169, column 14 - line 171, column 20): " + [cid.constructor.name]);
+      }();
+      return {
+        conceptId: cid$prime,
+        conceptType: ct$prime,
+        props: m$prime
+      };
+    };
+    var headersL = toArray(map12(coerce3)(headers));
+    var rowAsMap = function(r) {
+      return fromFoldable4(zip(headersL)(r));
+    };
+    var $61 = length2(headers) !== length(row);
+    if ($61) {
+      return invalid(["Bad csv row"]);
+    }
+    ;
+    return pure7(mkConcept(rowAsMap(row)));
+  };
+};
+var concept = function(conceptId) {
+  return function(conceptType) {
+    return function(props) {
+      return new Concept({
+        conceptId,
+        conceptType,
+        props
+      });
+    };
+  };
+};
+var checkMandatoryField = function(v) {
+  if (v.value0.conceptType instanceof EntitySetC) {
+    var $72 = hasProp("domain")(v.value0.props);
+    if ($72) {
+      return pure7(v);
+    }
+    ;
+    return invalid(["missing domain field for entity_set: " + toString(getId(v))]);
+  }
+  ;
+  return pure7(v);
+};
+var parseConcept = function(v) {
+  var missingField = $$null(v.conceptId) || $$null(v.conceptType);
+  if (missingField) {
+    return invalid(["concept or concept_type field is empty."]);
+  }
+  ;
+  var conceptType = parseConceptType(v.conceptType);
+  var conceptId = parseId(v.conceptId);
+  return andThen(apply3(apply3(map8(concept)(conceptId))(conceptType))(pure7(v.props)))(checkMandatoryField);
+};
+
+// output/Node.Path/foreign.js
+import path from "path";
+var normalize = path.normalize;
+function concat2(segments) {
+  return path.join.apply(this, segments);
+}
+var basename = path.basename;
+var extname = path.extname;
+var sep = path.sep;
+var delimiter = path.delimiter;
+var parse2 = path.parse;
+var isAbsolute = path.isAbsolute;
+
+// output/Data.DDF.FileInfo/index.js
+var bind5 = /* @__PURE__ */ bind(bindParser);
+var discard2 = /* @__PURE__ */ discard(discardUnit)(bindParser);
+var $$void2 = /* @__PURE__ */ $$void(functorParser);
+var pure8 = /* @__PURE__ */ pure(applicativeParser);
+var choice2 = /* @__PURE__ */ choice(foldableArray);
+var map9 = /* @__PURE__ */ map(functorNonEmptyList);
+var alt4 = /* @__PURE__ */ alt(altParser);
+var pure12 = /* @__PURE__ */ pure(/* @__PURE__ */ applicativeV(semigroupArray));
+var Concepts = /* @__PURE__ */ function() {
+  function Concepts2() {
+  }
+  ;
+  Concepts2.value = new Concepts2();
+  return Concepts2;
+}();
+var Entities = /* @__PURE__ */ function() {
+  function Entities2(value0) {
+    this.value0 = value0;
+  }
+  ;
+  Entities2.create = function(value0) {
+    return new Entities2(value0);
+  };
+  return Entities2;
+}();
+var DataPoints = /* @__PURE__ */ function() {
+  function DataPoints2(value0) {
+    this.value0 = value0;
+  }
+  ;
+  DataPoints2.create = function(value0) {
+    return new DataPoints2(value0);
+  };
+  return DataPoints2;
+}();
+var FileInfo = /* @__PURE__ */ function() {
+  function FileInfo2(value0, value1, value2) {
+    this.value0 = value0;
+    this.value1 = value1;
+    this.value2 = value2;
+  }
+  ;
+  FileInfo2.create = function(value0) {
+    return function(value1) {
+      return function(value2) {
+        return new FileInfo2(value0, value1, value2);
+      };
+    };
+  };
+  return FileInfo2;
+}();
+var pkeyWithConstrain = /* @__PURE__ */ bind5(identifier)(function(key) {
+  return discard2($$void2(string("-")))(function() {
+    return bind5(identifier)(function(constrain) {
+      return pure8(new Tuple(key, new Just(constrain)));
+    });
+  });
+});
+var pkeyNoConstrain = /* @__PURE__ */ bind5(identifier)(function(key) {
+  return pure8(new Tuple(key, Nothing.value));
+});
+var pkey = /* @__PURE__ */ choice2([/* @__PURE__ */ $$try(pkeyWithConstrain), /* @__PURE__ */ $$try(pkeyNoConstrain)]);
+var isEntitiesFile = function(v) {
+  if (v.value1 instanceof Entities) {
+    return true;
+  }
+  ;
+  return false;
+};
+var isDataPointsFile = function(v) {
+  if (v.value1 instanceof DataPoints) {
+    return true;
+  }
+  ;
+  return false;
+};
+var isConceptFile = function(v) {
+  if (v.value1 instanceof Concepts) {
+    return true;
+  }
+  ;
+  return false;
+};
+var getName = /* @__PURE__ */ stripSuffix(".csv");
+var getCollectionFiles = function(v) {
+  if (v === "concepts") {
+    return filter(isConceptFile);
+  }
+  ;
+  if (v === "entities") {
+    return filter(isEntitiesFile);
+  }
+  ;
+  if (v === "datapoints") {
+    return filter(isDataPointsFile);
+  }
+  ;
+  return function(v1) {
+    return [];
+  };
+};
+var filepath = function(v) {
+  return v.value0;
+};
+var ddfFileBegin = /* @__PURE__ */ $$void2(/* @__PURE__ */ string("ddf--"));
+var e1 = /* @__PURE__ */ discard2(ddfFileBegin)(function() {
+  return discard2($$void2(string("entities--")))(function() {
+    return bind5(identifier)(function(domain) {
+      return discard2(eof)(function() {
+        return pure8(new Entities({
+          domain,
+          set: Nothing.value
+        }));
+      });
+    });
+  });
+});
+var e2 = /* @__PURE__ */ discard2(ddfFileBegin)(function() {
+  return discard2($$void2(string("entities--")))(function() {
+    return bind5(identifier)(function(domain) {
+      return discard2($$void2(string("--")))(function() {
+        return bind5(identifier)(function(eset) {
+          return discard2(eof)(function() {
+            return pure8(new Entities({
+              domain,
+              set: new Just(eset)
+            }));
+          });
+        });
+      });
+    });
+  });
+});
+var entityFile = /* @__PURE__ */ choice2([/* @__PURE__ */ $$try(e2), /* @__PURE__ */ $$try(e1)]);
+var datapointFile = /* @__PURE__ */ discard2(ddfFileBegin)(function() {
+  return discard2($$void2(string("datapoints--")))(function() {
+    return bind5(identifier)(function(indicator) {
+      return discard2($$void2(string("--by--")))(function() {
+        return bind5(sepBy1(pkey)(string("--")))(function(dims) {
+          var pkeys = map9(fst)(dims);
+          var constrains = map9(snd)(dims);
+          return pure8(new DataPoints({
+            indicator,
+            pkeys,
+            constrains
+          }));
+        });
+      });
+    });
+  });
+});
+var c2 = /* @__PURE__ */ bind5(/* @__PURE__ */ string("ddf--concepts--"))(function(p1) {
+  return bind5(alt4(string("discrete"))(string("continuous")))(function(p2) {
+    return discard2($$void2(eof))(function() {
+      return pure8(p1 + p2);
+    });
+  });
+});
+var c1 = /* @__PURE__ */ applyFirst(applyParser)(/* @__PURE__ */ string("ddf--concepts"))(eof);
+var conceptFile = /* @__PURE__ */ function() {
+  return applySecond(applyParser)(choice2([$$try(c1), $$try(c2)]))(pure8(Concepts.value));
+}();
+var validateFileInfo = function(fp) {
+  var v = getName(basename(fp));
+  if (v instanceof Nothing) {
+    return invalid([fp + " is not a csv file"]);
+  }
+  ;
+  if (v instanceof Just) {
+    var fileParser = alt4(conceptFile)(alt4(entityFile)(datapointFile));
+    var v1 = runParser(fileParser)(v.value0);
+    if (v1 instanceof Right) {
+      return pure12(new FileInfo(fp, v1.value0, v.value0));
+    }
+    ;
+    if (v1 instanceof Left) {
+      return invalid([fp + (" is not correct ddf file: " + v1.value0.error)]);
+    }
+    ;
+    throw new Error("Failed pattern match at Data.DDF.FileInfo (line 175, column 7 - line 177, column 88): " + [v1.constructor.name]);
+  }
+  ;
+  throw new Error("Failed pattern match at Data.DDF.FileInfo (line 169, column 23 - line 177, column 88): " + [v.constructor.name]);
+};
+
+// output/Control.Monad.Error.Class/index.js
+var throwError = function(dict) {
+  return dict.throwError;
+};
+
+// output/Control.Monad.State.Class/index.js
+var state = function(dict) {
+  return dict.state;
+};
+var modify_ = function(dictMonadState) {
+  var state1 = state(dictMonadState);
+  return function(f) {
+    return state1(function(s) {
+      return new Tuple(unit, f(s));
+    });
+  };
+};
+
+// output/Control.Monad.Except.Trans/index.js
+var map10 = /* @__PURE__ */ map(functorEither);
+var ExceptT = function(x) {
+  return x;
+};
+var runExceptT = function(v) {
+  return v;
+};
+var monadTransExceptT = {
+  lift: function(dictMonad) {
+    var bind7 = bind(dictMonad.Bind1());
+    var pure15 = pure(dictMonad.Applicative0());
+    return function(m) {
+      return bind7(m)(function(a) {
+        return pure15(new Right(a));
+      });
+    };
+  }
+};
+var lift3 = /* @__PURE__ */ lift(monadTransExceptT);
+var mapExceptT = function(f) {
+  return function(v) {
+    return f(v);
+  };
+};
+var functorExceptT = function(dictFunctor) {
+  var map18 = map(dictFunctor);
+  return {
+    map: function(f) {
+      return mapExceptT(map18(map10(f)));
+    }
+  };
+};
+var monadExceptT = function(dictMonad) {
+  return {
+    Applicative0: function() {
+      return applicativeExceptT(dictMonad);
+    },
+    Bind1: function() {
+      return bindExceptT(dictMonad);
+    }
+  };
+};
+var bindExceptT = function(dictMonad) {
+  var bind7 = bind(dictMonad.Bind1());
+  var pure15 = pure(dictMonad.Applicative0());
+  return {
+    bind: function(v) {
+      return function(k) {
+        return bind7(v)(either(function($187) {
+          return pure15(Left.create($187));
+        })(function(a) {
+          var v1 = k(a);
+          return v1;
+        }));
+      };
+    },
+    Apply0: function() {
+      return applyExceptT(dictMonad);
+    }
+  };
+};
+var applyExceptT = function(dictMonad) {
+  var functorExceptT1 = functorExceptT(dictMonad.Bind1().Apply0().Functor0());
+  return {
+    apply: ap(monadExceptT(dictMonad)),
+    Functor0: function() {
+      return functorExceptT1;
+    }
+  };
+};
+var applicativeExceptT = function(dictMonad) {
+  return {
+    pure: function() {
+      var $188 = pure(dictMonad.Applicative0());
+      return function($189) {
+        return ExceptT($188(Right.create($189)));
+      };
+    }(),
+    Apply0: function() {
+      return applyExceptT(dictMonad);
+    }
+  };
+};
+var monadStateExceptT = function(dictMonadState) {
+  var Monad0 = dictMonadState.Monad0();
+  var lift12 = lift3(Monad0);
+  var state2 = state(dictMonadState);
+  var monadExceptT1 = monadExceptT(Monad0);
+  return {
+    state: function(f) {
+      return lift12(state2(f));
+    },
+    Monad0: function() {
+      return monadExceptT1;
+    }
+  };
+};
+var monadThrowExceptT = function(dictMonad) {
+  var monadExceptT1 = monadExceptT(dictMonad);
+  return {
+    throwError: function() {
+      var $198 = pure(dictMonad.Applicative0());
+      return function($199) {
+        return ExceptT($198(Left.create($199)));
+      };
+    }(),
+    Monad0: function() {
+      return monadExceptT1;
+    }
+  };
+};
+
+// output/Control.Monad.State.Trans/index.js
+var runStateT = function(v) {
+  return v;
+};
+var monadTransStateT = {
+  lift: function(dictMonad) {
+    var bind7 = bind(dictMonad.Bind1());
+    var pure15 = pure(dictMonad.Applicative0());
+    return function(m) {
+      return function(s) {
+        return bind7(m)(function(x) {
+          return pure15(new Tuple(x, s));
+        });
+      };
+    };
+  }
+};
+var functorStateT = function(dictFunctor) {
+  var map18 = map(dictFunctor);
+  return {
+    map: function(f) {
+      return function(v) {
+        return function(s) {
+          return map18(function(v1) {
+            return new Tuple(f(v1.value0), v1.value1);
+          })(v(s));
+        };
+      };
+    }
+  };
+};
+var monadStateT = function(dictMonad) {
+  return {
+    Applicative0: function() {
+      return applicativeStateT(dictMonad);
+    },
+    Bind1: function() {
+      return bindStateT(dictMonad);
+    }
+  };
+};
+var bindStateT = function(dictMonad) {
+  var bind7 = bind(dictMonad.Bind1());
+  return {
+    bind: function(v) {
+      return function(f) {
+        return function(s) {
+          return bind7(v(s))(function(v1) {
+            var v3 = f(v1.value0);
+            return v3(v1.value1);
+          });
+        };
+      };
+    },
+    Apply0: function() {
+      return applyStateT(dictMonad);
+    }
+  };
+};
+var applyStateT = function(dictMonad) {
+  var functorStateT1 = functorStateT(dictMonad.Bind1().Apply0().Functor0());
+  return {
+    apply: ap(monadStateT(dictMonad)),
+    Functor0: function() {
+      return functorStateT1;
+    }
+  };
+};
+var applicativeStateT = function(dictMonad) {
+  var pure15 = pure(dictMonad.Applicative0());
+  return {
+    pure: function(a) {
+      return function(s) {
+        return pure15(new Tuple(a, s));
+      };
+    },
+    Apply0: function() {
+      return applyStateT(dictMonad);
+    }
+  };
+};
+var monadStateStateT = function(dictMonad) {
+  var pure15 = pure(dictMonad.Applicative0());
+  var monadStateT1 = monadStateT(dictMonad);
+  return {
+    state: function(f) {
+      return function($200) {
+        return pure15(f($200));
+      };
+    },
+    Monad0: function() {
+      return monadStateT1;
+    }
+  };
+};
+
+// output/Data.DDF.Validation.ValidationT/index.js
+var lift4 = /* @__PURE__ */ lift(monadTransExceptT);
+var lift1 = /* @__PURE__ */ lift(monadTransStateT);
+var ValidationT = function(x) {
+  return x;
+};
+var vWarning = function(dictMonad) {
+  var modify_2 = modify_(monadStateExceptT(monadStateStateT(dictMonad)));
+  return function(dictMonoid) {
+    var append3 = append(dictMonoid.Semigroup0());
+    return function(e) {
+      return modify_2(function(x) {
+        return append3(x)(e);
+      });
+    };
+  };
+};
+var vError = function(dictMonad) {
+  var throwError2 = throwError(monadThrowExceptT(monadStateT(dictMonad)));
+  return function(e) {
+    return throwError2(e);
+  };
+};
+var runValidationT = function(dictMonad) {
+  var bind7 = bind(dictMonad.Bind1());
+  var pure15 = pure(dictMonad.Applicative0());
+  return function(dictMonoid) {
+    var mempty2 = mempty(dictMonoid);
+    var append3 = append(dictMonoid.Semigroup0());
+    return function(v) {
+      return bind7(runStateT(runExceptT(v))(mempty2))(function(v1) {
+        return pure15(function() {
+          if (v1.value0 instanceof Left) {
+            return new Tuple(append3(v1.value0.value0)(v1.value1), Nothing.value);
+          }
+          ;
+          if (v1.value0 instanceof Right) {
+            return new Tuple(v1.value1, new Just(v1.value0.value0));
+          }
+          ;
+          throw new Error("Failed pattern match at Data.DDF.Validation.ValidationT (line 46, column 7 - line 48, column 43): " + [v1.value0.constructor.name]);
+        }());
+      });
+    };
+  };
+};
+var monadtransV = {
+  lift: function(dictMonad) {
+    var $68 = lift4(monadStateT(dictMonad));
+    var $69 = lift1(dictMonad);
+    return function($70) {
+      return ValidationT($68($69($70)));
+    };
+  }
+};
+var monadV = function(dictMonad) {
+  return monadExceptT(monadStateT(dictMonad));
+};
+var functorV2 = function(dictFunctor) {
+  return functorExceptT(functorStateT(dictFunctor));
+};
+var bindV = function(dictMonad) {
+  return bindExceptT(monadStateT(dictMonad));
+};
+var applicativeV2 = function(dictMonad) {
+  return applicativeExceptT(monadStateT(dictMonad));
+};
+
+// output/Data.Set/index.js
+var foldl2 = /* @__PURE__ */ foldl(foldableList);
+var toList2 = function(v) {
+  return keys(v);
+};
+var isEmpty2 = function(v) {
+  return isEmpty(v);
+};
+var insert3 = function(dictOrd) {
+  var insert1 = insert2(dictOrd);
+  return function(a) {
+    return function(v) {
+      return insert1(a)(unit)(v);
+    };
+  };
+};
+var empty3 = empty2;
+var fromFoldable5 = function(dictFoldable) {
+  var foldl22 = foldl(dictFoldable);
+  return function(dictOrd) {
+    var insert1 = insert3(dictOrd);
+    return foldl22(function(m) {
+      return function(a) {
+        return insert1(a)(m);
+      };
+    })(empty3);
+  };
+};
+var $$delete4 = function(dictOrd) {
+  var delete1 = $$delete2(dictOrd);
+  return function(a) {
+    return function(v) {
+      return delete1(a)(v);
+    };
+  };
+};
+var difference2 = function(dictOrd) {
+  var delete1 = $$delete4(dictOrd);
+  return function(s1) {
+    return function(s2) {
+      return foldl2(flip(delete1))(s1)(toList2(s2));
+    };
+  };
+};
+var subset = function(dictOrd) {
+  var difference1 = difference2(dictOrd);
+  return function(s1) {
+    return function(s2) {
+      return isEmpty2(difference1(s1)(s2));
+    };
+  };
+};
+
+// output/Data.String.Utils/foreign.js
+function startsWithImpl(searchString, s) {
+  return s.startsWith(searchString);
+}
+
+// output/Data.String.Utils/index.js
+var startsWith = function(searchString) {
+  return function(s) {
+    return startsWithImpl(searchString, s);
+  };
+};
+
+// output/Data.DDF.CsvFile/index.js
+var fromFoldable6 = /* @__PURE__ */ fromFoldable(foldableNonEmptyArray);
+var elem4 = /* @__PURE__ */ elem2(eqString);
+var applicativeV3 = /* @__PURE__ */ applicativeV(semigroupArray);
+var pure9 = /* @__PURE__ */ pure(applicativeV3);
+var show5 = /* @__PURE__ */ show(/* @__PURE__ */ showArray(showString));
+var join2 = /* @__PURE__ */ join(bindMaybe);
+var map11 = /* @__PURE__ */ map(functorMaybe);
+var bind6 = /* @__PURE__ */ bind(bindParser);
+var pure13 = /* @__PURE__ */ pure(applicativeParser);
+var append1 = /* @__PURE__ */ append(semigroupNonEmptyString);
+var discard3 = /* @__PURE__ */ discard(discardUnit);
+var discard1 = /* @__PURE__ */ discard3(bindParser);
+var $$void3 = /* @__PURE__ */ $$void(functorParser);
+var show1 = /* @__PURE__ */ show(showInt);
+var map13 = /* @__PURE__ */ map(functorNonEmptyArray);
+var sequence2 = /* @__PURE__ */ sequence(traversableNonEmptyArray)(applicativeV3);
+var show23 = /* @__PURE__ */ show(/* @__PURE__ */ showArray(showNonEmptyString));
+var apply4 = /* @__PURE__ */ apply(/* @__PURE__ */ applyV(semigroupArray));
+var map23 = /* @__PURE__ */ map(functorV);
+var CsvFile = /* @__PURE__ */ function() {
+  function CsvFile2(value0) {
+    this.value0 = value0;
+  }
+  ;
+  CsvFile2.create = function(value0) {
+    return new CsvFile2(value0);
+  };
+  return CsvFile2;
+}();
+var oneOfHeaderExists = function(expected) {
+  return function(csvcontent) {
+    var xor = function(v) {
+      return function(v1) {
+        if (v && !v1) {
+          return true;
+        }
+        ;
+        if (!v && v1) {
+          return true;
+        }
+        ;
+        return false;
+      };
+    };
+    var actual = fromFoldable6(csvcontent.headers);
+    var res = foldr2(function(x) {
+      return function(acc) {
+        return xor(elem4(x)(actual))(acc);
+      };
+    })(false)(expected);
+    if (res) {
+      return pure9(csvcontent);
+    }
+    ;
+    return invalid(["file MUST have one and only one of follwoing field: " + show5(expected)]);
+  };
+};
+var notEmptyCsv = function(input) {
+  var v = join2(map11(fromArray)(input.headers));
+  if (v instanceof Nothing) {
+    return invalid(["no headers"]);
+  }
+  ;
+  if (v instanceof Just) {
+    if (input.rows instanceof Nothing) {
+      return pure9({
+        headers: v.value0,
+        rows: []
+      });
+    }
+    ;
+    if (input.rows instanceof Just) {
+      return pure9({
+        headers: v.value0,
+        rows: input.rows.value0
+      });
+    }
+    ;
+    throw new Error("Failed pattern match at Data.DDF.CsvFile (line 129, column 14 - line 131, column 48): " + [input.rows.constructor.name]);
+  }
+  ;
+  throw new Error("Failed pattern match at Data.DDF.CsvFile (line 127, column 21 - line 131, column 48): " + [v.constructor.name]);
+};
+var mkCsvFile = function(fi) {
+  return function(csv) {
+    return new CsvFile({
+      fileInfo: fi,
+      csvContent: csv
+    });
+  };
+};
+var is_header = /* @__PURE__ */ bind6(/* @__PURE__ */ string("is--"))(function(begin) {
+  return bind6(identifier)(function(val) {
+    return pure13(append1(begin)(val));
+  });
+});
+var headerVal = /* @__PURE__ */ unwrap();
+var header = /* @__PURE__ */ bind6(/* @__PURE__ */ alt(altParser)(is_header)(identifier))(function(h) {
+  return discard1($$void3(eof))(function() {
+    return pure13(h);
+  });
+});
+var parseHeader = function(x) {
+  var v = runParser(header)(x);
+  if (v instanceof Right) {
+    return pure9(v.value0);
+  }
+  ;
+  if (v instanceof Left) {
+    var pos = show1(v.value0.pos);
+    var msg = "invalid header: " + (x + (", " + (v.value0.error + ("at pos " + pos))));
+    return invalid([msg]);
+  }
+  ;
+  throw new Error("Failed pattern match at Data.DDF.CsvFile (line 63, column 17 - line 71, column 20): " + [v.constructor.name]);
+};
+var hasCols = function(dictFoldable) {
+  var fromFoldable22 = fromFoldable5(dictFoldable);
+  return function(dictOrd) {
+    var fromFoldable32 = fromFoldable22(dictOrd);
+    var subset2 = subset(dictOrd);
+    return function(dictEq) {
+      return function(expected) {
+        return function(actual) {
+          var expectedSet = fromFoldable32(expected);
+          var actualSet = fromFoldable32(actual);
+          return subset2(expectedSet)(actualSet);
+        };
+      };
+    };
+  };
+};
+var hasCols1 = /* @__PURE__ */ hasCols(foldableArray)(ordString)(eqString);
+var headersExists = function(expected) {
+  return function(csvcontent) {
+    var actual = fromFoldable6(csvcontent.headers);
+    var $118 = hasCols1(expected)(actual);
+    if ($118) {
+      return pure9(csvcontent);
+    }
+    ;
+    return invalid(["file MUST have following field: " + show5(expected)]);
+  };
+};
+var getFileInfo = function(v) {
+  return v.value0.fileInfo;
+};
+var getCsvContent = function(v) {
+  return v.value0.csvContent;
+};
+var colsAreValidIds = function(input) {
+  var res = sequence2(map13(parseHeader)(input.headers));
+  var v = toEither(res);
+  if (v instanceof Right) {
+    var headerValues = map13(headerVal)(v.value0);
+    var is_headers = filter2(function() {
+      var $157 = startsWith("is--");
+      return function($158) {
+        return $157(toString($158));
+      };
+    }())(headerValues);
+    if (is_headers.length === 0) {
+      return pure9({
+        headers: v.value0,
+        rows: input.rows
+      });
+    }
+    ;
+    return invalid(["these headers are not valid Ids: " + show23(is_headers)]);
+  }
+  ;
+  if (v instanceof Left) {
+    return invalid(v.value0);
+  }
+  ;
+  throw new Error("Failed pattern match at Data.DDF.CsvFile (line 139, column 5 - line 149, column 32): " + [v.constructor.name]);
+};
+var colsAreValidHeaders = function(input) {
+  var res = sequence2(map13(parseHeader)(input.headers));
+  var v = toEither(res);
+  if (v instanceof Right) {
+    return pure9({
+      headers: v.value0,
+      rows: input.rows
+    });
+  }
+  ;
+  if (v instanceof Left) {
+    return invalid(v.value0);
+  }
+  ;
+  throw new Error("Failed pattern match at Data.DDF.CsvFile (line 157, column 5 - line 159, column 32): " + [v.constructor.name]);
+};
+var validCsvFile = function(v) {
+  return function(csvcontent) {
+    if (v.value1 instanceof Concepts) {
+      var required = ["concept", "concept_type"];
+      var vc = andThen(andThen(notEmptyCsv(csvcontent))(headersExists(required)))(colsAreValidIds);
+      return apply4(map23(mkCsvFile)(pure9(v)))(vc);
+    }
+    ;
+    if (v.value1 instanceof Entities) {
+      var required = function() {
+        if (v.value1.value0.set instanceof Just) {
+          return [toString(v.value1.value0.set.value0), toString(v.value1.value0.domain)];
+        }
+        ;
+        if (v.value1.value0.set instanceof Nothing) {
+          return [toString(v.value1.value0.domain)];
+        }
+        ;
+        throw new Error("Failed pattern match at Data.DDF.CsvFile (line 224, column 18 - line 226, column 39): " + [v.value1.value0.set.constructor.name]);
+      }();
+      var vc = andThen(andThen(notEmptyCsv(csvcontent))(oneOfHeaderExists(required)))(colsAreValidHeaders);
+      return apply4(map23(mkCsvFile)(pure9(v)))(vc);
+    }
+    ;
+    return invalid(["not implemented"]);
+  };
+};
+
+// output/Data.DDF.DataSet/index.js
+var member3 = /* @__PURE__ */ member(ordNonEmptyString);
+var insert4 = /* @__PURE__ */ insert2(ordNonEmptyString);
+var pure10 = /* @__PURE__ */ pure(/* @__PURE__ */ applicativeV(semigroupArray));
+var DataSet = /* @__PURE__ */ function() {
+  function DataSet2(value0) {
+    this.value0 = value0;
+  }
+  ;
+  DataSet2.create = function(value0) {
+    return new DataSet2(value0);
+  };
+  return DataSet2;
+}();
+var empty4 = /* @__PURE__ */ function() {
+  return new DataSet({
+    concepts: empty2
+  });
+}();
+var addConcept = function(conc) {
+  return function(v) {
+    var cid = getId(conc);
+    var concExisted = member3(cid)(v.value0.concepts);
+    if (concExisted) {
+      return invalid(["concept " + (toString(cid) + " existed in dataset")]);
+    }
+    ;
+    if (!concExisted) {
+      var newconcepts = insert4(cid)(conc)(v.value0.concepts);
+      var newds = new DataSet({
+        concepts: newconcepts
+      });
+      return pure10(newds);
+    }
+    ;
+    throw new Error("Failed pattern match at Data.DDF.DataSet (line 51, column 32 - line 57, column 50): " + [concExisted.constructor.name]);
+  };
+};
+
+// output/Data.DDF.Validation.Result/index.js
+var setLineNo = function(i) {
+  return function(m) {
+    return {
+      message: m.message,
+      file: m.file,
+      lineNo: i,
+      suggestions: m.suggestions
+    };
+  };
+};
+var setFile = function(f) {
+  return function(m) {
+    return {
+      message: m.message,
+      file: f,
+      lineNo: m.lineNo,
+      suggestions: m.suggestions
+    };
+  };
+};
+var messageFromError = function(v) {
+  return {
+    message: v,
+    file: "",
+    lineNo: 0,
+    suggestions: ""
+  };
+};
+
+// output/Node.FS.Sync/foreign.js
+import {
+  renameSync,
+  truncateSync,
+  chownSync,
+  chmodSync,
+  statSync,
+  lstatSync,
+  linkSync,
+  symlinkSync,
+  readlinkSync,
+  realpathSync,
+  unlinkSync,
+  rmdirSync,
+  rmSync,
+  mkdirSync,
+  readdirSync,
+  utimesSync,
+  readFileSync as readFileSync2,
+  writeFileSync,
+  appendFileSync,
+  existsSync,
+  openSync,
+  readSync,
+  writeSync,
+  fsyncSync,
+  closeSync
+} from "fs";
+
+// output/Node.FS.Internal/index.js
+var mkEffect = unsafeCoerce2;
+
+// output/Node.FS.Stats/foreign.js
+function statsMethod(m, s) {
+  return s[m]();
+}
+
+// output/Foreign/foreign.js
+var isArray = Array.isArray || function(value) {
+  return Object.prototype.toString.call(value) === "[object Array]";
+};
+
+// output/Node.FS.Stats/index.js
+var Stats = /* @__PURE__ */ function() {
+  function Stats2(value0) {
+    this.value0 = value0;
+  }
+  ;
+  Stats2.create = function(value0) {
+    return new Stats2(value0);
+  };
+  return Stats2;
+}();
+var isFile = function(v) {
+  return statsMethod("isFile", v.value0);
+};
+var isDirectory = function(v) {
+  return statsMethod("isDirectory", v.value0);
+};
+
+// output/Node.FS.Sync/index.js
+var map14 = /* @__PURE__ */ map(functorEffect);
+var stat = function(file) {
+  return map14(Stats.create)(mkEffect(function(v) {
+    return statSync(file);
+  }));
+};
+var readdir = function(file) {
+  return mkEffect(function(v) {
+    return readdirSync(file);
+  });
+};
+var exists = function(file) {
+  return mkEffect(function(v) {
+    return existsSync(file);
+  });
+};
+
+// output/Data.JSON.DataPackage/index.js
+var pure11 = /* @__PURE__ */ pure(/* @__PURE__ */ applicativeV(semigroupArray));
+var datapackageExists = function(path2) {
+  var v = function(v1) {
+    if (v1) {
+      return pure11(path2);
+    }
+    ;
+    if (!v1) {
+      return invalid(["no datapackage in this folder"]);
+    }
+    ;
+    throw new Error("Failed pattern match at Data.JSON.DataPackage (line 45, column 5 - line 45, column 23): " + [v1.constructor.name]);
+  };
+  var datapackagePath = concat2([path2, "datapackage.json"]);
+  return function __do2() {
+    var dpExisted = exists(datapackagePath)();
+    return v(dpExisted);
+  };
+};
+
+// output/Effect.Console/foreign.js
+var log2 = function(s) {
+  return function() {
+    console.log(s);
+  };
+};
+
+// output/Node.Process/foreign.js
+import process from "process";
+function copyArray(xs) {
+  return () => xs.slice();
+}
+
+// output/Foreign.Object/foreign.js
+function toArrayWithKey(f) {
+  return function(m) {
+    var r = [];
+    for (var k in m) {
+      if (hasOwnProperty.call(m, k)) {
+        r.push(f(k)(m[k]));
+      }
+    }
+    return r;
+  };
+}
+var keys3 = Object.keys || toArrayWithKey(function(k) {
+  return function() {
+    return k;
+  };
+});
+
+// output/Node.Process/index.js
+var argv = /* @__PURE__ */ function() {
+  return copyArray(process.argv);
+}();
+
+// output/Utils/index.js
+var elem5 = /* @__PURE__ */ elem2(eqString);
+var map15 = /* @__PURE__ */ map(functorArray);
+var filterA2 = /* @__PURE__ */ filterA(applicativeEffect);
+var map16 = /* @__PURE__ */ map(functorEffect);
+var traverse3 = /* @__PURE__ */ traverse(traversableArray)(applicativeEffect);
+var append2 = /* @__PURE__ */ append(semigroupArray);
+var getFiles = function(x) {
+  return function(excludes) {
+    return function __do2() {
+      var fs = readdir(x)();
+      var fsMinusExcludes = filter(function(f) {
+        return !elem5(f)(excludes);
+      })(fs);
+      var fsFullPath = map15(function(f) {
+        return concat2([x, f]);
+      })(fsMinusExcludes);
+      var files = filterA2(function(f) {
+        return map16(isFile)(stat(f));
+      })(fsFullPath)();
+      var dirs = filterA2(function(f) {
+        return map16(isDirectory)(stat(f));
+      })(fsFullPath)();
+      var fsInDirs = map16(concat)(traverse3(function(d) {
+        return getFiles(d)([]);
+      })(dirs))();
+      return append2(files)(fsInDirs);
+    };
+  };
+};
+
+// output/Main/index.js
+var map17 = /* @__PURE__ */ map(functorArray);
+var discard4 = /* @__PURE__ */ discard(discardUnit);
+var show6 = /* @__PURE__ */ show(/* @__PURE__ */ showRecord()()(/* @__PURE__ */ showRecordFieldsCons({
+  reflectSymbol: function() {
+    return "file";
+  }
+})(/* @__PURE__ */ showRecordFieldsCons({
+  reflectSymbol: function() {
+    return "lineNo";
+  }
+})(/* @__PURE__ */ showRecordFieldsCons({
+  reflectSymbol: function() {
+    return "message";
+  }
+})(/* @__PURE__ */ showRecordFieldsConsNil({
+  reflectSymbol: function() {
+    return "suggestions";
+  }
+})(showString))(showString))(showInt))(showString)));
+var runValidationT2 = /* @__PURE__ */ runValidationT(monadEffect)(monoidArray);
+var bindV2 = /* @__PURE__ */ bindV(monadEffect);
+var bind1 = /* @__PURE__ */ bind(bindV2);
+var discard12 = /* @__PURE__ */ discard4(bindV2);
+var applicativeV4 = /* @__PURE__ */ applicativeV2(monadEffect);
+var when2 = /* @__PURE__ */ when(applicativeV4);
+var vError2 = /* @__PURE__ */ vError(monadEffect);
+var lift5 = /* @__PURE__ */ lift(monadtransV)(monadEffect);
+var foldM3 = /* @__PURE__ */ foldM(/* @__PURE__ */ monadV(monadEffect));
+var $$void4 = /* @__PURE__ */ $$void(/* @__PURE__ */ functorV2(functorEffect));
+var pure14 = /* @__PURE__ */ pure(applicativeV4);
+var parseFileInfos = function(fps) {
+  return function(dictMonad) {
+    var bindV1 = bindV(dictMonad);
+    var applicativeV1 = applicativeV2(dictMonad);
+    var pure15 = pure(applicativeV1);
+    var discard32 = discard4(bindV1);
+    var vWarning2 = vWarning(dictMonad)(monoidArray);
+    return bind(bindV1)($$for(applicativeV1)(traversableArray)(fps)(function(fp) {
+      var res = toEither(validateFileInfo(fp));
+      if (res instanceof Right) {
+        return pure15([res.value0]);
+      }
+      ;
+      if (res instanceof Left) {
+        var msgs = map17(function() {
+          var $111 = setFile(fp);
+          return function($112) {
+            return $111(messageFromError($112));
+          };
+        }())(res.value0);
+        return discard32(vWarning2(msgs))(function() {
+          return pure15([]);
+        });
+      }
+      ;
+      throw new Error("Failed pattern match at Main (line 50, column 11 - line 56, column 22): " + [res.constructor.name]);
+    }))(function(fis) {
+      return pure15(concat(fis));
+    });
+  };
+};
+var parseCsvFiles = function(inputs) {
+  return function(dictMonad) {
+    var bindV1 = bindV(dictMonad);
+    var applicativeV1 = applicativeV2(dictMonad);
+    var pure15 = pure(applicativeV1);
+    var discard32 = discard4(bindV1);
+    var vWarning2 = vWarning(dictMonad)(monoidArray);
+    return bind(bindV1)($$for(applicativeV1)(traversableArray)(inputs)(function(v) {
+      var fp = filepath(v.value0);
+      var v1 = toEither(validCsvFile(v.value0)(v.value1));
+      if (v1 instanceof Right) {
+        return pure15([v1.value0]);
+      }
+      ;
+      if (v1 instanceof Left) {
+        var msgs = map17(function() {
+          var $113 = setFile(fp);
+          return function($114) {
+            return $113(messageFromError($114));
+          };
+        }())(v1.value0);
+        return discard32(vWarning2(msgs))(function() {
+          return pure15([]);
+        });
+      }
+      ;
+      throw new Error("Failed pattern match at Main (line 66, column 11 - line 72, column 22): " + [v1.constructor.name]);
+    }))(function(fs) {
+      return pure15(concat(fs));
+    });
+  };
+};
+var appendConceptCsv = function(csv) {
+  return function(dataset) {
+    return function(dictMonad) {
+      var discard32 = discard4(bindV(dictMonad));
+      var vWarning2 = vWarning(dictMonad)(monoidArray);
+      var pure15 = pure(applicativeV2(dictMonad));
+      var v = getCsvContent(csv);
+      var fp = filepath(getFileInfo(csv));
+      var run3 = function(hs) {
+        return function(ds) {
+          return function(v1) {
+            var concept2 = andThen(fromCsvRow(hs)(v1.value1))(parseConcept);
+            var v2 = toEither(concept2);
+            if (v2 instanceof Left) {
+              var msgs = map17(function() {
+                var $115 = setFile(fp);
+                var $116 = setLineNo(v1.value0 + 1 | 0);
+                return function($117) {
+                  return $115($116(messageFromError($117)));
+                };
+              }())(v2.value0);
+              return discard32(vWarning2(msgs))(function() {
+                return pure15(ds);
+              });
+            }
+            ;
+            if (v2 instanceof Right) {
+              var v3 = toEither(addConcept(v2.value0)(ds));
+              if (v3 instanceof Left) {
+                var msgs = map17(function() {
+                  var $118 = setFile(fp);
+                  var $119 = setLineNo(v1.value0 + 1 | 0);
+                  return function($120) {
+                    return $118($119(messageFromError($120)));
+                  };
+                }())(v3.value0);
+                return discard32(vWarning2(msgs))(function() {
+                  return pure15(ds);
+                });
+              }
+              ;
+              if (v3 instanceof Right) {
+                return pure15(v3.value0);
+              }
+              ;
+              throw new Error("Failed pattern match at Main (line 92, column 11 - line 98, column 38): " + [v3.constructor.name]);
+            }
+            ;
+            throw new Error("Failed pattern match at Main (line 85, column 7 - line 98, column 38): " + [v2.constructor.name]);
+          };
+        };
+      };
+      return foldM(monadV(dictMonad))(function(d) {
+        return function(r) {
+          return run3(v.headers)(d)(r);
+        };
+      })(dataset)(v.rows);
+    };
+  };
+};
+var runMain = function(fp) {
+  return function __do2() {
+    var datapackageFile = datapackageExists(fp)();
+    var v = toEither(datapackageFile);
+    if (v instanceof Left) {
+      var msgs = map17(function() {
+        var $121 = setFile(fp);
+        return function($122) {
+          return $121(messageFromError($122));
+        };
+      }())(v.value0);
+      return log2(joinWith("\n")(map17(show6)(msgs)))();
+    }
+    ;
+    if (v instanceof Right) {
+      var files = getFiles(fp)([".git", "etl", "lang", "assets"])();
+      var v1 = runValidationT2(bind1(parseFileInfos(files)(monadEffect))(function(fileInfos) {
+        return discard12(when2(length(fileInfos) === 0)(vError2([messageFromError("No csv files in this folder. Please begin with a ddf--concepts.csv file.")])))(function() {
+          var conceptFiles = getCollectionFiles("concepts")(fileInfos);
+          return discard12(when2(length(conceptFiles) === 0)(vError2([messageFromError("No concepts csv files in this folder. Dataset must at least have a ddf--concepts.csv file.")])))(function() {
+            return bind1(lift5(readCsvs(map17(filepath)(conceptFiles))))(function(conceptCsvContents) {
+              var conceptInputs = zip(conceptFiles)(conceptCsvContents);
+              return bind1(parseCsvFiles(conceptInputs)(monadEffect))(function(conceptCsvFiles) {
+                return bind1(foldM3(function(d) {
+                  return function(f) {
+                    return appendConceptCsv(f)(d)(monadEffect);
+                  };
+                })(empty4)(conceptCsvFiles))(function(ds) {
+                  var entityFiles = getCollectionFiles("entities")(fileInfos);
+                  return discard12(when2(length(entityFiles) > 0)(bind1(lift5(readCsvs(map17(filepath)(entityFiles))))(function(entityCsvContents) {
+                    var entityInputs = zip(entityFiles)(entityCsvContents);
+                    return $$void4(parseCsvFiles(entityInputs)(monadEffect));
+                  })))(function() {
+                    return pure14(ds);
+                  });
+                });
+              });
+            });
+          });
+        });
+      }))();
+      log2(joinWith("\n")(map17(show6)(v1.value0)))();
+      return log2("Done.")();
+    }
+    ;
+    throw new Error("Failed pattern match at Main (line 105, column 3 - line 145, column 18): " + [v.constructor.name]);
+  };
+};
+var main = function __do() {
+  var path2 = argv();
+  var v = index(path2)(2);
+  if (v instanceof Nothing) {
+    return log2("please provide a file path")();
+  }
+  ;
+  if (v instanceof Just) {
+    return runMain(v.value0)();
+  }
+  ;
+  throw new Error("Failed pattern match at Main (line 152, column 3 - line 154, column 26): " + [v.constructor.name]);
+};
+
+// <stdin>
+main();

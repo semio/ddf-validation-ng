@@ -1,4 +1,4 @@
-import { runMain } from "./output/Main/index.js"
+import { runMain } from "./dist/ddf-validation-ng.js"
 
 function validate(fp) {
     runMain(fp)();
