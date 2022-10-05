@@ -3,8 +3,11 @@ module Data.DDF.Concept where
 import Data.Validation.Semigroup
 import Prelude
 
+import Data.Array as A
+import Data.Array.NonEmpty (NonEmptyArray)
+import Data.Array.NonEmpty as Narr
 import Data.Csv (CsvRow(..))
-import Data.DDF.CsvFile (Header(..), headersExists)
+import Data.DDF.CsvFile (Header(..), CsvRec, headersExists)
 import Data.DDF.FileInfo (FileInfo(..))
 import Data.DDF.Identifier (Identifier)
 import Data.DDF.Identifier as Id
@@ -17,14 +20,15 @@ import Data.List as L
 import Data.List.NonEmpty (NonEmptyList)
 import Data.List.NonEmpty as NL
 import Data.Map (Map, delete, fromFoldable, lookup, pop)
+import Data.Map as M
 import Data.Maybe (Maybe(..), isNothing)
 import Data.Newtype (unwrap)
 import Data.String as Str
+import Data.String.NonEmpty.Internal (NonEmptyString(..), toString)
 import Data.Traversable (for, traverse)
 import Data.Tuple (Tuple(..), fst)
 import Data.Validation.Semigroup (V, invalid)
 import Safe.Coerce (coerce)
-
 
 -- | Types of concepts
 data ConceptType
@@ -37,7 +41,7 @@ data ConceptType
   | RoleC
   | CompositeC
   | TimeC
-  | CustomC String -- This can be any string
+  | CustomC Identifier
 
 instance showConceptType :: Show ConceptType where
   show StringC = "string"
@@ -51,11 +55,13 @@ instance showConceptType :: Show ConceptType where
   show TimeC = "time"
   show (CustomC x) = show x
 
+derive instance eqConceptType :: Eq ConceptType
+
 parseConceptType :: String -> V Errors ConceptType
 parseConceptType x = ado
   cid <- Id.parseId x
   let
-    res = case unwrap cid of
+    res = case toString $ unwrap cid of
       "string" -> StringC
       "meaeure" -> MeasureC
       "bollean" -> BooleanC
@@ -65,7 +71,7 @@ parseConceptType x = ado
       "role" -> RoleC
       "composite" -> CompositeC
       "time" -> TimeC
-      ct -> CustomC ct
+      _ -> CustomC cid
   in res
 
 -- | Each Concept should have an Id and concept type.
@@ -88,12 +94,29 @@ concept conceptId conceptType props = Concept { conceptId, conceptType, props }
 instance showConcept :: Show Concept where
   show (Concept x) = show x
 
-getId :: Concept -> String
+instance eqConcept :: Eq Concept where
+  eq (Concept a) (Concept b) =
+    a.conceptId == b.conceptId
+
+getId :: Concept -> NonEmptyString
 getId (Concept x) = unwrap $ x.conceptId
 
--- Below are types for unpure world
+-- | Concept Input, which comes from CsvFile.
+-- | if CsvFile is valid, then every concept should have conceptId and conceptType.
 type ConceptInput
   = { conceptId :: String, conceptType :: String, props :: Props }
+
+hasProp :: String -> Props -> Boolean
+hasProp f props = M.member (Id.unsafeCreate f) props
+
+checkMandatoryField :: Concept -> V Errors Concept
+checkMandatoryField input@(Concept c) = case c.conceptType of
+  EntitySetC ->
+    if hasProp "domain" c.props then
+      pure input
+    else
+      invalid [ Error $ "missing domain field for entity_set: " <> (toString $ getId input) ]
+  _ -> pure input
 
 -- | convert a ConceptInput into valid Concept or errors
 parseConcept :: ConceptInput -> V Errors Concept
@@ -109,20 +132,31 @@ parseConcept { conceptId: cid, conceptType: ct, props: props } =
 
         conceptType = parseConceptType ct
       in
-        concept <$> conceptId <*> conceptType <*> pure props
+        (concept <$> conceptId <*> conceptType <*> pure props)
+          `andThen`
+            checkMandatoryField
 
-fromCsvRow :: (NonEmptyList Header) -> CsvRow -> V Errors ConceptInput
-fromCsvRow headers (CsvRow (Tuple idx row)) =
-  if NL.length headers /= L.length row then
-    invalid [ Error $ "Line " <> show idx <> ": Bad csv row" ]
+-- TODO: complete below function
+-- conceptInputFromCsvRec :: CsvRec -> V Errors ConceptInput
+-- conceptInputFromCsvRec recMap =
+--   { conceptId: cid, conceptType: ct, props: m }
+--   where
+--     recMap' = M.map
+--     cid = case
+
+fromCsvRow :: (NonEmptyArray Header) -> (Array String) -> V Errors ConceptInput
+fromCsvRow headers row =
+  -- TODO: move the Bad row checking to other function in CsvFile module
+  if Narr.length headers /= A.length row then
+    invalid [ Error $ "Bad csv row" ]
   else
     pure $ (mkConcept <<< rowAsMap) row
   where
-  -- FIXME: coerce header to Id might not be wrong
+  -- FIXME: coerce header to Id might be wrong
   -- because not all headers are valid Ids. (i.e. is-- headers)
-  headersL = NL.toList $ map coerce headers  
+  headersL = Narr.toArray $ map coerce headers
 
-  rowAsMap r = fromFoldable (zip headersL r)
+  rowAsMap r = fromFoldable (A.zip headersL r)
 
   mkConcept m =
     let
@@ -145,18 +179,3 @@ fromCsvRow headers (CsvRow (Tuple idx row)) =
       m' = m # (delete conceptCol) <<< (delete conceptTypeCol)
     in
       { conceptId: cid', conceptType: ct', props: m' }
-
--- | read a concept csv file and return list of unvalidated concept objects
--- fromCsvContent :: CsvContent -> Validation Results (Array Concept)
--- fromCsvContent { headers, rows } = do
--- fromCsvFile :: CsvFile -> Array (V Results Concept)
--- fromCsvFile csvfile = 
---   let 
---     FileInfo (_, _, fn) = getFileInfo csvfile
---     { headers, rows } = getCsvContent csvfile
---     go :: Int -> Array (Array String) -> Array (V Results Concept)
---     go ln [row:rows] = 
---       c : go (ln+1) rows
---     (fromCsvRow headers) row `andThen` validateConcept
---   in
---     go 0 rows

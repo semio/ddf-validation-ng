@@ -7,6 +7,7 @@ import Data.DDF.Validation.Result (Errors)
 import Data.List (List(..))
 import Data.List as L
 import Data.Map (Map)
+import Data.Maybe (Maybe(..))
 import Data.Validation.Semigroup (V)
 
 data Entity
@@ -18,7 +19,7 @@ data Entity
     }
 
 instance eqEntity :: Eq Entity where
-    eq (Entity a) (Entity b) = -- FIXME: coerce header to Id might not be wrong
+    eq (Entity a) (Entity b) = -- FIXME: coerce header to Id might be wrong
         (a.entityId == b.entityId) && (a.entityDomain == b.entityDomain)
 
 instance showEntity :: Show Entity where
@@ -28,12 +29,12 @@ instance showEntity :: Show Entity where
 type Props
   = Map Identifier String
 
-
--- below are validations
-type EntityInput = 
-    { entityId :: String, entityDomain :: String, props :: Map String String }
+-- | Entity input from CsvFile
+-- | The entitySet field comes from file name, so it might be empty.
+type EntityInput =
+    { entityId :: String, entityDomain :: String, entitySet :: Maybe String, props :: Map String String }
 
 -- parseEntity :: EntityInput -> V Errors Entity
--- parseEntity = ?x
+-- parseEntity { entityId: eid, entityDomain: edm, entitySet: es, props: props } = ?x
 
 

@@ -7,7 +7,7 @@ import Data.DDF.Validation.Result (Errors, Error(..))
 import Data.DDF.Validation.Result as Res
 import Data.Either (Either(..))
 import Data.Function.Uncurried (Fn1, runFn1)
-import Data.List (List(..), (:), length, range, zip, tail, head)
+import Data.Array (length, range, zip, tail, head)
 import Data.Maybe (Maybe(..))
 import Data.Newtype (class Newtype)
 import Data.Traversable (sequence, traverse)
@@ -19,9 +19,10 @@ import Effect.Aff (Aff)
 import Node.Encoding (Encoding(..))
 import Node.FS.Sync (readTextFile)
 import Node.Path (FilePath)
+import Safe.Coerce (coerce)
 
 newtype CsvRow = 
-  CsvRow (Tuple Int (List String))
+  CsvRow (Tuple Int (Array String))
 
 instance showCsvRow :: Show CsvRow where
   show (CsvRow (Tuple i x)) = 
@@ -31,26 +32,26 @@ instance showCsvRow :: Show CsvRow where
 
 derive instance newtypeCsvRow :: Newtype CsvRow _
 
-foreign import readCsvImpl :: Fn1 FilePath (List (List String))
+foreign import readCsvImpl :: Fn1 FilePath (Array (Array String))
 
 -- TODO: Maybe Change to Aff
-readCsv :: FilePath -> Effect (List (List String))
+readCsv :: FilePath -> Effect (Array (Array String))
 readCsv x =
   pure $ runFn1 readCsvImpl x
 
-getRow :: CsvRow -> (List String)
+getRow :: CsvRow -> (Array String)
 getRow (CsvRow tpl) = snd tpl
 
 getLineNo :: CsvRow -> Int
 getLineNo (CsvRow tpl) = fst tpl
 
 type RawCsvContent
-  = { headers :: Maybe (List String)
-    , rows :: Maybe (List CsvRow)
+  = { headers :: Maybe (Array String)
+    , rows :: Maybe (Array CsvRow)
     }
 
-toCsvRow :: List (List String) -> List CsvRow
-toCsvRow Nil = Nil
+toCsvRow :: Array (Array String) -> Array CsvRow
+toCsvRow [] = []
 toCsvRow xs = 
   let
     idxs = range 1 (length xs)
@@ -61,11 +62,14 @@ toCsvRow xs =
   in 
     map mkRow tuples
 
-create :: (List (List String)) -> RawCsvContent
+create :: (Array (Array String)) -> RawCsvContent
 create recs = { headers: headers, rows: rows }
   where
   headers = head recs
 
   rows = toCsvRow <$> tail recs
+
+readCsvs :: (Array FilePath) -> Effect (Array RawCsvContent)
+readCsvs = traverse (\f -> create <$> (readCsv f))
 
 -- TODO: add column view. i.e. convert List CsvRow to List CsvColumn
