@@ -1,3 +1,7 @@
 import { runMain } from "./output/Main/index.js"
 
-export { runMain }
+function validate(fp) {
+    runMain(fp)();
+}
+
+export { validate }
