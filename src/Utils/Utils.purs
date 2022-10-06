@@ -15,16 +15,26 @@ import Effect.Class.Console (log, logShow)
 import Node.Encoding (Encoding(..))
 import Node.FS.Stats (isDirectory, isFile)
 import Node.FS.Sync (readTextFile, readdir, writeTextFile, stat)
-import Node.Path (FilePath)
+import Node.Path (FilePath, basename, extname)
 import Node.Path as Path
 
 getFiles :: FilePath -> Array (String) -> Effect (Array FilePath)
 getFiles x excludes = do
   fs <- readdir x
   let
-    fsMinusExcludes = filter (\f -> not $ f `elem` excludes) fs
+    folderFilter f = not $ f `elem` excludes
+
+    fsMinusExcludes = filter folderFilter fs
+
     fsFullPath = map (\f -> Path.concat [ x, f ]) fsMinusExcludes
-  files <- filterA (\f -> isFile <$> stat f) fsFullPath
+  files <-
+    filterA
+      ( \f ->
+          (&&)
+            <$> (isFile <$> stat f)
+            <*> pure (extname (basename f) == ".csv")
+      )
+      fsFullPath
   dirs <- filterA (\f -> isDirectory <$> stat f) fsFullPath
   fsInDirs <- concat <$> traverse (\d -> getFiles d []) dirs
   pure $ files <> fsInDirs

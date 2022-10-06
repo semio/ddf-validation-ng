@@ -43,6 +43,7 @@ type Message
     , file :: String
     , lineNo :: Int
     , suggestions :: String
+    , isWarning :: Boolean
     }
 
 type Messages = Array Message
@@ -56,5 +57,9 @@ setLineNo i m = m { lineNo = i }
 setSuggestions :: String -> Message -> Message
 setSuggestions s m = m { suggestions = s }
 
+setError :: Message -> Message
+setError m = m { isWarning = false }
+
 messageFromError :: Error -> Message
-messageFromError (Error e) = { message: e, file: "", lineNo: 0, suggestions: "" }
+messageFromError (Error e) = { message: e, file: "", lineNo: 0, suggestions: "", isWarning: true }
+

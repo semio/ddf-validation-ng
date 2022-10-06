@@ -107,6 +107,7 @@ runMain fp = do
       let
         msgs = map (setFile fp <<< messageFromError) errs
       log $ joinWith "\n" $ map show msgs
+      log "❌ Dataset is invalid"
     Right _ -> do
       -- load all files
       files <- getFiles fp [ ".git", "etl", "lang", "assets" ]
@@ -142,7 +143,10 @@ runMain fp = do
               pure ds
       -- show all the error messages
       log $ joinWith "\n" $ map show msgs
-      log "Done."
+      case ds of
+        Just _ -> log "✅ Dataset is valid"
+        Nothing -> log "❌ Dataset is invalid"
+      pure unit
 
 -- logShow conceptFiles
 main :: Effect Unit

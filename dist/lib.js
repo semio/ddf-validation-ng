@@ -134,7 +134,7 @@ var pure = function(dict) {
   return dict.pure;
 };
 var when = function(dictApplicative) {
-  var pure15 = pure(dictApplicative);
+  var pure16 = pure(dictApplicative);
   return function(v) {
     return function(v1) {
       if (v) {
@@ -142,7 +142,7 @@ var when = function(dictApplicative) {
       }
       ;
       if (!v) {
-        return pure15(unit);
+        return pure16(unit);
       }
       ;
       throw new Error("Failed pattern match at Control.Applicative (line 63, column 1 - line 63, column 63): " + [v.constructor.name, v1.constructor.name]);
@@ -150,11 +150,11 @@ var when = function(dictApplicative) {
   };
 };
 var liftA1 = function(dictApplicative) {
-  var apply5 = apply(dictApplicative.Apply0());
-  var pure15 = pure(dictApplicative);
+  var apply6 = apply(dictApplicative.Apply0());
+  var pure16 = pure(dictApplicative);
   return function(f) {
     return function(a) {
-      return apply5(pure15(f))(a);
+      return apply6(pure16(f))(a);
     };
   };
 };
@@ -421,12 +421,12 @@ var alt = function(dict) {
 // output/Control.Monad/index.js
 var ap = function(dictMonad) {
   var bind7 = bind(dictMonad.Bind1());
-  var pure15 = pure(dictMonad.Applicative0());
+  var pure16 = pure(dictMonad.Applicative0());
   return function(f) {
     return function(a) {
       return bind7(f)(function(f$prime) {
         return bind7(a)(function(a$prime) {
-          return pure15(f$prime(a$prime));
+          return pure16(f$prime(a$prime));
         });
       });
     };
@@ -672,6 +672,19 @@ var showInt = {
 };
 var showChar = {
   show: showCharImpl
+};
+var showBoolean = {
+  show: function(v) {
+    if (v) {
+      return "true";
+    }
+    ;
+    if (!v) {
+      return "false";
+    }
+    ;
+    throw new Error("Failed pattern match at Data.Show (line 29, column 1 - line 31, column 23): " + [v.constructor.name]);
+  }
 };
 var show = function(dict) {
   return dict.show;
@@ -1027,6 +1040,7 @@ var $lazy_applyEffect = /* @__PURE__ */ $runtime_lazy("applyEffect", "Effect", f
   };
 });
 var functorEffect = /* @__PURE__ */ $lazy_functorEffect(20);
+var applyEffect = /* @__PURE__ */ $lazy_applyEffect(23);
 
 // output/Control.Monad.Rec.Class/index.js
 var Loop = /* @__PURE__ */ function() {
@@ -1211,6 +1225,9 @@ var heytingAlgebraBoolean = {
   disj: boolDisj,
   not: boolNot
 };
+var conj = function(dict) {
+  return dict.conj;
+};
 
 // output/Data.Foldable/foreign.js
 var foldrArray = function(f) {
@@ -1385,24 +1402,24 @@ var traverseArrayImpl = function() {
       return xs.concat(ys);
     };
   }
-  return function(apply5) {
+  return function(apply6) {
     return function(map18) {
-      return function(pure15) {
+      return function(pure16) {
         return function(f) {
           return function(array) {
             function go(bot, top2) {
               switch (top2 - bot) {
                 case 0:
-                  return pure15([]);
+                  return pure16([]);
                 case 1:
                   return map18(array1)(f(array[bot]));
                 case 2:
-                  return apply5(map18(array2)(f(array[bot])))(f(array[bot + 1]));
+                  return apply6(map18(array2)(f(array[bot])))(f(array[bot + 1]));
                 case 3:
-                  return apply5(apply5(map18(array3)(f(array[bot])))(f(array[bot + 1])))(f(array[bot + 2]));
+                  return apply6(apply6(map18(array3)(f(array[bot])))(f(array[bot + 1])))(f(array[bot + 2]));
                 default:
                   var pivot = bot + Math.floor((top2 - bot) / 4) * 2;
-                  return apply5(map18(concat22)(go(bot, pivot)))(go(pivot, top2));
+                  return apply6(map18(concat22)(go(bot, pivot)))(go(pivot, top2));
               }
             }
             return go(0, array.length);
@@ -1545,12 +1562,12 @@ var fromFoldable = function(dictFoldable) {
 };
 var foldr2 = /* @__PURE__ */ foldr(foldableArray);
 var foldM = function(dictMonad) {
-  var pure15 = pure(dictMonad.Applicative0());
+  var pure16 = pure(dictMonad.Applicative0());
   var bind12 = bind(dictMonad.Bind1());
   return function(f) {
     return function(b) {
       return unconsImpl(function(v) {
-        return pure15(b);
+        return pure16(b);
       })(function(a) {
         return function(as) {
           return bind12(f(b)(a))(function(b$prime) {
@@ -2923,11 +2940,11 @@ var traverse1Impl = function() {
     }
     return arr;
   }
-  return function(apply5) {
+  return function(apply6) {
     return function(map18) {
       return function(f) {
         var buildFrom = function(x, ys) {
-          return apply5(map18(consList)(f(x)))(ys);
+          return apply6(map18(consList)(f(x)))(ys);
         };
         var go = function(acc, currentLen, xs) {
           if (currentLen === 0) {
@@ -3799,11 +3816,11 @@ var manyRec = function(dictMonadRec) {
     var Alt0 = dictAlternative.Plus1().Alt0();
     var alt5 = alt(Alt0);
     var map18 = map(Alt0.Functor0());
-    var pure15 = pure(dictAlternative.Applicative0());
+    var pure16 = pure(dictAlternative.Applicative0());
     return function(p) {
       var go = function(acc) {
-        return bind12(alt5(map18(Loop.create)(p))(pure15(new Done(unit))))(function(aa) {
-          return pure15(bimap2(function(v) {
+        return bind12(alt5(map18(Loop.create)(p))(pure16(new Done(unit))))(function(aa) {
+          return pure16(bimap2(function(v) {
             return new Cons(v, acc);
           })(function(v) {
             return reverse2(acc);
@@ -5647,10 +5664,10 @@ var runExceptT = function(v) {
 var monadTransExceptT = {
   lift: function(dictMonad) {
     var bind7 = bind(dictMonad.Bind1());
-    var pure15 = pure(dictMonad.Applicative0());
+    var pure16 = pure(dictMonad.Applicative0());
     return function(m) {
       return bind7(m)(function(a) {
-        return pure15(new Right(a));
+        return pure16(new Right(a));
       });
     };
   }
@@ -5681,12 +5698,12 @@ var monadExceptT = function(dictMonad) {
 };
 var bindExceptT = function(dictMonad) {
   var bind7 = bind(dictMonad.Bind1());
-  var pure15 = pure(dictMonad.Applicative0());
+  var pure16 = pure(dictMonad.Applicative0());
   return {
     bind: function(v) {
       return function(k) {
         return bind7(v)(either(function($187) {
-          return pure15(Left.create($187));
+          return pure16(Left.create($187));
         })(function(a) {
           var v1 = k(a);
           return v1;
@@ -5756,11 +5773,11 @@ var runStateT = function(v) {
 var monadTransStateT = {
   lift: function(dictMonad) {
     var bind7 = bind(dictMonad.Bind1());
-    var pure15 = pure(dictMonad.Applicative0());
+    var pure16 = pure(dictMonad.Applicative0());
     return function(m) {
       return function(s) {
         return bind7(m)(function(x) {
-          return pure15(new Tuple(x, s));
+          return pure16(new Tuple(x, s));
         });
       };
     };
@@ -5818,11 +5835,11 @@ var applyStateT = function(dictMonad) {
   };
 };
 var applicativeStateT = function(dictMonad) {
-  var pure15 = pure(dictMonad.Applicative0());
+  var pure16 = pure(dictMonad.Applicative0());
   return {
     pure: function(a) {
       return function(s) {
-        return pure15(new Tuple(a, s));
+        return pure16(new Tuple(a, s));
       };
     },
     Apply0: function() {
@@ -5831,12 +5848,12 @@ var applicativeStateT = function(dictMonad) {
   };
 };
 var monadStateStateT = function(dictMonad) {
-  var pure15 = pure(dictMonad.Applicative0());
+  var pure16 = pure(dictMonad.Applicative0());
   var monadStateT1 = monadStateT(dictMonad);
   return {
     state: function(f) {
       return function($200) {
-        return pure15(f($200));
+        return pure16(f($200));
       };
     },
     Monad0: function() {
@@ -5870,13 +5887,13 @@ var vError = function(dictMonad) {
 };
 var runValidationT = function(dictMonad) {
   var bind7 = bind(dictMonad.Bind1());
-  var pure15 = pure(dictMonad.Applicative0());
+  var pure16 = pure(dictMonad.Applicative0());
   return function(dictMonoid) {
     var mempty2 = mempty(dictMonoid);
     var append3 = append(dictMonoid.Semigroup0());
     return function(v) {
       return bind7(runStateT(runExceptT(v))(mempty2))(function(v1) {
-        return pure15(function() {
+        return pure16(function() {
           if (v1.value0 instanceof Left) {
             return new Tuple(append3(v1.value0.value0)(v1.value1), Nothing.value);
           }
@@ -6246,7 +6263,8 @@ var setLineNo = function(i) {
       message: m.message,
       file: m.file,
       lineNo: i,
-      suggestions: m.suggestions
+      suggestions: m.suggestions,
+      isWarning: m.isWarning
     };
   };
 };
@@ -6256,7 +6274,8 @@ var setFile = function(f) {
       message: m.message,
       file: f,
       lineNo: m.lineNo,
-      suggestions: m.suggestions
+      suggestions: m.suggestions,
+      isWarning: m.isWarning
     };
   };
 };
@@ -6265,7 +6284,8 @@ var messageFromError = function(v) {
     message: v,
     file: "",
     lineNo: 0,
-    suggestions: ""
+    suggestions: "",
+    isWarning: true
   };
 };
 
@@ -6408,21 +6428,25 @@ var argv = /* @__PURE__ */ function() {
 var elem5 = /* @__PURE__ */ elem2(eqString);
 var map15 = /* @__PURE__ */ map(functorArray);
 var filterA2 = /* @__PURE__ */ filterA(applicativeEffect);
+var apply5 = /* @__PURE__ */ apply(applyEffect);
 var map16 = /* @__PURE__ */ map(functorEffect);
+var conj2 = /* @__PURE__ */ conj(heytingAlgebraBoolean);
+var pure14 = /* @__PURE__ */ pure(applicativeEffect);
 var traverse3 = /* @__PURE__ */ traverse(traversableArray)(applicativeEffect);
 var append2 = /* @__PURE__ */ append(semigroupArray);
 var getFiles = function(x) {
   return function(excludes) {
     return function __do2() {
       var fs = readdir(x)();
-      var fsMinusExcludes = filter(function(f) {
+      var folderFilter = function(f) {
         return !elem5(f)(excludes);
-      })(fs);
+      };
+      var fsMinusExcludes = filter(folderFilter)(fs);
       var fsFullPath = map15(function(f) {
         return concat2([x, f]);
       })(fsMinusExcludes);
       var files = filterA2(function(f) {
-        return map16(isFile)(stat(f));
+        return apply5(map16(conj2)(map16(isFile)(stat(f))))(pure14(extname(basename(f)) === ".csv"));
       })(fsFullPath)();
       var dirs = filterA2(function(f) {
         return map16(isDirectory)(stat(f));
@@ -6444,6 +6468,10 @@ var show6 = /* @__PURE__ */ show(/* @__PURE__ */ showRecord()()(/* @__PURE__ */ 
   }
 })(/* @__PURE__ */ showRecordFieldsCons({
   reflectSymbol: function() {
+    return "isWarning";
+  }
+})(/* @__PURE__ */ showRecordFieldsCons({
+  reflectSymbol: function() {
     return "lineNo";
   }
 })(/* @__PURE__ */ showRecordFieldsCons({
@@ -6454,46 +6482,46 @@ var show6 = /* @__PURE__ */ show(/* @__PURE__ */ showRecord()()(/* @__PURE__ */ 
   reflectSymbol: function() {
     return "suggestions";
   }
-})(showString))(showString))(showInt))(showString)));
+})(showString))(showString))(showInt))(showBoolean))(showString)));
 var runValidationT2 = /* @__PURE__ */ runValidationT(monadEffect)(monoidArray);
 var bindV2 = /* @__PURE__ */ bindV(monadEffect);
 var bind1 = /* @__PURE__ */ bind(bindV2);
-var discard12 = /* @__PURE__ */ discard4(bindV2);
+var discard22 = /* @__PURE__ */ discard4(bindV2);
 var applicativeV4 = /* @__PURE__ */ applicativeV2(monadEffect);
 var when2 = /* @__PURE__ */ when(applicativeV4);
 var vError2 = /* @__PURE__ */ vError(monadEffect);
 var lift5 = /* @__PURE__ */ lift(monadtransV)(monadEffect);
 var foldM3 = /* @__PURE__ */ foldM(/* @__PURE__ */ monadV(monadEffect));
 var $$void4 = /* @__PURE__ */ $$void(/* @__PURE__ */ functorV2(functorEffect));
-var pure14 = /* @__PURE__ */ pure(applicativeV4);
+var pure15 = /* @__PURE__ */ pure(applicativeV4);
 var parseFileInfos = function(fps) {
   return function(dictMonad) {
     var bindV1 = bindV(dictMonad);
     var applicativeV1 = applicativeV2(dictMonad);
-    var pure15 = pure(applicativeV1);
+    var pure22 = pure(applicativeV1);
     var discard32 = discard4(bindV1);
     var vWarning2 = vWarning(dictMonad)(monoidArray);
     return bind(bindV1)($$for(applicativeV1)(traversableArray)(fps)(function(fp) {
       var res = toEither(validateFileInfo(fp));
       if (res instanceof Right) {
-        return pure15([res.value0]);
+        return pure22([res.value0]);
       }
       ;
       if (res instanceof Left) {
         var msgs = map17(function() {
-          var $111 = setFile(fp);
-          return function($112) {
-            return $111(messageFromError($112));
+          var $118 = setFile(fp);
+          return function($119) {
+            return $118(messageFromError($119));
           };
         }())(res.value0);
         return discard32(vWarning2(msgs))(function() {
-          return pure15([]);
+          return pure22([]);
         });
       }
       ;
       throw new Error("Failed pattern match at Main (line 50, column 11 - line 56, column 22): " + [res.constructor.name]);
     }))(function(fis) {
-      return pure15(concat(fis));
+      return pure22(concat(fis));
     });
   };
 };
@@ -6501,31 +6529,31 @@ var parseCsvFiles = function(inputs) {
   return function(dictMonad) {
     var bindV1 = bindV(dictMonad);
     var applicativeV1 = applicativeV2(dictMonad);
-    var pure15 = pure(applicativeV1);
+    var pure22 = pure(applicativeV1);
     var discard32 = discard4(bindV1);
     var vWarning2 = vWarning(dictMonad)(monoidArray);
     return bind(bindV1)($$for(applicativeV1)(traversableArray)(inputs)(function(v) {
       var fp = filepath(v.value0);
       var v1 = toEither(validCsvFile(v.value0)(v.value1));
       if (v1 instanceof Right) {
-        return pure15([v1.value0]);
+        return pure22([v1.value0]);
       }
       ;
       if (v1 instanceof Left) {
         var msgs = map17(function() {
-          var $113 = setFile(fp);
-          return function($114) {
-            return $113(messageFromError($114));
+          var $120 = setFile(fp);
+          return function($121) {
+            return $120(messageFromError($121));
           };
         }())(v1.value0);
         return discard32(vWarning2(msgs))(function() {
-          return pure15([]);
+          return pure22([]);
         });
       }
       ;
       throw new Error("Failed pattern match at Main (line 66, column 11 - line 72, column 22): " + [v1.constructor.name]);
     }))(function(fs) {
-      return pure15(concat(fs));
+      return pure22(concat(fs));
     });
   };
 };
@@ -6534,7 +6562,7 @@ var appendConceptCsv = function(csv) {
     return function(dictMonad) {
       var discard32 = discard4(bindV(dictMonad));
       var vWarning2 = vWarning(dictMonad)(monoidArray);
-      var pure15 = pure(applicativeV2(dictMonad));
+      var pure22 = pure(applicativeV2(dictMonad));
       var v = getCsvContent(csv);
       var fp = filepath(getFileInfo(csv));
       var run3 = function(hs) {
@@ -6544,14 +6572,14 @@ var appendConceptCsv = function(csv) {
             var v2 = toEither(concept2);
             if (v2 instanceof Left) {
               var msgs = map17(function() {
-                var $115 = setFile(fp);
-                var $116 = setLineNo(v1.value0 + 1 | 0);
-                return function($117) {
-                  return $115($116(messageFromError($117)));
+                var $122 = setFile(fp);
+                var $123 = setLineNo(v1.value0 + 1 | 0);
+                return function($124) {
+                  return $122($123(messageFromError($124)));
                 };
               }())(v2.value0);
               return discard32(vWarning2(msgs))(function() {
-                return pure15(ds);
+                return pure22(ds);
               });
             }
             ;
@@ -6559,19 +6587,19 @@ var appendConceptCsv = function(csv) {
               var v3 = toEither(addConcept(v2.value0)(ds));
               if (v3 instanceof Left) {
                 var msgs = map17(function() {
-                  var $118 = setFile(fp);
-                  var $119 = setLineNo(v1.value0 + 1 | 0);
-                  return function($120) {
-                    return $118($119(messageFromError($120)));
+                  var $125 = setFile(fp);
+                  var $126 = setLineNo(v1.value0 + 1 | 0);
+                  return function($127) {
+                    return $125($126(messageFromError($127)));
                   };
                 }())(v3.value0);
                 return discard32(vWarning2(msgs))(function() {
-                  return pure15(ds);
+                  return pure22(ds);
                 });
               }
               ;
               if (v3 instanceof Right) {
-                return pure15(v3.value0);
+                return pure22(v3.value0);
               }
               ;
               throw new Error("Failed pattern match at Main (line 92, column 11 - line 98, column 38): " + [v3.constructor.name]);
@@ -6595,20 +6623,21 @@ var runMain = function(fp) {
     var v = toEither(datapackageFile);
     if (v instanceof Left) {
       var msgs = map17(function() {
-        var $121 = setFile(fp);
-        return function($122) {
-          return $121(messageFromError($122));
+        var $128 = setFile(fp);
+        return function($129) {
+          return $128(messageFromError($129));
         };
       }())(v.value0);
-      return log2(joinWith("\n")(map17(show6)(msgs)))();
+      log2(joinWith("\n")(map17(show6)(msgs)))();
+      return log2("\u274C Dataset is invalid")();
     }
     ;
     if (v instanceof Right) {
       var files = getFiles(fp)([".git", "etl", "lang", "assets"])();
       var v1 = runValidationT2(bind1(parseFileInfos(files)(monadEffect))(function(fileInfos) {
-        return discard12(when2(length(fileInfos) === 0)(vError2([messageFromError("No csv files in this folder. Please begin with a ddf--concepts.csv file.")])))(function() {
+        return discard22(when2(length(fileInfos) === 0)(vError2([messageFromError("No csv files in this folder. Please begin with a ddf--concepts.csv file.")])))(function() {
           var conceptFiles = getCollectionFiles("concepts")(fileInfos);
-          return discard12(when2(length(conceptFiles) === 0)(vError2([messageFromError("No concepts csv files in this folder. Dataset must at least have a ddf--concepts.csv file.")])))(function() {
+          return discard22(when2(length(conceptFiles) === 0)(vError2([messageFromError("No concepts csv files in this folder. Dataset must at least have a ddf--concepts.csv file.")])))(function() {
             return bind1(lift5(readCsvs(map17(filepath)(conceptFiles))))(function(conceptCsvContents) {
               var conceptInputs = zip(conceptFiles)(conceptCsvContents);
               return bind1(parseCsvFiles(conceptInputs)(monadEffect))(function(conceptCsvFiles) {
@@ -6618,11 +6647,11 @@ var runMain = function(fp) {
                   };
                 })(empty4)(conceptCsvFiles))(function(ds) {
                   var entityFiles = getCollectionFiles("entities")(fileInfos);
-                  return discard12(when2(length(entityFiles) > 0)(bind1(lift5(readCsvs(map17(filepath)(entityFiles))))(function(entityCsvContents) {
+                  return discard22(when2(length(entityFiles) > 0)(bind1(lift5(readCsvs(map17(filepath)(entityFiles))))(function(entityCsvContents) {
                     var entityInputs = zip(entityFiles)(entityCsvContents);
                     return $$void4(parseCsvFiles(entityInputs)(monadEffect));
                   })))(function() {
-                    return pure14(ds);
+                    return pure15(ds);
                   });
                 });
               });
@@ -6631,10 +6660,21 @@ var runMain = function(fp) {
         });
       }))();
       log2(joinWith("\n")(map17(show6)(v1.value0)))();
-      return log2("Done.")();
+      (function() {
+        if (v1.value1 instanceof Just) {
+          return log2("\u2705 Dataset is valid")();
+        }
+        ;
+        if (v1.value1 instanceof Nothing) {
+          return log2("\u274C Dataset is invalid")();
+        }
+        ;
+        throw new Error("Failed pattern match at Main (line 146, column 7 - line 148, column 46): " + [v1.value1.constructor.name]);
+      })();
+      return unit;
     }
     ;
-    throw new Error("Failed pattern match at Main (line 105, column 3 - line 145, column 18): " + [v.constructor.name]);
+    throw new Error("Failed pattern match at Main (line 105, column 3 - line 149, column 16): " + [v.constructor.name]);
   };
 };
 var main = function __do() {
@@ -6648,7 +6688,7 @@ var main = function __do() {
     return runMain(v.value0)();
   }
   ;
-  throw new Error("Failed pattern match at Main (line 152, column 3 - line 154, column 26): " + [v.constructor.name]);
+  throw new Error("Failed pattern match at Main (line 156, column 3 - line 158, column 26): " + [v.constructor.name]);
 };
 export {
   appendConceptCsv,
