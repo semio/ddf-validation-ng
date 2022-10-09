@@ -85,10 +85,10 @@ var map = function(dict) {
   return dict.map;
 };
 var mapFlipped = function(dictFunctor) {
-  var map18 = map(dictFunctor);
+  var map19 = map(dictFunctor);
   return function(fa) {
     return function(f) {
-      return map18(f)(fa);
+      return map19(f)(fa);
     };
   };
 };
@@ -112,19 +112,19 @@ var apply = function(dict) {
 };
 var applyFirst = function(dictApply) {
   var apply1 = apply(dictApply);
-  var map18 = map(dictApply.Functor0());
+  var map19 = map(dictApply.Functor0());
   return function(a) {
     return function(b) {
-      return apply1(map18($$const)(a))(b);
+      return apply1(map19($$const)(a))(b);
     };
   };
 };
 var applySecond = function(dictApply) {
   var apply1 = apply(dictApply);
-  var map18 = map(dictApply.Functor0());
+  var map19 = map(dictApply.Functor0());
   return function(a) {
     return function(b) {
-      return apply1(map18($$const(identity2))(a))(b);
+      return apply1(map19($$const(identity2))(a))(b);
     };
   };
 };
@@ -371,6 +371,11 @@ var zipWith = function(f) {
       }
       return result;
     };
+  };
+};
+var unsafeIndexImpl = function(xs) {
+  return function(n) {
+    return xs[n];
   };
 };
 
@@ -1403,7 +1408,7 @@ var traverseArrayImpl = function() {
     };
   }
   return function(apply6) {
-    return function(map18) {
+    return function(map19) {
       return function(pure16) {
         return function(f) {
           return function(array) {
@@ -1412,14 +1417,14 @@ var traverseArrayImpl = function() {
                 case 0:
                   return pure16([]);
                 case 1:
-                  return map18(array1)(f(array[bot]));
+                  return map19(array1)(f(array[bot]));
                 case 2:
-                  return apply6(map18(array2)(f(array[bot])))(f(array[bot + 1]));
+                  return apply6(map19(array2)(f(array[bot])))(f(array[bot + 1]));
                 case 3:
-                  return apply6(apply6(map18(array3)(f(array[bot])))(f(array[bot + 1])))(f(array[bot + 2]));
+                  return apply6(apply6(map19(array3)(f(array[bot])))(f(array[bot + 1])))(f(array[bot + 2]));
                 default:
                   var pivot = bot + Math.floor((top2 - bot) / 4) * 2;
-                  return apply6(map18(concat22)(go(bot, pivot)))(go(pivot, top2));
+                  return apply6(map19(concat22)(go(bot, pivot)))(go(pivot, top2));
               }
             }
             return go(0, array.length);
@@ -1537,10 +1542,15 @@ var unfoldableArray = {
 };
 
 // output/Data.Array/index.js
+var map1 = /* @__PURE__ */ map(functorMaybe);
 var traverse2 = /* @__PURE__ */ traverse(traversableArray);
 var zip = /* @__PURE__ */ function() {
   return zipWith(Tuple.create);
 }();
+var unsafeIndex = function() {
+  return unsafeIndexImpl;
+};
+var unsafeIndex1 = /* @__PURE__ */ unsafeIndex();
 var tail = /* @__PURE__ */ function() {
   return unconsImpl($$const(Nothing.value))(function(v) {
     return function(xs) {
@@ -1581,6 +1591,11 @@ var foldM = function(dictMonad) {
 var findIndex = /* @__PURE__ */ function() {
   return findIndexImpl(Just.create)(Nothing.value);
 }();
+var find2 = function(f) {
+  return function(xs) {
+    return map1(unsafeIndex1(xs))(findIndex(f)(xs));
+  };
+};
 var elemIndex = function(dictEq) {
   var eq22 = eq(dictEq);
   return function(x) {
@@ -2884,7 +2899,7 @@ function readCsvImpl(filepath2) {
 // output/Data.Csv/index.js
 var map4 = /* @__PURE__ */ map(functorArray);
 var pure2 = /* @__PURE__ */ pure(applicativeEffect);
-var map1 = /* @__PURE__ */ map(functorMaybe);
+var map12 = /* @__PURE__ */ map(functorMaybe);
 var map22 = /* @__PURE__ */ map(functorEffect);
 var toCsvRow = function(v) {
   if (v.length === 0) {
@@ -2902,7 +2917,7 @@ var readCsv = function(x) {
   return pure2(readCsvImpl(x));
 };
 var create = function(recs) {
-  var rows = map1(toCsvRow)(tail(recs));
+  var rows = map12(toCsvRow)(tail(recs));
   var headers = head(recs);
   return {
     headers,
@@ -2941,10 +2956,10 @@ var traverse1Impl = function() {
     return arr;
   }
   return function(apply6) {
-    return function(map18) {
+    return function(map19) {
       return function(f) {
         var buildFrom = function(x, ys) {
-          return apply6(map18(consList)(f(x)))(ys);
+          return apply6(map19(consList)(f(x)))(ys);
         };
         var go = function(acc, currentLen, xs) {
           if (currentLen === 0) {
@@ -2958,12 +2973,12 @@ var traverse1Impl = function() {
           }
         };
         return function(array) {
-          var acc = map18(finalCell)(f(array[array.length - 1]));
+          var acc = map19(finalCell)(f(array[array.length - 1]));
           var result = go(acc, array.length - 1, array);
           while (result instanceof Cont) {
             result = result.fn();
           }
-          return map18(listToArray)(result);
+          return map19(listToArray)(result);
         };
       };
     };
@@ -3815,11 +3830,11 @@ var manyRec = function(dictMonadRec) {
   return function(dictAlternative) {
     var Alt0 = dictAlternative.Plus1().Alt0();
     var alt5 = alt(Alt0);
-    var map18 = map(Alt0.Functor0());
+    var map19 = map(Alt0.Functor0());
     var pure16 = pure(dictAlternative.Applicative0());
     return function(p) {
       var go = function(acc) {
-        return bind12(alt5(map18(Loop.create)(p))(pure16(new Done(unit))))(function(aa) {
+        return bind12(alt5(map19(Loop.create)(p))(pure16(new Done(unit))))(function(aa) {
           return pure16(bimap2(function(v) {
             return new Cons(v, acc);
           })(function(v) {
@@ -4236,11 +4251,11 @@ var $$char = function(c) {
 };
 
 // output/Data.DDF.Identifier/index.js
+var pure6 = /* @__PURE__ */ pure(/* @__PURE__ */ applicativeV(semigroupArray));
 var eq2 = /* @__PURE__ */ eq(eqNonEmptyString);
 var compare3 = /* @__PURE__ */ compare(ordNonEmptyString);
 var alt3 = /* @__PURE__ */ alt(altParser);
-var pure6 = /* @__PURE__ */ pure(applicativeParser);
-var pure1 = /* @__PURE__ */ pure(/* @__PURE__ */ applicativeV(semigroupArray));
+var pure1 = /* @__PURE__ */ pure(applicativeParser);
 var show4 = /* @__PURE__ */ show(showInt);
 var unsafeCreate = function(x) {
   var v = fromString(x);
@@ -4252,7 +4267,7 @@ var unsafeCreate = function(x) {
     return "undefined_id";
   }
   ;
-  throw new Error("Failed pattern match at Data.DDF.Identifier (line 80, column 18 - line 82, column 48): " + [v.constructor.name]);
+  throw new Error("Failed pattern match at Data.DDF.Identifier (line 91, column 18 - line 93, column 48): " + [v.constructor.name]);
 };
 var eqId = {
   eq: function(x) {
@@ -4275,20 +4290,20 @@ var alphaNumLower = /* @__PURE__ */ alt3(lowerCaseChar)(/* @__PURE__ */ withErro
 var alphaNumAnd_ = /* @__PURE__ */ alt3(alphaNumLower)(/* @__PURE__ */ withError(/* @__PURE__ */ $$char("_"))("expect lowercase alphanumeric and underscore _"));
 var identifier = /* @__PURE__ */ function() {
   var stringFromChars = function() {
-    var $43 = fromFoldable1(foldable1NonEmptyList);
-    return function($44) {
-      return fromNonEmptyCharArray($43($44));
+    var $46 = fromFoldable1(foldable1NonEmptyList);
+    return function($47) {
+      return fromNonEmptyCharArray($46($47));
     };
   }();
   return bind(bindParser)(many1(alphaNumAnd_))(function(chars) {
-    return pure6(stringFromChars(chars));
+    return pure1(stringFromChars(chars));
   });
 }();
 var identifier$prime = /* @__PURE__ */ applyFirst(applyParser)(identifier)(eof);
 var parseId = function(x) {
   var v = runParser(identifier$prime)(x);
   if (v instanceof Right) {
-    return pure1(v.value0);
+    return pure6(v.value0);
   }
   ;
   if (v instanceof Left) {
@@ -5213,7 +5228,7 @@ var unwrap2 = /* @__PURE__ */ unwrap();
 var member2 = /* @__PURE__ */ member(ordId);
 var lookup2 = /* @__PURE__ */ lookup(ordId);
 var $$delete3 = /* @__PURE__ */ $$delete2(ordId);
-var map12 = /* @__PURE__ */ map(functorNonEmptyArray);
+var map13 = /* @__PURE__ */ map(functorNonEmptyArray);
 var coerce3 = /* @__PURE__ */ coerce();
 var fromFoldable4 = /* @__PURE__ */ fromFoldable3(ordId)(foldableArray);
 var pure7 = /* @__PURE__ */ pure(/* @__PURE__ */ applicativeV(semigroupArray));
@@ -5390,7 +5405,7 @@ var fromCsvRow = function(headers) {
         props: m$prime
       };
     };
-    var headersL = toArray(map12(coerce3)(headers));
+    var headersL = toArray(map13(coerce3)(headers));
     var rowAsMap = function(r) {
       return fromFoldable4(zip(headersL)(r));
     };
@@ -5679,10 +5694,10 @@ var mapExceptT = function(f) {
   };
 };
 var functorExceptT = function(dictFunctor) {
-  var map18 = map(dictFunctor);
+  var map19 = map(dictFunctor);
   return {
     map: function(f) {
-      return mapExceptT(map18(map10(f)));
+      return mapExceptT(map19(map10(f)));
     }
   };
 };
@@ -5784,12 +5799,12 @@ var monadTransStateT = {
   }
 };
 var functorStateT = function(dictFunctor) {
-  var map18 = map(dictFunctor);
+  var map19 = map(dictFunctor);
   return {
     map: function(f) {
       return function(v) {
         return function(s) {
-          return map18(function(v1) {
+          return map19(function(v1) {
             return new Tuple(f(v1.value0), v1.value1);
           })(v(s));
         };
@@ -6010,7 +6025,7 @@ var discard3 = /* @__PURE__ */ discard(discardUnit);
 var discard1 = /* @__PURE__ */ discard3(bindParser);
 var $$void3 = /* @__PURE__ */ $$void(functorParser);
 var show1 = /* @__PURE__ */ show(showInt);
-var map13 = /* @__PURE__ */ map(functorNonEmptyArray);
+var map14 = /* @__PURE__ */ map(functorNonEmptyArray);
 var sequence2 = /* @__PURE__ */ sequence(traversableNonEmptyArray)(applicativeV3);
 var show23 = /* @__PURE__ */ show(/* @__PURE__ */ showArray(showNonEmptyString));
 var apply4 = /* @__PURE__ */ apply(/* @__PURE__ */ applyV(semigroupArray));
@@ -6147,10 +6162,10 @@ var getCsvContent = function(v) {
   return v.value0.csvContent;
 };
 var colsAreValidIds = function(input) {
-  var res = sequence2(map13(parseHeader)(input.headers));
+  var res = sequence2(map14(parseHeader)(input.headers));
   var v = toEither(res);
   if (v instanceof Right) {
-    var headerValues = map13(headerVal)(v.value0);
+    var headerValues = map14(headerVal)(v.value0);
     var is_headers = filter2(function() {
       var $157 = startsWith("is--");
       return function($158) {
@@ -6174,7 +6189,7 @@ var colsAreValidIds = function(input) {
   throw new Error("Failed pattern match at Data.DDF.CsvFile (line 139, column 5 - line 149, column 32): " + [v.constructor.name]);
 };
 var colsAreValidHeaders = function(input) {
-  var res = sequence2(map13(parseHeader)(input.headers));
+  var res = sequence2(map14(parseHeader)(input.headers));
   var v = toEither(res);
   if (v instanceof Right) {
     return pure9({
@@ -6279,6 +6294,15 @@ var setFile = function(f) {
     };
   };
 };
+var setError = function(m) {
+  return {
+    message: m.message,
+    file: m.file,
+    lineNo: m.lineNo,
+    suggestions: m.suggestions,
+    isWarning: false
+  };
+};
 var messageFromError = function(v) {
   return {
     message: v,
@@ -6287,6 +6311,20 @@ var messageFromError = function(v) {
     suggestions: "",
     isWarning: true
   };
+};
+var hasError = function(msgs) {
+  var v = find2(function(msg) {
+    return !msg.isWarning;
+  })(msgs);
+  if (v instanceof Nothing) {
+    return false;
+  }
+  ;
+  if (v instanceof Just) {
+    return true;
+  }
+  ;
+  throw new Error("Failed pattern match at Data.DDF.Validation.Result (line 71, column 3 - line 73, column 19): " + [v.constructor.name]);
 };
 
 // output/Node.FS.Sync/foreign.js
@@ -6350,9 +6388,9 @@ var isDirectory = function(v) {
 };
 
 // output/Node.FS.Sync/index.js
-var map14 = /* @__PURE__ */ map(functorEffect);
+var map15 = /* @__PURE__ */ map(functorEffect);
 var stat = function(file) {
-  return map14(Stats.create)(mkEffect(function(v) {
+  return map15(Stats.create)(mkEffect(function(v) {
     return statSync(file);
   }));
 };
@@ -6426,10 +6464,10 @@ var argv = /* @__PURE__ */ function() {
 
 // output/Utils/index.js
 var elem5 = /* @__PURE__ */ elem2(eqString);
-var map15 = /* @__PURE__ */ map(functorArray);
+var map16 = /* @__PURE__ */ map(functorArray);
 var filterA2 = /* @__PURE__ */ filterA(applicativeEffect);
 var apply5 = /* @__PURE__ */ apply(applyEffect);
-var map16 = /* @__PURE__ */ map(functorEffect);
+var map17 = /* @__PURE__ */ map(functorEffect);
 var conj2 = /* @__PURE__ */ conj(heytingAlgebraBoolean);
 var pure14 = /* @__PURE__ */ pure(applicativeEffect);
 var traverse3 = /* @__PURE__ */ traverse(traversableArray)(applicativeEffect);
@@ -6442,16 +6480,16 @@ var getFiles = function(x) {
         return !elem5(f)(excludes);
       };
       var fsMinusExcludes = filter(folderFilter)(fs);
-      var fsFullPath = map15(function(f) {
+      var fsFullPath = map16(function(f) {
         return concat2([x, f]);
       })(fsMinusExcludes);
       var files = filterA2(function(f) {
-        return apply5(map16(conj2)(map16(isFile)(stat(f))))(pure14(extname(basename(f)) === ".csv"));
+        return apply5(map17(conj2)(map17(isFile)(stat(f))))(pure14(extname(basename(f)) === ".csv"));
       })(fsFullPath)();
       var dirs = filterA2(function(f) {
-        return map16(isDirectory)(stat(f));
+        return map17(isDirectory)(stat(f));
       })(fsFullPath)();
-      var fsInDirs = map16(concat)(traverse3(function(d) {
+      var fsInDirs = map17(concat)(traverse3(function(d) {
         return getFiles(d)([]);
       })(dirs))();
       return append2(files)(fsInDirs);
@@ -6460,7 +6498,7 @@ var getFiles = function(x) {
 };
 
 // output/Main/index.js
-var map17 = /* @__PURE__ */ map(functorArray);
+var map18 = /* @__PURE__ */ map(functorArray);
 var discard4 = /* @__PURE__ */ discard(discardUnit);
 var show6 = /* @__PURE__ */ show(/* @__PURE__ */ showRecord()()(/* @__PURE__ */ showRecordFieldsCons({
   reflectSymbol: function() {
@@ -6508,10 +6546,10 @@ var parseFileInfos = function(fps) {
       }
       ;
       if (res instanceof Left) {
-        var msgs = map17(function() {
-          var $118 = setFile(fp);
-          return function($119) {
-            return $118(messageFromError($119));
+        var msgs = map18(function() {
+          var $119 = setFile(fp);
+          return function($120) {
+            return $119(messageFromError($120));
           };
         }())(res.value0);
         return discard32(vWarning2(msgs))(function() {
@@ -6540,10 +6578,10 @@ var parseCsvFiles = function(inputs) {
       }
       ;
       if (v1 instanceof Left) {
-        var msgs = map17(function() {
-          var $120 = setFile(fp);
-          return function($121) {
-            return $120(messageFromError($121));
+        var msgs = map18(function() {
+          var $121 = setFile(fp);
+          return function($122) {
+            return $121(messageFromError($122));
           };
         }())(v1.value0);
         return discard32(vWarning2(msgs))(function() {
@@ -6571,11 +6609,11 @@ var appendConceptCsv = function(csv) {
             var concept2 = andThen(fromCsvRow(hs)(v1.value1))(parseConcept);
             var v2 = toEither(concept2);
             if (v2 instanceof Left) {
-              var msgs = map17(function() {
-                var $122 = setFile(fp);
-                var $123 = setLineNo(v1.value0 + 1 | 0);
-                return function($124) {
-                  return $122($123(messageFromError($124)));
+              var msgs = map18(function() {
+                var $123 = setFile(fp);
+                var $124 = setLineNo(v1.value0 + 1 | 0);
+                return function($125) {
+                  return setError($123($124(messageFromError($125))));
                 };
               }())(v2.value0);
               return discard32(vWarning2(msgs))(function() {
@@ -6586,11 +6624,11 @@ var appendConceptCsv = function(csv) {
             if (v2 instanceof Right) {
               var v3 = toEither(addConcept(v2.value0)(ds));
               if (v3 instanceof Left) {
-                var msgs = map17(function() {
-                  var $125 = setFile(fp);
-                  var $126 = setLineNo(v1.value0 + 1 | 0);
-                  return function($127) {
-                    return $125($126(messageFromError($127)));
+                var msgs = map18(function() {
+                  var $126 = setFile(fp);
+                  var $127 = setLineNo(v1.value0 + 1 | 0);
+                  return function($128) {
+                    return setError($126($127(messageFromError($128))));
                   };
                 }())(v3.value0);
                 return discard32(vWarning2(msgs))(function() {
@@ -6622,13 +6660,13 @@ var runMain = function(fp) {
     var datapackageFile = datapackageExists(fp)();
     var v = toEither(datapackageFile);
     if (v instanceof Left) {
-      var msgs = map17(function() {
-        var $128 = setFile(fp);
-        return function($129) {
-          return $128(messageFromError($129));
+      var msgs = map18(function() {
+        var $129 = setFile(fp);
+        return function($130) {
+          return $129(messageFromError($130));
         };
       }())(v.value0);
-      log2(joinWith("\n")(map17(show6)(msgs)))();
+      log2(joinWith("\n")(map18(show6)(msgs)))();
       return log2("\u274C Dataset is invalid")();
     }
     ;
@@ -6638,7 +6676,7 @@ var runMain = function(fp) {
         return discard22(when2(length(fileInfos) === 0)(vError2([messageFromError("No csv files in this folder. Please begin with a ddf--concepts.csv file.")])))(function() {
           var conceptFiles = getCollectionFiles("concepts")(fileInfos);
           return discard22(when2(length(conceptFiles) === 0)(vError2([messageFromError("No concepts csv files in this folder. Dataset must at least have a ddf--concepts.csv file.")])))(function() {
-            return bind1(lift5(readCsvs(map17(filepath)(conceptFiles))))(function(conceptCsvContents) {
+            return bind1(lift5(readCsvs(map18(filepath)(conceptFiles))))(function(conceptCsvContents) {
               var conceptInputs = zip(conceptFiles)(conceptCsvContents);
               return bind1(parseCsvFiles(conceptInputs)(monadEffect))(function(conceptCsvFiles) {
                 return bind1(foldM3(function(d) {
@@ -6647,7 +6685,7 @@ var runMain = function(fp) {
                   };
                 })(empty4)(conceptCsvFiles))(function(ds) {
                   var entityFiles = getCollectionFiles("entities")(fileInfos);
-                  return discard22(when2(length(entityFiles) > 0)(bind1(lift5(readCsvs(map17(filepath)(entityFiles))))(function(entityCsvContents) {
+                  return discard22(when2(length(entityFiles) > 0)(bind1(lift5(readCsvs(map18(filepath)(entityFiles))))(function(entityCsvContents) {
                     var entityInputs = zip(entityFiles)(entityCsvContents);
                     return $$void4(parseCsvFiles(entityInputs)(monadEffect));
                   })))(function() {
@@ -6659,9 +6697,14 @@ var runMain = function(fp) {
           });
         });
       }))();
-      log2(joinWith("\n")(map17(show6)(v1.value0)))();
+      log2(joinWith("\n")(map18(show6)(v1.value0)))();
       (function() {
         if (v1.value1 instanceof Just) {
+          var $112 = hasError(v1.value0);
+          if ($112) {
+            return log2("\u274C Dataset is invalid")();
+          }
+          ;
           return log2("\u2705 Dataset is valid")();
         }
         ;
@@ -6669,26 +6712,26 @@ var runMain = function(fp) {
           return log2("\u274C Dataset is invalid")();
         }
         ;
-        throw new Error("Failed pattern match at Main (line 146, column 7 - line 148, column 46): " + [v1.value1.constructor.name]);
+        throw new Error("Failed pattern match at Main (line 146, column 7 - line 152, column 46): " + [v1.value1.constructor.name]);
       })();
       return unit;
     }
     ;
-    throw new Error("Failed pattern match at Main (line 105, column 3 - line 149, column 16): " + [v.constructor.name]);
+    throw new Error("Failed pattern match at Main (line 105, column 3 - line 153, column 16): " + [v.constructor.name]);
   };
 };
 var main = function __do() {
   var path2 = argv();
   var v = index(path2)(2);
   if (v instanceof Nothing) {
-    return log2("please provide a file path")();
+    return runMain("./")();
   }
   ;
   if (v instanceof Just) {
     return runMain(v.value0)();
   }
   ;
-  throw new Error("Failed pattern match at Main (line 156, column 3 - line 158, column 26): " + [v.constructor.name]);
+  throw new Error("Failed pattern match at Main (line 160, column 3 - line 162, column 26): " + [v.constructor.name]);
 };
 
 // <stdin>
