@@ -1,7 +1,10 @@
 module Data.DDF.Validation.Result where
 
 import Prelude
+
+import Data.Array (find)
 import Data.Generic.Rep (class Generic)
+import Data.Maybe (Maybe(..))
 import Data.Newtype (class Newtype)
 import Data.Show.Generic (genericShow)
 
@@ -62,4 +65,10 @@ setError m = m { isWarning = false }
 
 messageFromError :: Error -> Message
 messageFromError (Error e) = { message: e, file: "", lineNo: 0, suggestions: "", isWarning: true }
+
+hasError :: Array Message -> Boolean
+hasError msgs = 
+  case find (\msg -> not $ msg.isWarning) msgs of
+    Nothing -> false
+    Just _ -> true
 

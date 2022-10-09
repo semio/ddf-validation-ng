@@ -18,7 +18,7 @@ import Data.DDF.DataSet (DataSet(..))
 import Data.DDF.DataSet as DataSet
 import Data.DDF.FileInfo (FileInfo(..), getCollectionFiles, isConceptFile)
 import Data.DDF.FileInfo as FI
-import Data.DDF.Validation.Result (Error(..), Errors, Messages, messageFromError, setFile, setLineNo, setSuggestions)
+import Data.DDF.Validation.Result (Error(..), Errors, Messages, hasError, messageFromError, setError, setFile, setLineNo, setSuggestions)
 import Data.DDF.Validation.ValidationT (Validation, ValidationT(..), runValidationT, vError, vWarning)
 import Data.Either (Either(..))
 import Data.Foldable (traverse_)
@@ -85,14 +85,14 @@ appendConceptCsv csv dataset = do
       case toEither $ concept of
         Left errs -> do
           let
-            msgs = map (setFile fp <<< setLineNo (idx + 1) <<< messageFromError) errs
+            msgs = map (setError <<< setFile fp <<< setLineNo (idx + 1) <<< messageFromError) errs
           vWarning msgs
           pure ds
         Right conc -> do
           case toEither $ DataSet.addConcept conc ds of
             Left errs' -> do
               let
-                msgs = map (setFile fp <<< setLineNo (idx + 1) <<< messageFromError) errs'
+                msgs = map (setError <<< setFile fp <<< setLineNo (idx + 1) <<< messageFromError) errs'
               vWarning msgs
               pure ds
             Right newds -> pure newds
@@ -144,7 +144,11 @@ runMain fp = do
       -- show all the error messages
       log $ joinWith "\n" $ map show msgs
       case ds of
-        Just _ -> log "✅ Dataset is valid"
+        Just _ -> 
+          if hasError msgs then
+            log "❌ Dataset is invalid"
+          else
+            log "✅ Dataset is valid"
         Nothing -> log "❌ Dataset is invalid"
       pure unit
 
@@ -154,5 +158,5 @@ main = do
   -- get path
   path <- argv
   case path A.!! 2 of
-    Nothing -> log "please provide a file path"
+    Nothing -> runMain "./"
     Just fp -> runMain fp
