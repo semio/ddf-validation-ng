@@ -14,6 +14,8 @@ export function readCsvImpl(filepath) {
     let csvLine = readFileSync(filepath, { encoding: "utf-8" })
 
     return parse(csvLine, {
+        bom: true,
+        quote: '"',
         columns: false,
         relax_column_count: true,
         // We will skip the records that have different field numbers from headers.
