@@ -1,7 +1,6 @@
 module Main where
 
 import Prelude
-
 import Control.Monad.State.Trans (get)
 import Control.Monad.Trans.Class (lift)
 import Data.Array (concat, filter, foldM, partition)
@@ -10,13 +9,14 @@ import Data.Array as Arr
 import Data.Array.NonEmpty (NonEmptyArray, groupAllBy, groupBy)
 import Data.Csv (CsvRow(..), RawCsvContent, getLineNo, getRow, readCsv)
 import Data.Csv as C
-import Data.DDF.Concept (Concept(..), fromCsvRow, parseConcept)
+import Data.DDF.Concept (Concept(..), parseConcept)
 import Data.DDF.Concept as Conc
 import Data.DDF.CsvFile (CsvContent, CsvFile(..), Header(..), getCsvContent, validCsvFile)
 import Data.DDF.CsvFile as CSV
 import Data.DDF.DataSet (DataSet(..))
 import Data.DDF.DataSet as DataSet
-import Data.DDF.FileInfo (FileInfo(..), getCollectionFiles, isConceptFile)
+import Data.DDF.Entity as Ent
+import Data.DDF.FileInfo (CollectionInfo(..), FileInfo(..), getCollectionFiles, isConceptFile)
 import Data.DDF.FileInfo as FI
 import Data.DDF.Validation.Result (Error(..), Errors, Messages, hasError, messageFromError, setError, setFile, setLineNo, setSuggestions)
 import Data.DDF.Validation.ValidationT (Validation, ValidationT(..), runValidationT, vError, vWarning)
@@ -40,6 +40,7 @@ import Node.Path (FilePath)
 import Node.Process (argv)
 import Utils (arrayOfLeft, arrayOfRight, getFiles)
 
+-- TODO: move below functions to separated module.
 parseFileInfos :: Array FilePath -> Validation Messages (Array FileInfo)
 parseFileInfos fps = do
   fis <-
@@ -56,6 +57,8 @@ parseFileInfos fps = do
               pure []
   pure $ A.concat fis
 
+-- FIXME: parse concept file and parse entity file should be different
+-- because when parsing entity file, we can check if all headers are valid id in dataset.
 parseCsvFiles :: Array (Tuple FileInfo RawCsvContent) -> Validation Messages (Array CsvFile)
 parseCsvFiles inputs = do
   fs <-
@@ -72,31 +75,96 @@ parseCsvFiles inputs = do
               pure []
   pure $ A.concat fs
 
-appendConceptCsv :: CsvFile -> DataSet -> Validation Messages DataSet
-appendConceptCsv csv dataset = do
+appendCsv :: CsvFile -> DataSet -> Validation Messages DataSet
+appendCsv csv dataset = case FI.collection $ CSV.getFileInfo csv of
+  Concepts -> appendConceptsCsv csv dataset
+  Entities ent -> appendEntityCsv ent csv dataset
+  otherwise -> vError $ map messageFromError [ Error $ "not implemented" ]
+
+appendConceptsCsv :: CsvFile -> DataSet -> Validation Messages DataSet
+appendConceptsCsv csv dataset = foldM (\d r -> run headers d r) dataset rows
+  where
+  { headers, rows } = CSV.getCsvContent csv
+
+  fp = FI.filepath $ CSV.getFileInfo csv
+
+  validateConceptCsvErrors hs csvrow =
+    CSV.validCsvRec hs csvrow
+      `andThen`
+        (pure <<< Conc.conceptInputFromCsvRec)
+      `andThen`
+        Conc.parseConcept
+
+  run hs ds csvrow@(CsvRow (Tuple idx row)) = do
+    let
+      concept = validateConceptCsvErrors hs csvrow
+
+      mkMessage = setFile fp <<< setLineNo (idx + 1) <<< messageFromError
+    case toEither concept of
+      Left errs -> do
+        let
+          msgs = map (setError <<< mkMessage) errs
+        vWarning msgs
+        pure ds
+      Right conc -> do
+        case toEither $ Conc.conceptIdTooLong conc of
+          Left errs' -> do
+            let
+              msgs = map mkMessage errs'
+            vWarning msgs
+          Right _ -> pure unit
+        case toEither $ DataSet.addConcept conc ds of
+          Left errs' -> do
+            let
+              msgs = map (setError <<< mkMessage) errs'
+            vWarning msgs
+            pure ds
+          Right newds -> pure newds
+
+appendEntityCsv :: FI.Ent -> CsvFile -> DataSet -> Validation Messages DataSet
+appendEntityCsv { domain, set } csv dataset = foldM (\d r -> run headers d r) dataset rows
+  where
+  { headers, rows } = CSV.getCsvContent csv
+
+  fp = FI.filepath $ CSV.getFileInfo csv
+
+  run hs ds csvrow@(CsvRow (Tuple idx row)) = do
+    let
+      entity =
+        CSV.validCsvRec hs csvrow
+          `andThen`
+            Ent.entityInputFromCsvRecAndFileInfo { domain, set }
+          `andThen`
+            Ent.parseEntity
+    case toEither entity of
+      Left errs -> do
+        let
+          msgs = map (setError <<< setFile fp <<< setLineNo (idx + 1) <<< messageFromError) errs
+        vWarning msgs
+        pure ds
+      Right ent -> do
+        case toEither $ DataSet.addEntity ent ds of
+          Left errs' -> do
+            let
+              msgs = map (setError <<< setFile fp <<< setLineNo (idx + 1) <<< messageFromError) errs'
+            vWarning msgs
+            pure ds
+          Right newds -> pure newds
+
+checkDataSetConceptErrors :: DataSet -> Validation Messages DataSet
+checkDataSetConceptErrors ds = do
   let
-    { headers, rows } = CSV.getCsvContent csv
-
-    fp = FI.filepath $ CSV.getFileInfo csv
-
-    run hs ds (CsvRow (Tuple idx row)) = do
+    res = DataSet.checkDomainForEntitySets ds
+  case toEither res of
+    Left errs -> do
       let
-        concept = Conc.fromCsvRow hs row `andThen` Conc.parseConcept
-      case toEither $ concept of
-        Left errs -> do
-          let
-            msgs = map (setError <<< setFile fp <<< setLineNo (idx + 1) <<< messageFromError) errs
-          vWarning msgs
-          pure ds
-        Right conc -> do
-          case toEither $ DataSet.addConcept conc ds of
-            Left errs' -> do
-              let
-                msgs = map (setError <<< setFile fp <<< setLineNo (idx + 1) <<< messageFromError) errs'
-              vWarning msgs
-              pure ds
-            Right newds -> pure newds
-  foldM (\d r -> run headers d r) dataset rows
+        -- FIXME: how to get the file and line num when running dataset checking?
+        -- one way to do is to first read concepts csvs and then read it again for such checking.
+        -- the other way is to cache where the concepts are defined.
+        msgs = map (setError <<< messageFromError) errs
+      vWarning msgs
+      pure ds
+    Right _ -> pure ds
 
 runMain :: FilePath -> Effect Unit
 runMain fp = do
@@ -127,24 +195,24 @@ runMain fp = do
                 conceptInputs = A.zip conceptFiles conceptCsvContents
               conceptCsvFiles <- parseCsvFiles conceptInputs
               -- create a dataset and append all Concepts parsed
-              ds <- foldM (\d f -> appendConceptCsv f d) DataSet.empty conceptCsvFiles
+              ds <- foldM (\d f -> appendCsv f d) DataSet.empty conceptCsvFiles
               -- TODO: after loading all concepts, need to check if all properties keys are valid Concepts
+              dsWithConc <- checkDataSetConceptErrors ds
               -- validate Entity files
               let
                 entityFiles = getCollectionFiles "entities" fileInfos
-              when (A.length entityFiles > 0)
-                $ do
-                    entityCsvContents <- lift $ C.readCsvs $ map FI.filepath entityFiles
-                    let
-                      entityInputs = A.zip entityFiles entityCsvContents
-                    void $ parseCsvFiles entityInputs
+              entityCsvContents <- lift $ C.readCsvs $ map FI.filepath entityFiles
+              let
+                entityInputs = A.zip entityFiles entityCsvContents
+              entityCsvFiles <- parseCsvFiles entityInputs
+              dsWithEnt <- foldM (\d f -> appendCsv f d) dsWithConc entityCsvFiles
               -- next steps...
               -- finally if everything goes well, return the dataset
-              pure ds
+              pure dsWithEnt
       -- show all the error messages
       log $ joinWith "\n" $ map show msgs
       case ds of
-        Just _ -> 
+        Just _ ->
           if hasError msgs then
             log "❌ Dataset is invalid"
           else

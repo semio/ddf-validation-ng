@@ -76,6 +76,9 @@ isDataPointsFile (FileInfo _ collection _) = case collection of
 filepath :: FileInfo -> FilePath
 filepath (FileInfo fp _ _) = fp
 
+collection :: FileInfo -> CollectionInfo
+collection (FileInfo _ c _) = c
+
 -- | filter a collection from array of fileinfos
 getCollectionFiles :: String -> Array FileInfo -> Array FileInfo
 getCollectionFiles "concepts" = A.filter isConceptFile

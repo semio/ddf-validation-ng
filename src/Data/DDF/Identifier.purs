@@ -3,13 +3,14 @@ module Data.DDF.Identifier where
 import Data.Validation.Semigroup
 import Prelude
 import StringParser
+
 import Control.Alt ((<|>))
 import Data.Array.NonEmpty (fromFoldable1)
 import Data.DDF.Validation.Result (Errors, Error(..))
 import Data.Either (Either(..))
 import Data.Generic.Rep (class Generic)
 import Data.Maybe (Maybe(..))
-import Data.Newtype (class Newtype)
+import Data.Newtype (class Newtype, unwrap)
 import Data.Show.Generic (genericShow)
 import Data.String.NonEmpty.CodeUnits (charAt, fromNonEmptyCharArray)
 import Data.String.NonEmpty.Internal (NonEmptyString(..), fromString, toString)
@@ -30,9 +31,8 @@ derive instance ordId :: Ord Identifier
 instance showId :: Show Identifier where
   show = genericShow
 
--- FIXME: maybe output a String instead
-value :: Identifier -> NonEmptyString
-value (Id x) = x
+value :: Identifier -> String
+value (Id x) = toString $ x
 
 -- | parse lower case alphanum strings
 alphaNumLower :: Parser Char
@@ -75,7 +75,7 @@ parseId x = case runParser identifier' x of
 isLongerThan64Chars :: Identifier -> V Errors Identifier
 isLongerThan64Chars a =
   let
-    str = value a
+    str = unwrap a
   in
     case charAt 64 str of
       Nothing -> pure a

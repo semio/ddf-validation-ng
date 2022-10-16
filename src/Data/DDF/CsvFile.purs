@@ -7,6 +7,7 @@ import Control.Alt ((<|>))
 import Data.Array as A
 import Data.Array.NonEmpty (NonEmptyArray, nub)
 import Data.Array.NonEmpty as Narr
+import Data.Array.NonEmpty.Internal (NonEmptyArray(..))
 import Data.Csv (CsvRow(..), RawCsvContent)
 import Data.DDF.FileInfo (CollectionInfo(..), FileInfo(..))
 import Data.DDF.FileInfo as FileInfo
@@ -101,8 +102,9 @@ getCsvContent (CsvFile { csvContent }) = csvContent
 getFileInfo :: CsvFile -> FileInfo
 getFileInfo (CsvFile { fileInfo }) = fileInfo
 
+-- | CsvRec is a valid CsvRow with headers info
 type CsvRec
-  = Map Header String
+  = Tuple (NonEmptyArray Header) (NonEmptyArray String)
 
 -- below are intermediate types and validations
 --
@@ -178,7 +180,9 @@ oneOfHeaderExists expected csvcontent =
 
     -- use XOR operator
     xor true false = true
+
     xor false true = true
+
     xor _ _ = false
 
     res = A.foldr (\x acc -> xor (x `A.elem` actual) acc) false expected
@@ -242,8 +246,6 @@ validCsvRec headers (CsvRow (Tuple idx row)) =
   if Narr.length headers /= A.length row then
     invalid [ Error $ "bad csv row" ]
   else
-    pure $ Map.fromFoldable tpls
+    pure $ (Tuple headers row_)
   where
-  tpls = A.zip headers' row
-
-  headers' = Narr.toArray headers
+  row_ = NonEmptyArray row

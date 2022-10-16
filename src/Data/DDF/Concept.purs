@@ -7,7 +7,7 @@ import Data.Array as A
 import Data.Array.NonEmpty (NonEmptyArray)
 import Data.Array.NonEmpty as Narr
 import Data.Csv (CsvRow(..))
-import Data.DDF.CsvFile (Header(..), CsvRec, headersExists)
+import Data.DDF.CsvFile (CsvRec, Header(..), headersExists, validCsvRec)
 import Data.DDF.FileInfo (FileInfo(..))
 import Data.DDF.Identifier (Identifier)
 import Data.DDF.Identifier as Id
@@ -21,6 +21,7 @@ import Data.List.NonEmpty (NonEmptyList)
 import Data.List.NonEmpty as NL
 import Data.Map (Map, delete, fromFoldable, lookup, pop)
 import Data.Map as M
+import Data.Map.Extra (mapKeys)
 import Data.Maybe (Maybe(..), isNothing)
 import Data.Newtype (unwrap)
 import Data.String as Str
@@ -41,7 +42,7 @@ data ConceptType
   | RoleC
   | CompositeC
   | TimeC
-  | CustomC Identifier
+  | CustomC Identifier -- The custom type
 
 instance showConceptType :: Show ConceptType where
   show StringC = "string"
@@ -95,87 +96,75 @@ instance showConcept :: Show Concept where
   show (Concept x) = show x
 
 instance eqConcept :: Eq Concept where
-  eq (Concept a) (Concept b) =
-    a.conceptId == b.conceptId
+  eq (Concept a) (Concept b) = a.conceptId == b.conceptId
 
-getId :: Concept -> NonEmptyString
-getId (Concept x) = unwrap $ x.conceptId
+getId :: Concept -> Identifier
+getId (Concept x) = x.conceptId
 
 -- | Concept Input, which comes from CsvFile.
 -- | if CsvFile is valid, then every concept should have conceptId and conceptType.
 type ConceptInput
-  = { conceptId :: String, conceptType :: String, props :: Props }
+  = Map Identifier String
 
 hasProp :: String -> Props -> Boolean
 hasProp f props = M.member (Id.unsafeCreate f) props
 
+hasFieldAndGetValue :: String -> ConceptInput -> V Errors String
+hasFieldAndGetValue field input = case M.lookup (Id.unsafeCreate field) input of
+  Nothing -> invalid [ Error $ "field " <> field <> "MUST exist for concept" ]
+  Just v -> pure v
+
+nonEmptyField :: String -> String -> V Errors String
+nonEmptyField field input =
+  if Str.null input then
+    invalid [ Error $ "field " <> field <> " MUST not be empty" ]
+  else
+    pure input
+
 checkMandatoryField :: Concept -> V Errors Concept
 checkMandatoryField input@(Concept c) = case c.conceptType of
-  EntitySetC ->
-    if hasProp "domain" c.props then
-      pure input
-    else
-      invalid [ Error $ "missing domain field for entity_set: " <> (toString $ getId input) ]
+  EntitySetC -> ado
+    hasFieldAndGetValue "domain" c.props
+      `andThen`
+        nonEmptyField "domain"
+    in input
   _ -> pure input
+
+-- | WS server have issue when concept Id is too long
+conceptIdTooLong :: Concept -> V Errors Concept
+conceptIdTooLong conc@(Concept c) = ado
+  Id.isLongerThan64Chars c.conceptId
+  in 
+    conc
 
 -- | convert a ConceptInput into valid Concept or errors
 parseConcept :: ConceptInput -> V Errors Concept
-parseConcept { conceptId: cid, conceptType: ct, props: props } =
+parseConcept input =
   let
-    missingField = (Str.null cid) || (Str.null ct)
+    conceptId =
+      hasFieldAndGetValue "concept" input
+        `andThen`
+          nonEmptyField "concept"
+        `andThen`
+          Id.parseId
+
+    conceptType =
+      hasFieldAndGetValue "concept_type" input
+        `andThen`
+          nonEmptyField "concept_type"
+        `andThen`
+          parseConceptType
+
+    props = input # (M.delete (Id.unsafeCreate "concept") >>> M.delete (Id.unsafeCreate "concept_type"))
   in
-    if missingField then
-      invalid [ Error "concept or concept_type field is empty." ]
-    else
-      let
-        conceptId = Id.parseId cid
+    (concept <$> conceptId <*> conceptType <*> pure props)
+      `andThen`
+        checkMandatoryField
 
-        conceptType = parseConceptType ct
-      in
-        (concept <$> conceptId <*> conceptType <*> pure props)
-          `andThen`
-            checkMandatoryField
-
--- TODO: complete below function
--- conceptInputFromCsvRec :: CsvRec -> V Errors ConceptInput
--- conceptInputFromCsvRec recMap =
---   { conceptId: cid, conceptType: ct, props: m }
---   where
---     recMap' = M.map
---     cid = case
-
-fromCsvRow :: (NonEmptyArray Header) -> (Array String) -> V Errors ConceptInput
-fromCsvRow headers row =
-  -- TODO: move the Bad row checking to other function in CsvFile module
-  if Narr.length headers /= A.length row then
-    invalid [ Error $ "Bad csv row" ]
-  else
-    pure $ (mkConcept <<< rowAsMap) row
+-- | convert CsvRec to ConceptInput
+conceptInputFromCsvRec :: CsvRec -> ConceptInput
+conceptInputFromCsvRec (Tuple headers row) = rowAsMap row
   where
-  -- FIXME: coerce header to Id might be wrong
-  -- because not all headers are valid Ids. (i.e. is-- headers)
-  headersL = Narr.toArray $ map coerce headers
+  headersL = map coerce headers
 
-  rowAsMap r = fromFoldable (A.zip headersL r)
-
-  mkConcept m =
-    let
-      conceptCol = (Id.unsafeCreate "concept")
-
-      conceptTypeCol = (Id.unsafeCreate "concept_type")
-
-      cid = lookup conceptCol m
-
-      cid' = case cid of
-        Nothing -> ""
-        Just s -> s
-
-      ct = lookup conceptTypeCol m
-
-      ct' = case ct of
-        Nothing -> ""
-        Just s -> s
-
-      m' = m # (delete conceptCol) <<< (delete conceptTypeCol)
-    in
-      { conceptId: cid', conceptType: ct', props: m' }
+  rowAsMap r = fromFoldable (Narr.zip headersL r)
